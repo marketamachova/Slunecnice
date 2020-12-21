@@ -15,10 +15,10 @@ GameObject:
   - component: {fileID: 6793687088536708921}
   - component: {fileID: 5476514152596945842}
   - component: {fileID: 8885463689622156603}
-  - component: {fileID: -8798028045457130103}
+  - component: {fileID: 3985130842197113114}
   m_Layer: 0
   m_Name: TestPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
   localPositionSensitivity: 0.01
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
---- !u!114 &-8798028045457130103
+--- !u!114 &3985130842197113114
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
