@@ -8,18 +8,18 @@ public class PlayerMovement : MonoBehaviour
     public GameObject player;
     public PathCreator pathCreator;
     public float speed;
-    float distance;
+    private float _distance;
 
     void Start()
     {
-        player.transform.position = pathCreator.path.GetPoint(10);
+        player.transform.position = pathCreator.path.GetPoint(0);
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        distance += speed * Time.deltaTime;
-        player.transform.position = pathCreator.path.GetPointAtDistance(distance);
+        _distance += speed * Time.deltaTime;
+        player.transform.position = pathCreator.path.GetPointAtDistance(_distance);
     }
 }
