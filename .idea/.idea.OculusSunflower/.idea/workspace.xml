@@ -2,16 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2db6cfb4-b686-4922-8192-6de91e126b22" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Follower.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Follower.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.OculusSunflower/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OculusSunflower/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.OculusSunflower/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OculusSunflower/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animal pack deluxe/Animation_controllers/Common_frog_anim_controller.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animal pack deluxe/Animation_controllers/Common_frog_anim_controller.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animal pack deluxe/Animation_controllers/Swan_goose_anim_controller.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animal pack deluxe/Animation_controllers/Swan_goose_anim_controller.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animal pack deluxe/Animation_controllers/Viper_anim_controller.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animal pack deluxe/Animation_controllers/Viper_anim_controller.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animal pack deluxe/Animation_controllers/deer_anim_controller.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animal pack deluxe/Animation_controllers/deer_anim_controller.controller" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/New Terrain 4.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/New Terrain 4.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/HandsScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/HandsScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NavigationController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NavigationController.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UIControlApp.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UIControlApp.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Animals/AnimalController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Animals/AnimalController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Animals/AnimalMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Animals/AnimalMovement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EventTrigger.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EventTrigger.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,9 +27,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Animals/Walker.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Animals/AnimalMovement.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/EventTrigger.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Animals/StopCollider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Animals/AnimalController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/FadeOut.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Animals/AnimalCollider.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -34,11 +41,18 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Animals/FrogController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/NavigationController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIControlApp.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Colliders/AnimalCollider.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Animals/AnimalCollider.cs" />
+      <option value="$PROJECT_DIR$/Assets/PathCreator/Core/Runtime/Objects/VertexPath.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Animals/Walker.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Animals/AnimalMovement.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Animals/AnimalController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Animals/StopCollider.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/FadeOut.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Player/GameController.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1lyhOTiUkQhdJDqFThzeb42k6Gl" />
@@ -83,7 +97,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1608575218748</updated>
-      <workItem from="1608575330142" duration="12652000" />
+      <workItem from="1608575330142" duration="31066000" />
     </task>
     <servers />
   </component>

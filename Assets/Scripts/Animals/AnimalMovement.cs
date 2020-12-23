@@ -13,7 +13,6 @@ namespace Animals
 
         void Start()
         {
-            Debug.Log("AnimalMovement enabled");
             animal.transform.position = pathCreator.path.GetPoint(0);
         }
 
@@ -21,6 +20,7 @@ namespace Animals
         {
             _distance += speed * Time.deltaTime;
             animal.transform.position = pathCreator.path.GetPointAtDistance(_distance, endOfPathInstruction);
+            animal.transform.rotation = pathCreator.path.GetRotationAtDistance(_distance, endOfPathInstruction);
         }
     }
 }

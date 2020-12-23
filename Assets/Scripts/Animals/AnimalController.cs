@@ -4,29 +4,33 @@ namespace Animals
 {
     public class AnimalController : MonoBehaviour
     {
-        private Animator _animator;
-        private static readonly int Run = Animator.StringToHash("Run");
         public GameObject animal;
+        
+        private static readonly int Run = Animator.StringToHash("Run");
+        private static readonly int Time = Animator.StringToHash("Time");
+        private Animator _animator;
+        private AnimalMovement _movement;
+        private FadeOut _fadeOut;
+
 
         void Start()
         {
             _animator = GetComponent<Animator>();
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            float move = Input.GetAxis("Vertical");
+            _movement = animal.GetComponent<AnimalMovement>();
+            _fadeOut = animal.GetComponent<FadeOut>();
         }
 
         public void TriggerMove()
         {
-            Debug.Log("Trigger Move in AnimalController called");
-            var movement = animal.GetComponent<AnimalMovement>();
-
             _animator.SetTrigger(Run);
-            _animator.CrossFadeInFixedTime(Run, 0.2f);
-            movement.enabled = true;
+            // _animator.SetFloat(Time, 1f);
+
+            _movement.enabled = true;
+        }
+
+        public void TriggerFadeOut()
+        {
+            _fadeOut.enabled = true;
         }
     }
 }

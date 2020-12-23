@@ -14,9 +14,7 @@ public class PlayerMovement : MonoBehaviour
     {
         player.transform.position = pathCreator.path.GetPoint(0);
     }
-
-
-    // Update is called once per frame
+    
     void Update()
     {
         _distance += speed * Time.deltaTime;

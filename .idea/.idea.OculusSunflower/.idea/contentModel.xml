@@ -1278,14 +1278,19 @@
             <e p="AnimalCollider.cs" t="Include" />
             <e p="AnimalController.cs" t="Include" />
             <e p="AnimalMovement.cs" t="Include" />
+            <e p="StopCollider.cs" t="Include" />
+            <e p="Walker.cs" t="Include" />
           </e>
           <e p="Client.cs" t="Include" />
           <e p="ConnectionManager.cs" t="Include" />
-          <e p="EventTrigger.cs" t="Include" />
+          <e p="FadeOut.cs" t="Include" />
           <e p="NetworkController.cs" t="Include" />
           <e p="NetworkManagerApp.cs" t="Include" />
           <e p="NetworkStarter.cs" t="Include" />
-          <e p="PlayerMovement.cs" t="Include" />
+          <e p="Player" t="Include">
+            <e p="GameController.cs" t="Include" />
+            <e p="PlayerMovement.cs" t="Include" />
+          </e>
           <e p="ServerConnectionManager.cs" t="Include" />
           <e p="SimpleCameraController.cs" t="Include" />
           <e p="TerrainConfig.cs" t="Include" />
