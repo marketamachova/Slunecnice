@@ -1,4 +1,6 @@
 .DS_Store
+.idea/
+Assets/Plugins/Editor/JetBrains*
 
 # This .gitignore file should be placed at the root of your Unity project directory
 #
@@ -59,4 +61,5 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
+
 

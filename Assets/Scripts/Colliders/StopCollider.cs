@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Animals;
 using UnityEngine;
 
-namespace Animals
+namespace Colliders
 {
     public class StopCollider : MonoBehaviour
     {
