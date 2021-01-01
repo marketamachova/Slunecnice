@@ -6,29 +6,29 @@ using UnityEngine.UI;
 
 public class CountDownHandler : MonoBehaviour
 {
-    public GameObject countDownText;
-    public Text Text { get; set; }
+    // public GameObject countDownText;
+    public Text text;
 
     private void Start()
     {
-        Text = countDownText.GetComponent<Text>();
+        text = GetComponent<Text>();
     }
 
     public void Decrement()
     {
-        var number = int.Parse(Text.text);
+        var number = int.Parse(text.text);
         number--;
-        Text.text = number.ToString();
+        text.text = number.ToString();
     }
 
     public int GetTextInt()
     {
-        return int.Parse(Text.text);
+        return int.Parse(text.text);
     }
 
     public void Destroy()
     {
-        Destroy(Text);
+        Destroy(text);
     }
     
 }

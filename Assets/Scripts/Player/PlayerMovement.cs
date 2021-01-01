@@ -1,23 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using PathCreation;
 using UnityEngine;
-using PathCreation;
 
-public class PlayerMovement : MonoBehaviour
+namespace Player
 {
-    public GameObject player;
-    public PathCreator pathCreator;
-    public float speed;
-    private float _distance;
+    public class PlayerMovement : MonoBehaviour
+    {
+        public GameObject player;
+        public PathCreator pathCreator;
+        public Vector3 offset = new Vector3(0, 10, 0);
+        public float speed;
+        private float _distance;
 
-    void Start()
-    {
-        player.transform.position = pathCreator.path.GetPoint(0);
-    }
+        void Start()
+        {
+            player.transform.position = pathCreator.path.GetPoint(0) + offset;
+        }
     
-    void Update()
-    {
-        _distance += speed * Time.deltaTime;
-        player.transform.position = pathCreator.path.GetPointAtDistance(_distance);
+        void Update()
+        {
+            _distance += speed * Time.deltaTime;
+            player.transform.position = pathCreator.path.GetPointAtDistance(_distance) + offset;
+        }
     }
 }

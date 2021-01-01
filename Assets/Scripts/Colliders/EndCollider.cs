@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Player;
+using UnityEngine;
 
 namespace Colliders
 {
@@ -15,6 +16,7 @@ namespace Colliders
         {
             if (collision.gameObject.CompareTag("Player") && collision.gameObject.name != "Terrain")
             {
+                Debug.Log("calling end");
                 _gameController.End();
             }
         }
