@@ -56,7 +56,6 @@ namespace Player
 
         public void End()
         {
-            Debug.Log("end called");
             _playerMovementScripts.ForEach(Disable);
             _cartMovement.enabled = false;
             var animator = cart.GetComponent<Animator>();

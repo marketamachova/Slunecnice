@@ -7,6 +7,7 @@ namespace Animals
         public GameObject animal;
         
         private static readonly int Run = Animator.StringToHash("Run");
+        private static readonly int Idle = Animator.StringToHash("Idle");
         private static readonly int Time = Animator.StringToHash("Time");
         private Animator _animator;
         private AnimalMovement _movement;
@@ -23,9 +24,13 @@ namespace Animals
         public void TriggerMove()
         {
             _animator.SetTrigger(Run);
-            // _animator.SetFloat(Time, 1f);
-
             _movement.enabled = true;
+        }
+
+        public void TriggerStop()
+        {
+            _animator.SetTrigger(Idle);
+
         }
 
         public void TriggerFadeOut()
