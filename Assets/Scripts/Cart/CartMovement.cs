@@ -11,7 +11,6 @@ namespace Cart
         private float _distance;
         private Animator _animator;
         private static readonly int Drive = Animator.StringToHash("Drive");
-        private bool _freezeRotation = false;
 
         void Start()
         {
@@ -19,21 +18,12 @@ namespace Cart
             _animator.SetTrigger(Drive);
             cart.transform.position = pathCreator.path.GetPoint(0);
         }
-    
+
         void Update()
         {
             _distance += speed * Time.deltaTime;
             cart.transform.position = pathCreator.path.GetPointAtDistance(_distance);
-
-            if (!_freezeRotation)
-            {
-                cart.transform.rotation = pathCreator.path.GetRotationAtDistance(_distance);
-            }
-        }
-
-        public void FreezeRotation()
-        {
-            this._freezeRotation = true;
+            cart.transform.rotation = pathCreator.path.GetRotationAtDistance(_distance);
         }
     }
 }

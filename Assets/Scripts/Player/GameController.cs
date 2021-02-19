@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Cart;
 using UnityEngine;
@@ -7,41 +8,43 @@ namespace Player
 {
     public class GameController : MonoBehaviour
     {
-        public List<GameObject> player;
-        public GameObject countDown;
-        public GameObject cart;
+        [SerializeField] private List<GameObject> player;
+        [SerializeField] private GameObject cart;
+        [SerializeField] private GameObject finalUI;
+        
         private readonly List<PlayerMovement> _playerMovementScripts = new List<PlayerMovement>();
         private CartMovement _cartMovement;
-        private CountDownHandler _countDownHandler;
+        private AudioSource _cartAudio;
+        private Fader _fader;
+        
         private static readonly int Stop = Animator.StringToHash("Stop");
 
-        void Start()
+        private void Awake()
         {
             foreach (var o in player)
             {
                 _playerMovementScripts.Add(o.GetComponent<PlayerMovement>());
             }
-            _countDownHandler = countDown.GetComponent<CountDownHandler>();
-            _cartMovement = cart.GetComponent<CartMovement>();
-        
-            StartCoroutine(CountDown());
-        }
-    
-    
-        IEnumerator CountDown()
-        {
-            while (_countDownHandler.GetTextInt() > 0)
-            {
-                yield return new WaitForSecondsRealtime(2);
-                _countDownHandler.Decrement();
-
-            }
-
-            _countDownHandler.Destroy();
-            yield return new WaitForSecondsRealtime(1);
             
+            _cartMovement = cart.GetComponent<CartMovement>();
+            _cartAudio = cart.GetComponent<AudioSource>();
+            // _fader = GetComponent<Fader>();
+        }
+
+        public IEnumerator Start()
+        {
+            // yield return StartCoroutine(_fader.FadeCoroutine());
+            yield return new WaitForSecondsRealtime(4);
+            yield return StartCoroutine(InitialCoroutine());
+        }
+        
+
+        IEnumerator InitialCoroutine()
+        {
             _playerMovementScripts.ForEach(Enable);
             _cartMovement.enabled = true;
+            _cartAudio.Play();
+            yield return null;
         }
 
         private void Enable(PlayerMovement script)
@@ -57,16 +60,21 @@ namespace Player
         public void End()
         {
             _playerMovementScripts.ForEach(Disable);
-            _cartMovement.enabled = false;
-            var animator = cart.GetComponent<Animator>();
-            animator.SetTrigger(Stop);
+            StopCart();
             DisplayUI();
         }
 
         private void DisplayUI()
         {
-        
+            finalUI.SetActive(true);
         }
 
+        private void StopCart()
+        {
+            var animator = cart.GetComponent<Animator>();
+            animator.SetTrigger(Stop);
+            _cartMovement.enabled = false;
+            _cartAudio.Stop();
+        }
     }
 }

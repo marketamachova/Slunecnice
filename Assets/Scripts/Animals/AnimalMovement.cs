@@ -23,7 +23,7 @@ namespace Animals
             _distance += speed * Time.deltaTime;
             animal.transform.position = pathCreator.path.GetPointAtDistance(_distance, endOfPathInstruction);
             animal.transform.rotation = pathCreator.path.GetRotationAtDistance(_distance, endOfPathInstruction);
-
+            
             if (_distance >= pathCreator.path.length)
             {
                 if (_animalController != null)
