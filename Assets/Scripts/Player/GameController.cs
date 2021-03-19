@@ -35,9 +35,8 @@ namespace Player
         {
             // yield return StartCoroutine(_fader.FadeCoroutine());
             yield return new WaitForSecondsRealtime(4);
-            yield return StartCoroutine(InitialCoroutine());
+            // yield return StartCoroutine(InitialCoroutine());
         }
-        
 
         IEnumerator InitialCoroutine()
         {
@@ -46,7 +45,25 @@ namespace Player
             _cartAudio.Play();
             yield return null;
         }
+        
+        public void StartMovement()
+        {
+            Debug.Log("game controller starting movement");
+            _playerMovementScripts.ForEach(Enable);
+        }
+        
+        public void PauseMovement()
+        {
+            _playerMovementScripts.ForEach(Disable);
+        }
 
+        public void End()
+        {
+            _playerMovementScripts.ForEach(Disable);
+            StopCart();
+            DisplayUI();
+        }
+        
         private void Enable(PlayerMovement script)
         {
             script.enabled = true;
@@ -56,14 +73,7 @@ namespace Player
         {
             script.enabled = false;
         }
-
-        public void End()
-        {
-            _playerMovementScripts.ForEach(Disable);
-            StopCart();
-            DisplayUI();
-        }
-
+        
         private void DisplayUI()
         {
             finalUI.SetActive(true);
@@ -75,6 +85,11 @@ namespace Player
             animator.SetTrigger(Stop);
             _cartMovement.enabled = false;
             _cartAudio.Stop();
+        }
+
+        private void OnSceneLoaded()
+        {
+            //center player
         }
     }
 }

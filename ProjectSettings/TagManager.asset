@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Animal
+  - NetworkCamera
+  - UIController
+  - PlayerMobile
   layers:
   - Default
   - TransparentFX

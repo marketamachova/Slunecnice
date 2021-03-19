@@ -1,26 +1,59 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 using Mirror;
+using UnityEngine;
 
-public class MyNetworkManager : NetworkManager
+namespace Network
 {
-    public override void OnServerAddPlayer(NetworkConnection conn)
+    public class MyNetworkManager : NetworkManager
     {
-        base.OnServerAddPlayer(conn);
-
-        MyNetworkPlayer playerScript = conn.identity.GetComponent<MyNetworkPlayer>();
-        playerScript.SetDisplayName($"Player{numPlayers}");
+        public GameObject PlayerCamera {get; private set;}
+        public static List<GameObject> Players {get; private set;} = new List<GameObject>();
+        public event Action OnServerAddPlayerAction;
+        public event Action OnClientDisconnectAction;
         
-        Debug.Log("Server added player"); //log to sever
-        Debug.Log($"There are {numPlayers} players on the server"); 
 
-    }
+        public override void OnServerAddPlayer(NetworkConnection conn)
+        {
+            InstantiatePlayer(conn);
 
-    public override void OnClientConnect(NetworkConnection conn)
-    {
-        base.OnClientConnect(conn);
-        Debug.Log("Client connected"); //log to sever
+            Debug.Log($"server added player. there are {numPlayers} connected.");
+
+            if (numPlayers <= 1)
+            {
+                InstantiateCamera();
+            }
+
+            OnServerAddPlayerAction?.Invoke();
+        }
+
+        private void InstantiatePlayer(NetworkConnection conn)
+        {
+            GameObject player = Instantiate(playerPrefab);
+            NetworkPlayer networkPlayer = player.GetComponent<NetworkPlayer>();
+
+            NetworkServer.AddPlayerForConnection(conn, player);
+            DontDestroyOnLoad(player);
+            Players.Add(player);
+            Debug.Log("added a player, players length " + Players.Count);
+            
+            networkPlayer.UpdateSceneConnected();
+        }
+
+        private void InstantiateCamera()
+        {
+            Debug.Log("adding a camera");
+            
+            PlayerCamera = Instantiate(spawnPrefabs.Find(prefab => prefab.name == "NetworkPlayerAttachCamera"));
+            NetworkServer.Spawn(PlayerCamera);
+            DontDestroyOnLoad(PlayerCamera);
+        }
+
+        public override void OnClientDisconnect(NetworkConnection conn)
+        {
+            Debug.Log("client disconnected");
+            base.OnClientDisconnect(conn);
+            OnClientDisconnectAction?.Invoke();
+        }
     }
-    
 }
