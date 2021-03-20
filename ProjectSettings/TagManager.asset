@@ -8,6 +8,8 @@ TagManager:
   - NetworkCamera
   - UIController
   - PlayerMobile
+  - TopCamera
+  - Controller
   layers:
   - Default
   - TransparentFX

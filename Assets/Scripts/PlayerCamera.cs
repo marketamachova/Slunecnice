@@ -1,4 +1,5 @@
 ﻿using Mirror;
+using Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,6 +17,7 @@ public class PlayerCamera : NetworkBehaviour
     // [SerializeField] private Camera rightEye;
     // [SerializeField] private Camera leftEye;
     private OVRManager _ovrManager;
+    private GameController _gameController;
 
 
     private void Awake()
@@ -29,6 +31,10 @@ public class PlayerCamera : NetworkBehaviour
             _cameraRig = GameObject.FindWithTag("MainCamera");
             _ovrManager = _cameraRig.GetComponent<OVRManager>();
             Debug.Log(_ovrManager);
+            
+            // _gameController = GetComponent<GameController>();
+            // _gameController.player.Add(_cameraRig);
+            // _gameController.PLa
         }
     }
 
@@ -41,7 +47,7 @@ public class PlayerCamera : NetworkBehaviour
     {
         if (_vrInstance)
         {
-            HandleUserRotation();
+            SyncUserPositionAndRotation();
         }
     }
 
@@ -56,13 +62,18 @@ public class PlayerCamera : NetworkBehaviour
     /**
      * Update networked RTCamera transforms
      */
-    private void HandleUserRotation()
+    private void SyncUserPositionAndRotation()
     {
         var playerRotation = _ovrManager.headPoseRelativeOffsetRotation;
         var playerHeight = _ovrManager.headPoseRelativeOffsetTranslation; // sync player height?
         playerGaze.transform.rotation = Quaternion.Euler(playerRotation);
         rtCamera.transform.rotation = Quaternion.Euler(playerRotation);
+
+        var playerPosition = _cameraRig.transform.position;
+        playerGaze.transform.position = playerPosition;
+        rtCamera.transform.position = playerPosition;
     }
+    
 
     private void UpdateCameraRig(Scene arg0, LoadSceneMode loadSceneMode)
     {

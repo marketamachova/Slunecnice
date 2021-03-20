@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -7220247591481717560}
   m_Layer: 0
   m_Name: TopCamera
-  m_TagString: MainCamera
+  m_TagString: TopCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -137,7 +137,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cfbd2eef5399468b9352d1293750e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 7434589591559530423}
   pathCreator: {fileID: 2671521409517679547, guid: f80c9937212624a70a78184979b1ae4b,
     type: 3}
   offset: {x: 0, y: 30, z: 0}

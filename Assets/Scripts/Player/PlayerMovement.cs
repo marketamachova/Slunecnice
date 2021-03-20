@@ -5,7 +5,6 @@ namespace Player
 {
     public class PlayerMovement : MonoBehaviour
     {
-        public GameObject player;
         public PathCreator pathCreator;
         public Vector3 offset = new Vector3(0, 5, 0);
         public float speed;
@@ -15,7 +14,7 @@ namespace Player
 
         void Start()
         {
-            player.transform.position = pathCreator.path.GetPoint(0) + offset;
+            transform.position = pathCreator.path.GetPoint(0) + offset;
         }
     
         void Update()
@@ -24,10 +23,10 @@ namespace Player
             if (_shiftCamera) cameraOffset += 0.1f;
             
             _distance += speed * Time.deltaTime;
-            player.transform.position = pathCreator.path.GetPointAtDistance(_distance + cameraOffset) + offset;
+            transform.position = pathCreator.path.GetPointAtDistance(_distance + cameraOffset) + offset;
             if (rotateCamera)
             {
-                player.transform.rotation = pathCreator.path.GetRotationAtDistance(_distance);
+                transform.rotation = pathCreator.path.GetRotationAtDistance(_distance);
             }
         }
 

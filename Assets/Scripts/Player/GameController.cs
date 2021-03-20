@@ -8,11 +8,11 @@ namespace Player
 {
     public class GameController : MonoBehaviour
     {
-        [SerializeField] private List<GameObject> player;
+        [SerializeField] public List<GameObject> player;
         [SerializeField] private GameObject cart;
         [SerializeField] private GameObject finalUI;
         
-        private readonly List<PlayerMovement> _playerMovementScripts = new List<PlayerMovement>();
+        public readonly List<PlayerMovement> PlayerMovementScripts = new List<PlayerMovement>();
         private CartMovement _cartMovement;
         private AudioSource _cartAudio;
         private Fader _fader;
@@ -23,7 +23,7 @@ namespace Player
         {
             foreach (var o in player)
             {
-                _playerMovementScripts.Add(o.GetComponent<PlayerMovement>());
+                PlayerMovementScripts.Add(o.GetComponent<PlayerMovement>());
             }
             
             _cartMovement = cart.GetComponent<CartMovement>();
@@ -40,7 +40,7 @@ namespace Player
 
         IEnumerator InitialCoroutine()
         {
-            _playerMovementScripts.ForEach(Enable);
+            PlayerMovementScripts.ForEach(Enable);
             _cartMovement.enabled = true;
             _cartAudio.Play();
             yield return null;
@@ -49,17 +49,17 @@ namespace Player
         public void StartMovement()
         {
             Debug.Log("game controller starting movement");
-            _playerMovementScripts.ForEach(Enable);
+            PlayerMovementScripts.ForEach(Enable);
         }
         
         public void PauseMovement()
         {
-            _playerMovementScripts.ForEach(Disable);
+            PlayerMovementScripts.ForEach(Disable);
         }
 
         public void End()
         {
-            _playerMovementScripts.ForEach(Disable);
+            PlayerMovementScripts.ForEach(Disable);
             StopCart();
             DisplayUI();
         }

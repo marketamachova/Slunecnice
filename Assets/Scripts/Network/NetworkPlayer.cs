@@ -5,11 +5,13 @@ using Player;
 using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace Network
 {
     public class NetworkPlayer : NetworkBehaviour
     {
+        [SerializeField] public bool mobile;
         [SerializeField] private MyNetworkManager networkManager;
         [SerializeField] private string ipAddress;
 
@@ -19,17 +21,13 @@ namespace Network
         [SyncVar(hook = "SetPlayerMoving")]
         public bool playerMoving;
         
-        private GameController _gameController;
         private BaseUIController _uiController;
         private GameObject _uiControllerGO;
-        private GameObject _mainCamera;
-
-        private bool _mobile;
-
+        private GameController _gameController;
 
         public void Start()
         {
-            _gameController = GameObject.FindWithTag("MainCamera").GetComponent<GameController>();
+            // _gameController = GameObject.FindWithTag("Controller").GetComponent<GameController>();
             _uiControllerGO = GameObject.FindWithTag("UIController");
             
         }
@@ -88,9 +86,12 @@ namespace Network
         public void SetPlayerMoving(bool oldValue, bool moving)
         {
             Debug.Log("set player moving in Network pLayer, moving: " + moving);
-            //volano jen ve VR snad?!!!!
-            // if (hasAuthority)
+            
+            Debug.Log(mobile);
+            if (!mobile)
             {
+                AssignGameController();
+
                 if (moving)
                 {
                     _gameController.StartMovement();
@@ -102,19 +103,26 @@ namespace Network
             }
         }
 
+        private void AssignGameController()
+        {
+            _gameController = GameObject.FindWithTag("Controller").GetComponent<GameController>();
+            Debug.Log(_gameController);
+            Debug.Log(SceneManager.GetActiveScene().name);
+        }
+
         private void HandleClientDisconnect()
         {
             Debug.Log("client disconnected err");
         }
 
 
-        [Command(ignoreAuthority = true)]
-        public void StartCart()
-        {
-            _mainCamera = GameObject.FindWithTag("MainCamera");
-            _gameController = _mainCamera.GetComponent<GameController>();
-            _gameController.StartMovement(); //should add pause later
-        }
+        // [Command(ignoreAuthority = true)]
+        // public void StartCart()
+        // {
+        //     _mainCamera = GameObject.FindWithTag("MainCamera");
+        //     _gameController = _mainCamera.GetComponent<GameController>();
+        //     _gameController.StartMovement(); //should add pause later
+        // }
 
         [Command(ignoreAuthority = true)]
         public void StopCart()

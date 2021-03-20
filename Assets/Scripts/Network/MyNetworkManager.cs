@@ -31,6 +31,10 @@ namespace Network
         {
             GameObject player = Instantiate(playerPrefab);
             NetworkPlayer networkPlayer = player.GetComponent<NetworkPlayer>();
+            if (networkPlayer.netId >= 3)
+            {
+                networkPlayer.mobile = true;
+            }
 
             NetworkServer.AddPlayerForConnection(conn, player);
             DontDestroyOnLoad(player);

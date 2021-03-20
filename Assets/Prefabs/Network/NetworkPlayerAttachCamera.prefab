@@ -213,7 +213,6 @@ GameObject:
   - component: {fileID: -6856841697663539212}
   - component: {fileID: 2585152040486979133}
   - component: {fileID: 7809595105396099048}
-  - component: {fileID: -3150178759754796465}
   m_Layer: 0
   m_Name: NetworkPlayerAttachCamera
   m_TagString: NetworkCamera
@@ -320,26 +319,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cfbd2eef5399468b9352d1293750e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3994893692606799969, guid: de230c76de51d4d3ab1f22f85339dda6, type: 3}
   pathCreator: {fileID: 2671521409517679547, guid: f80c9937212624a70a78184979b1ae4b,
     type: 3}
   offset: {x: 0, y: 2.5, z: 0}
   speed: 3
   rotateCamera: 1
---- !u!114 &-3150178759754796465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5047950622085930364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58255a6ea0c5c41729342cabe04b55f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player:
-  - {fileID: 3994893692606799969, guid: de230c76de51d4d3ab1f22f85339dda6, type: 3}
-  - {fileID: 7434589591559530423, guid: 40435a07e5f654fce9db203a74af784e, type: 3}
-  cart: {fileID: 7193897719457432614, guid: 294284f6a67934feb899ee093232470a, type: 3}
-  finalUI: {fileID: 8057598241499329434, guid: 01a0d99b0734d462aa3cce0f2beac570, type: 3}
