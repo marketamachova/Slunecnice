@@ -10,6 +10,7 @@ namespace Network
         public GameObject PlayerCamera {get; private set;}
         public static List<GameObject> Players {get; private set;} = new List<GameObject>();
         public event Action OnServerAddPlayerAction;
+        public event Action OnClientConnectAction;
         public event Action OnClientDisconnectAction;
         
 
@@ -58,6 +59,12 @@ namespace Network
             Debug.Log("client disconnected");
             base.OnClientDisconnect(conn);
             OnClientDisconnectAction?.Invoke();
+        }
+
+        public override void OnClientConnect(NetworkConnection conn)
+        {
+            base.OnClientConnect(conn);
+            OnClientConnectAction?.Invoke();
         }
     }
 }

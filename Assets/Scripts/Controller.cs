@@ -39,7 +39,7 @@ public class Controller : MonoBehaviour
     {
         Debug.Log("Controller scene loaded");
         uiController.EnablePanel("WatchScreenPortrait");
-        uiController.SetControlsVisible();
+        uiController.ToggleControlsVisible();
         uiController.ActivateButton("PlayerCameraButton");
     }
 
@@ -60,6 +60,8 @@ public class Controller : MonoBehaviour
                 networkPlayer.CmdSetPlayerMoving(_playing);
             }
         }
+        
+        uiController.OnPlayPressed(_playing);
     }
 
     public void PauseDrive()

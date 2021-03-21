@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScene.unity
     guid: 0d9d9ed3c972a41a59d5b5fc1dffb065
   - enabled: 0
-    path: Assets/Scenes/test.unity
+    path: Assets/Scenes/ISSTest.unity
     guid: 0e0578adddb2740e6a9a4151f9277d8e
   - enabled: 0
     path: Assets/Scenes/AppScene.unity

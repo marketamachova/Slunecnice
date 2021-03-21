@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Mirror;
+using Mirror.Discovery;
 using Network;
 using UI;
 using UnityEngine;
@@ -18,7 +19,7 @@ namespace Player
 
     public class VRLobbyController : NetworkBehaviour
     {
-        [SerializeField] private MyNetworkManager networkManager;
+        [SerializeField] private NetworkDiscovery networkDiscovery;
         [SerializeField] private LobbyUIController uiController;
         [SerializeField] private SceneLoader sceneLoader;
         [SerializeField] private GameObject floor;
@@ -32,7 +33,8 @@ namespace Player
         IEnumerator Start()
         {
             yield return new WaitForSecondsRealtime(1);
-            networkManager.StartHost();
+            NetworkManager.singleton.StartHost();
+            networkDiscovery.AdvertiseServer();
         }
 
         public void Update()

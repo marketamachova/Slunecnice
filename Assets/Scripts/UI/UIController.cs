@@ -1,10 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
+
 using NetworkPlayer = Network.NetworkPlayer;
 
 namespace UI
@@ -16,28 +13,24 @@ namespace UI
         [SerializeField] public bool portraitOriented;
         
         [SerializeField] private List<GameObject> screenPanels;
-        [SerializeField] private List<SelectableButton> buttons;
+        [SerializeField] private List<Selectable> buttons;
         [SerializeField] private List<GameObject> cameraViews;
-        [SerializeField] private List<GameObject> controls;
+        [SerializeField] private GameObject controls;
         [SerializeField] private GameObject sceneSelectionPanel;
-        [SerializeField] private string ipAddress;
-        [SerializeField] private WatchMode watchMode;
-
+        [SerializeField] private Timer timer;
+        [SerializeField] private ProgressBar progressBar;
+        [SerializeField] private Selectable playButton;
+        [SerializeField] private Selectable maximizeButton;
+        
         private NetworkPlayer _networkPlayer;
         private SceneLoader _sceneLoader;
         private bool _controlsVisible;
+        private bool _playing = false;
 
         private void Awake()
         {
             networkManager.OnClientDisconnectAction += DisplayError;
             _sceneLoader = GetComponent<SceneLoader>();
-        }
-
-        //general controller
-        public void Join()
-        {
-            networkManager.networkAddress = ipAddress;
-            networkManager.StartClient();
         }
 
         public void EnablePanel(string panelName)
@@ -57,26 +50,17 @@ namespace UI
         
         public void OnChangeScreenOrientation()
         {
+            
             Screen.orientation = portraitOriented ? ScreenOrientation.LandscapeLeft : ScreenOrientation.Portrait;
             portraitOriented = !portraitOriented;
+            maximizeButton.SetSelected(!portraitOriented);
+            Debug.Log(portraitOriented);
         }
-        
-        //wtf co je tohle
+
         public void ToggleControlsVisible()
         {
             _controlsVisible = !_controlsVisible;
-            if (_controlsVisible)
-            {
-                //set active only if current panel is their panel OR move them
-                controls.ForEach(control => control.SetActive(true));
-                StartCoroutine(HideControls());
-            }
-        }
-
-        public void SetControlsVisible()
-        {
-            _controlsVisible = true;
-            controls.ForEach(control => control.SetActive(true));
+            controls.SetActive(_controlsVisible);
         }
 
         private IEnumerator HideControls()
@@ -84,8 +68,16 @@ namespace UI
             while (_controlsVisible)
             {
                 yield return new WaitForSecondsRealtime(5);
-                controls.ForEach(control => control.SetActive(false));
+                controls.SetActive(false);
             }
+        }
+
+        public void OnPlayPressed(bool playing)
+        {
+            playButton.SetSelected(playing);
+            _playing = playing;
+            timer.SetTimerPlaying(playing);
+            progressBar.SetProgressBarPlaying(playing);
         }
 
         //general controller
@@ -93,6 +85,7 @@ namespace UI
         {
             _networkPlayer.CmdHandleSelectedWorld(chosenScene); //message about scene loading to other players
             _sceneLoader.LoadScene(chosenScene, true);
+            timer.ResetTimer(); //nevim
         }
 
 
