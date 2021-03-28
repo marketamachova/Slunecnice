@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using Cart;
 using Mirror;
 using Mirror.Discovery;
 using Network;
@@ -20,16 +22,19 @@ namespace Player
     public class VRLobbyController : NetworkBehaviour
     {
         [SerializeField] private NetworkDiscovery networkDiscovery;
-        [SerializeField] private LobbyUIController uiController;
+        [SerializeField] private UIControllerVRLobby uiController;
+        [SerializeField] private CartCreator cartCreator;
         [SerializeField] private SceneLoader sceneLoader;
         [SerializeField] private GameObject floor;
-
-        [SerializeField] private GameObject text;
         
         //debug only
         private bool _spacePressed = false;
 
-        // Start is called before the first frame update
+        private void Awake()
+        {
+            cartCreator.OnCartCreated += EnableSceneSelection;
+        }
+
         IEnumerator Start()
         {
             yield return new WaitForSecondsRealtime(1);
@@ -45,6 +50,12 @@ namespace Player
                 _spacePressed = true;
                 OnSceneSelected(World.MainScene.ToString());
             }
+        }
+        
+        private void EnableSceneSelection()
+        {
+            Debug.Log("enable scene selection");
+            uiController.EnablePanelExclusive("SceneSelection");
         }
 
         public void OnSceneSelected(string scene)

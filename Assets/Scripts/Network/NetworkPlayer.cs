@@ -43,7 +43,7 @@ namespace Network
                 Debug.Log("update scene connected (MOBILE ONLY)");
                 _uiControllerGO = GameObject.FindWithTag("UIController");
                 Debug.Log(_uiControllerGO);
-                var uiController = _uiControllerGO.GetComponent<UIController>();
+                var uiController = _uiControllerGO.GetComponent<UIControllerMobile>();
                 
                 uiController.AssignPlayer(this);
             }

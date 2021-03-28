@@ -2,15 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Cart;
 using Network;
 using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using NetworkPlayer = Network.NetworkPlayer;
 
 public class Controller : MonoBehaviour
 {
-    [SerializeField] private UIController uiController;
+    [FormerlySerializedAs("uiController")] [SerializeField] private UIControllerMobile uiControllerMobile;
     [SerializeField] private SceneLoader sceneLoader;
     [SerializeField] private MyNetworkManager networkManager;
     private List<GameObject> _players = new List<GameObject>();
@@ -38,9 +40,9 @@ public class Controller : MonoBehaviour
     private void OnSceneLoaded()
     {
         Debug.Log("Controller scene loaded");
-        uiController.EnablePanel("WatchScreenPortrait");
-        uiController.ToggleControlsVisible();
-        uiController.ActivateButton("PlayerCameraButton");
+        uiControllerMobile.EnablePanelExclusive("WatchScreenPortrait");
+        uiControllerMobile.ToggleControlsVisible();
+        uiControllerMobile.ActivateButton("PlayerCameraButton");
     }
 
     public void OnPlayPressed()
@@ -61,7 +63,7 @@ public class Controller : MonoBehaviour
             }
         }
         
-        uiController.OnPlayPressed(_playing);
+        uiControllerMobile.OnPlayPressed(_playing);
     }
 
     public void PauseDrive()

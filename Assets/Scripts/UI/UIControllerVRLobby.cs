@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace UI
 {
-    public class LobbyUIController : BaseUIController
+    public class UIControllerVRLobby : BaseUIController
     {
-
+        
     }
 }

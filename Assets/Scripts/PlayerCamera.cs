@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class PlayerCamera : NetworkBehaviour
 {
     [SerializeField] private SceneController sceneController;
-    [SerializeField] private GameObject playerGaze;
     [SerializeField] private GameObject rtCamera;
 
     private bool _vrInstance;
@@ -29,9 +28,10 @@ public class PlayerCamera : NetworkBehaviour
             SceneManager.sceneLoaded += AssignChild;
             SceneManager.sceneLoaded += UpdateCameraRig;
             _cameraRig = GameObject.FindWithTag("MainCamera");
+            Debug.Log(_cameraRig.name);
             _ovrManager = _cameraRig.GetComponent<OVRManager>();
             Debug.Log(_ovrManager);
-            
+
             // _gameController = GetComponent<GameController>();
             // _gameController.player.Add(_cameraRig);
             // _gameController.PLa
@@ -64,16 +64,18 @@ public class PlayerCamera : NetworkBehaviour
      */
     private void SyncUserPositionAndRotation()
     {
-        var playerRotation = _ovrManager.headPoseRelativeOffsetRotation;
-        var playerHeight = _ovrManager.headPoseRelativeOffsetTranslation; // sync player height?
-        playerGaze.transform.rotation = Quaternion.Euler(playerRotation);
-        rtCamera.transform.rotation = Quaternion.Euler(playerRotation);
+        // Debug.Log(_ovrManager);
+        if (_ovrManager != null) //TODO
+        {
+            var playerRotation = _ovrManager.headPoseRelativeOffsetRotation;
+            var playerViewPortPos = _ovrManager.headPoseRelativeOffsetTranslation;
+            rtCamera.transform.rotation = Quaternion.Inverse(Quaternion.Euler(playerRotation));
 
-        var playerPosition = _cameraRig.transform.position;
-        playerGaze.transform.position = playerPosition;
-        rtCamera.transform.position = playerPosition;
+            var playerPosition = _cameraRig.transform.position;
+            rtCamera.transform.position = playerPosition + playerViewPortPos;
+        }
     }
-    
+
 
     private void UpdateCameraRig(Scene arg0, LoadSceneMode loadSceneMode)
     {

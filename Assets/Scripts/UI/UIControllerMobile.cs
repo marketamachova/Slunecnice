@@ -8,7 +8,7 @@ namespace UI
 {
     enum WatchMode {PlayerCamera, TopCamera, Dashboard}
 
-    public class UIController : BaseUIController
+    public class UIControllerMobile : BaseUIController
     {
         [SerializeField] public bool portraitOriented;
         
@@ -33,10 +33,10 @@ namespace UI
             _sceneLoader = GetComponent<SceneLoader>();
         }
 
-        public void EnablePanel(string panelName)
-        {
-            screenPanels.ForEach(panel => panel.SetActive(panel.name == panelName));
-        }
+        // public void EnablePanel(string panelName)
+        // {
+        //     screenPanels.ForEach(panel => panel.SetActive(panel.name == panelName));
+        // }
 
         public void EnableCameraView(string cameraViewName)
         {

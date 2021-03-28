@@ -1,4 +1,5 @@
-﻿using Network;
+﻿using System.Collections.Generic;
+using Network;
 using UnityEngine;
 
 namespace UI
@@ -8,6 +9,8 @@ namespace UI
         [SerializeField] private GameObject networkStatusIndicator;
         [SerializeField] private GameObject networkStatusIndicatorMobile;
         [SerializeField] private GameObject loadingSceneIndicator;
+        [SerializeField] protected List<GameObject> panels;
+        [SerializeField] protected List<GameObject> activables;
         [SerializeField] protected MyNetworkManager networkManager;
         
         [SerializeField] private GameObject errorPanel;
@@ -35,6 +38,33 @@ namespace UI
         public virtual void DisplayError()
         {
             errorPanel.SetActive(true);
+        }
+        
+        public void EnablePanelExclusive(string panelName)
+        {
+            panels.ForEach(panel => panel.SetActive(panel.name == panelName));
+        }
+
+        public void ActivateTrue(string activableName)
+        {
+            activables.ForEach(activable =>
+            {
+                if (activable.name == activableName)
+                {
+                    activable.SetActive(true);
+                }
+            });
+        }
+        
+        public void ActivateFalse(string activableName)
+        {
+            activables.ForEach(activable =>
+            {
+                if (activable.name == activableName)
+                {
+                    activable.SetActive(false);
+                }
+            });
         }
     }
 }

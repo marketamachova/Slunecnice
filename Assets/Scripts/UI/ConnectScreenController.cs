@@ -1,10 +1,7 @@
-﻿using Mirror;
-using Mirror.Discovery;
+﻿using Mirror.Discovery;
 using Network;
 using TMPro;
-using UnityEditor.Events;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI
@@ -30,7 +27,7 @@ namespace UI
 
         private void DisplayDiscoveredServers(ServerResponse serverResponse)
         {
-            Debug.Log("connectable device found PICO");
+            Debug.Log("connectable device found");
             _serverResponse = serverResponse;
             connectableDeviceText.text = serverResponse.EndPoint.Address.ToString();
             availabilityStatus.SetSelected(true);
