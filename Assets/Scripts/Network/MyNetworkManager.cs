@@ -12,6 +12,8 @@ namespace Network
         public event Action OnServerAddPlayerAction;
         public event Action OnClientConnectAction;
         public event Action OnClientDisconnectAction;
+        public event Action OnMobileClientConnectAction;
+        public event Action OnMobileClientDisconnectAction;
         
 
         public override void OnServerAddPlayer(NetworkConnection conn)
@@ -24,7 +26,12 @@ namespace Network
             {
                 InstantiateCamera();
             }
-
+            else
+            {
+                OnMobileClientConnectAction?.Invoke();
+            }
+            Debug.Log("conn.netid" + conn.identity.netId);
+            
             OnServerAddPlayerAction?.Invoke();
         }
 
@@ -32,7 +39,7 @@ namespace Network
         {
             GameObject player = Instantiate(playerPrefab);
             NetworkPlayer networkPlayer = player.GetComponent<NetworkPlayer>();
-            if (networkPlayer.netId >= 3)
+            if (numPlayers > 1) //TODO asi ne
             {
                 networkPlayer.mobile = true;
             }
@@ -58,7 +65,14 @@ namespace Network
         {
             Debug.Log("client disconnected");
             base.OnClientDisconnect(conn);
-            OnClientDisconnectAction?.Invoke();
+            if (numPlayers > 0)
+            {
+                OnMobileClientDisconnectAction?.Invoke();
+            }
+            else
+            {
+                OnClientDisconnectAction?.Invoke();
+            }
         }
 
         public override void OnClientConnect(NetworkConnection conn)

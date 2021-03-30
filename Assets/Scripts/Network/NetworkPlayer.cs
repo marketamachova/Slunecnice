@@ -12,8 +12,6 @@ namespace Network
     public class NetworkPlayer : NetworkBehaviour
     {
         [SerializeField] public bool mobile;
-        [SerializeField] private MyNetworkManager networkManager;
-        [SerializeField] private string ipAddress;
 
         [SyncVar(hook = "ChangeScene")]
         public string chosenWorld;
@@ -21,15 +19,19 @@ namespace Network
         [SyncVar(hook = "SetPlayerMoving")]
         public bool playerMoving;
         
+        [SyncVar(hook = "SetCalibrationComplete")]
+        public bool calibrationComplete;
+        
         private BaseUIController _uiController;
         private GameObject _uiControllerGO;
         private GameController _gameController;
 
-        public void Start()
+        public event Action OnCalibrationComplete;
+
+        private void Start()
         {
             // _gameController = GameObject.FindWithTag("Controller").GetComponent<GameController>();
             _uiControllerGO = GameObject.FindWithTag("UIController");
-            
         }
 
         /**
@@ -51,7 +53,6 @@ namespace Network
 
         public void ChangeScene(string oldScene, string newScene)
         {
-            Debug.Log("LOADCHOSENSCENE DOPICI");
             DontDestroyOnLoad(this);
             var currentScene = SceneManager.GetActiveScene().name;
             Debug.Log(currentScene);
@@ -109,11 +110,7 @@ namespace Network
             Debug.Log(_gameController);
             Debug.Log(SceneManager.GetActiveScene().name);
         }
-
-        private void HandleClientDisconnect()
-        {
-            Debug.Log("client disconnected err");
-        }
+        
 
 
         // [Command(ignoreAuthority = true)]
@@ -135,6 +132,27 @@ namespace Network
         public void ResumeCartDrive()
         {
             Debug.Log("cart resumes going");
+        }
+
+        // [Command]
+        // public void CmdSetCalibrationComplete(bool completed)
+        // {
+        //     Debug.Log("CMD set calibration completed in Network pLayer, calibration completed: " + completed);
+        //     calibrationComplete = completed;
+        // }
+
+        private void SetCalibrationComplete(bool oldValue, bool complete)
+        {
+            Debug.Log(mobile);
+            if (mobile && complete)
+            {
+                // _uiController.EnableFalse("Calibration");
+                // _uiController.EnableTrue("SceneSelection");
+                OnCalibrationComplete?.Invoke(); //ma si to prevzit mobile controller (Controller)
+            } else if (complete) //VR
+            {
+                
+            }
         }
     }
 }

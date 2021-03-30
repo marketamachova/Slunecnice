@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using TMPro;
 using UI;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 namespace Cart
 {
@@ -12,11 +15,15 @@ namespace Cart
         [SerializeField] private GameObject rightHand;
         [SerializeField] private GameObject cartPrefab;
         [SerializeField] private UIControllerVRLobby uiController;
+        [SerializeField] private Material cartMaterial;
+        [SerializeField] private Vector3 defaultCartPosition;
+        private readonly List<Renderer> _cartRendererComponents = new List<Renderer>();
         private OVRHand _leftHand;
         private OVRHand _rightHand;
         private OVRSkeleton _leftHandSkeleton;
         private OVRSkeleton _rightHandSkeleton;
         private int _stepCounter;
+        [SerializeField] private bool debug = true;
 
 
         private bool _interactable = true;
@@ -32,7 +39,7 @@ namespace Cart
         private List<Vector3> _createdPoints = new List<Vector3>();
         // private List<Vector3> rightSidePoints = new List<Vector3>();
 
-        public event Action OnCartCreated;
+        public event Action OnCalibrationComplete;
 
 
         private void Awake()
@@ -45,36 +52,41 @@ namespace Cart
 
         private void Update()
         {
-            // if (_interactable)
-            // {
-            //     var rightArrowPressed = Input.GetKeyDown(KeyCode.RightArrow);
-            //     var leftArrowPressed = Input.GetKeyDown(KeyCode.LeftArrow);
-            //
-            //     if (rightArrowPressed || leftArrowPressed)
-            //     {
-            //         _interactable = false;
-            //
-            //         if (rightArrowPressed && !_rightSideCreated)
-            //         {
-            //             Debug.Log("RIGHT index pinhing");
-            //             _currentPointPositionList.Add(new Vector3(0, 1.08f, 0));
-            //             _rightSideCreated = true;
-            //             _lastPointPosition = _currentPointPositionList[_currentPointPositionList.Count - 1];
-            //             CreateCart(_lastPointPosition);
-            //         }
-            //
-            //         if (leftArrowPressed && !_leftSideCreated && _rightSideCreated)
-            //         {
-            //             Debug.Log("LEFT index pinhing");
-            //             _currentPointPositionList.Add(new Vector3(-0.7936f, 1.0853f, 0.2373f));
-            //             _leftSideCreated = true;
-            //             RotateCart(_lastPointPosition, _currentPointPositionList[_currentPointPositionList.Count - 1]);
-            //         }
-            //
-            //
-            //         _interactable = true;
-            //     }
-            // }
+            if (_interactable && debug)
+            {
+                var rightArrowPressed = Input.GetKeyDown(KeyCode.RightArrow);
+                var leftArrowPressed = Input.GetKeyDown(KeyCode.LeftArrow);
+            
+                if (rightArrowPressed || leftArrowPressed)
+                {
+                    _interactable = false;
+            
+                    if (rightArrowPressed && !_rightSideCreated)
+                    {
+                        Debug.Log("RIGHT index pinhing");
+                        _currentPointPositionList.Add(new Vector3(0.485f, 1.3903f, 0.163f));
+                        _rightSideCreated = true;
+                        _lastPointPosition = _currentPointPositionList[_currentPointPositionList.Count - 1];
+                        CreateCart(_lastPointPosition);
+                    }
+            
+                    if (leftArrowPressed && !_leftSideCreated && _rightSideCreated)
+                    {
+                        Debug.Log("LEFT index pinhing");
+                        _currentPointPositionList.Add(new Vector3(-0.2958f, 1.3903f, 0.4578f));
+                        _leftSideCreated = true;
+                        RotateCart(_lastPointPosition, _currentPointPositionList[_currentPointPositionList.Count - 1]);
+                    }
+            
+            
+                    _interactable = true;
+                }
+
+                if (Input.GetKeyDown(KeyCode.X))
+                {
+                    ColorCart();
+                }
+            }
 
             if (_interactable)
             {
@@ -110,6 +122,7 @@ namespace Cart
         private void CreateCart(Vector3 pointPosition)
         {
             _cart = Instantiate(cartPrefab, pointPosition, cartPrefab.transform.rotation);
+            _cartRendererComponents.AddRange(_cart.GetComponentsInChildren<Renderer>());
             uiController.EnablePanelExclusive("Step2");
         }
 
@@ -118,9 +131,8 @@ namespace Cart
             Vector3 pointsDifferenceVector = new Vector3(pos2.x - pos1.x, 0, pos2.z - pos1.z);
             var rotationAngle = Vector3.SignedAngle(Vector2.left, pointsDifferenceVector.normalized, Vector3.up);
             _cart.transform.Rotate(new Vector3(0, rotationAngle, 0));
-
             uiController.EnablePanelExclusive("Step3");
-            uiController.ActivateTrue("DoneButton");
+            uiController.EnableTrue("DoneButton");
         }
 
         public void Reset()
@@ -130,7 +142,30 @@ namespace Cart
             _rightSideCreated = false;
             _leftSideCreated = false;
             uiController.EnablePanelExclusive("Step1");
-            uiController.ActivateFalse("DoneButton");
+            uiController.EnableFalse("DoneButton");
+        }
+
+        public void ColorCart()
+        {
+            VRDebugger.Instance.Log("Cart creator color cart");
+            VRDebugger.Instance.Log(_cartRendererComponents.Count.ToString());
+            VRDebugger.Instance.Log(_cart.name);
+            _cartRendererComponents.ForEach(component => component.material = cartMaterial);
+            VRDebugger.Instance.Log("Cart creator color cart");
+
+        }
+
+        public void SkipCalibration()
+        {
+            VRDebugger.Instance.Log("skip calibration");
+            _cart = Instantiate(cartPrefab, defaultCartPosition, cartPrefab.transform.rotation);
+            EndCalibration();
+        }
+
+        public void EndCalibration()
+        {
+            DontDestroyOnLoad(_cart);
+            OnCalibrationComplete?.Invoke();
         }
     }
 }

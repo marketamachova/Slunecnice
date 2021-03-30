@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Network;
 using UnityEngine;
 
@@ -10,7 +11,8 @@ namespace UI
         [SerializeField] private GameObject networkStatusIndicatorMobile;
         [SerializeField] private GameObject loadingSceneIndicator;
         [SerializeField] protected List<GameObject> panels;
-        [SerializeField] protected List<GameObject> activables;
+        [SerializeField] protected List<Selectable> activables;
+        [SerializeField] protected List<GameObject> enalables;
         [SerializeField] protected MyNetworkManager networkManager;
         
         [SerializeField] private GameObject errorPanel;
@@ -45,26 +47,41 @@ namespace UI
             panels.ForEach(panel => panel.SetActive(panel.name == panelName));
         }
 
-        public void ActivateTrue(string activableName)
+        public void EnableTrue(string enalableName)
         {
-            activables.ForEach(activable =>
+            foreach (var enalable in enalables.Where(enalable => enalable.name == enalableName))
             {
-                if (activable.name == activableName)
-                {
-                    activable.SetActive(true);
-                }
-            });
+                enalable.SetActive(true);
+            }
         }
         
-        public void ActivateFalse(string activableName)
+        public void EnableFalse(string enalableName)
         {
-            activables.ForEach(activable =>
+            foreach (var enalable in enalables.Where(enalable => enalable.name == enalableName))
             {
-                if (activable.name == activableName)
-                {
-                    activable.SetActive(false);
-                }
-            });
+                enalable.SetActive(false);
+            }
+        }
+        
+        public void ActivateExclusive(string activableName)
+        {
+            activables.ForEach(activable => activable.SetSelected(activable.name == activableName));
+        }
+
+        public void Activate(string activableName)
+        {
+            foreach (var selectable in activables.Where(selectable => selectable.name == activableName))
+            {
+                selectable.SetSelected(true);
+            }
+        }
+        
+        public void Deactivate(string activableName)
+        {
+            foreach (var selectable in activables.Where(selectable => selectable.name == activableName))
+            {
+                selectable.SetSelected(false);
+            }
         }
     }
 }

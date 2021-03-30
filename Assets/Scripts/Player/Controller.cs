@@ -34,6 +34,7 @@ public class Controller : MonoBehaviour
         foreach (var player in _players)
         {
             Debug.Log(player);
+            player.GetComponent<NetworkPlayer>().OnCalibrationComplete += HideCalibration;
         }
     }
 
@@ -42,7 +43,7 @@ public class Controller : MonoBehaviour
         Debug.Log("Controller scene loaded");
         uiControllerMobile.EnablePanelExclusive("WatchScreenPortrait");
         uiControllerMobile.ToggleControlsVisible();
-        uiControllerMobile.ActivateButton("PlayerCameraButton");
+        uiControllerMobile.ActivateExclusive("PlayerCameraButton");
     }
 
     public void OnPlayPressed()
@@ -82,5 +83,12 @@ public class Controller : MonoBehaviour
     {
         Debug.Log("VRController end drive");
         _networkPlayer.CmdSetPlayerMoving(false); //indicate END somehow
+    }
+
+    private void HideCalibration()
+    {
+        Debug.Log("HIDE CALIBRATION MOBILE");
+        uiControllerMobile.EnableFalse("Calibration");
+        uiControllerMobile.EnableTrue("SceneSelection");
     }
 }

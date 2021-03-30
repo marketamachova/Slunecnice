@@ -43,11 +43,6 @@ namespace UI
             cameraViews.ForEach(panel => panel.SetActive(panel.name == cameraViewName));
         }
 
-        public void ActivateButton(string buttonName)
-        {
-            buttons.ForEach(button => button.SetSelected(button.name == buttonName));
-        }
-        
         public void OnChangeScreenOrientation()
         {
             

@@ -7,6 +7,7 @@ using Network;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngineInternal;
 using NetworkPlayer = Network.NetworkPlayer;
 
 namespace Player
@@ -22,27 +23,31 @@ namespace Player
     public class VRLobbyController : NetworkBehaviour
     {
         [SerializeField] private NetworkDiscovery networkDiscovery;
+        [SerializeField] private MyNetworkManager networkManager;
         [SerializeField] private UIControllerVRLobby uiController;
-        [SerializeField] private CartCreator cartCreator;
         [SerializeField] private SceneLoader sceneLoader;
-        [SerializeField] private GameObject floor;
+        [SerializeField] private CartCreator cartCreator;
         
         //debug only
         private bool _spacePressed = false;
 
         private void Awake()
         {
-            cartCreator.OnCartCreated += EnableSceneSelection;
+            networkManager.OnClientConnectAction += OnClientConnected;
+            networkManager.OnMobileClientConnectAction += OnClientMobileConnected;
+            networkManager.OnClientDisconnectAction += OnClientDisonnected;
+            networkManager.OnMobileClientDisconnectAction += OnClientMobileDisonnected;
+            cartCreator.OnCalibrationComplete += OnCalibrationCompleteNetwork;
         }
 
-        IEnumerator Start()
+        private IEnumerator Start()
         {
             yield return new WaitForSecondsRealtime(1);
-            NetworkManager.singleton.StartHost();
+            NetworkManager.singleton.StartHost(); //todo to myNetowrk manager STATIC
             networkDiscovery.AdvertiseServer();
         }
 
-        public void Update()
+        private void Update()
         {
             //debug only
             if (Input.GetKey(KeyCode.Space) && !_spacePressed)
@@ -50,12 +55,6 @@ namespace Player
                 _spacePressed = true;
                 OnSceneSelected(World.MainScene.ToString());
             }
-        }
-        
-        private void EnableSceneSelection()
-        {
-            Debug.Log("enable scene selection");
-            uiController.EnablePanelExclusive("SceneSelection");
         }
 
         public void OnSceneSelected(string scene)
@@ -66,6 +65,32 @@ namespace Player
             // text.GetComponent<Text>().text = "Players count: " + networkManager.Players.Count;
             // networkManager.Players.ForEach(player 
             //     => player.GetComponent<NetworkPlayer>().LoadChosenScene(networkManager.Players, scene));
+        }
+
+        private void OnClientConnected()
+        {
+            uiController.Activate("AvailabilityIndicatorVR");
+        }
+        
+        private void OnClientMobileConnected()
+        {
+            uiController.Activate("AvailabilityIndicatorMobile");
+        }
+        
+        private void OnClientDisonnected()
+        {
+            uiController.Deactivate("AvailabilityIndicatorVR");
+        }
+        
+        private void OnClientMobileDisonnected()
+        {
+            uiController.Deactivate("AvailabilityIndicatorMobile");
+        }
+
+        private void OnCalibrationCompleteNetwork()
+        {
+            var player = GameObject.FindWithTag("Player").GetComponent<NetworkPlayer>();
+            player.calibrationComplete = true;
         }
     }
 }
