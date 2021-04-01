@@ -11,6 +11,7 @@ namespace Network
 {
     public class NetworkPlayer : NetworkBehaviour
     {
+        [SerializeField] private List<BaseController> controllers;
         [SerializeField] public bool mobile;
 
         [SyncVar(hook = "ChangeScene")]
@@ -32,6 +33,12 @@ namespace Network
         {
             // _gameController = GameObject.FindWithTag("Controller").GetComponent<GameController>();
             _uiControllerGO = GameObject.FindWithTag("UIController");
+        }
+
+        public override void OnStartLocalPlayer()
+        {
+            base.OnStartLocalPlayer();
+            controllers.ForEach(controller => controller.AssignPlayers());
         }
 
         /**
@@ -143,16 +150,8 @@ namespace Network
 
         private void SetCalibrationComplete(bool oldValue, bool complete)
         {
-            Debug.Log(mobile);
-            if (mobile && complete)
-            {
-                // _uiController.EnableFalse("Calibration");
-                // _uiController.EnableTrue("SceneSelection");
-                OnCalibrationComplete?.Invoke(); //ma si to prevzit mobile controller (Controller)
-            } else if (complete) //VR
-            {
-                
-            }
+            Debug.Log("Set calibration complete callback nETWORK PLAYER");
+            OnCalibrationComplete?.Invoke(); //ma si to prevzit mobile controller (Controller)
         }
     }
 }

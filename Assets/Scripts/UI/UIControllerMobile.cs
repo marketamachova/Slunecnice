@@ -90,7 +90,6 @@ namespace UI
             Debug.Log("assigning player ");
             _networkPlayer = player;
             Debug.Log(_networkPlayer);
-            sceneSelectionPanel.SetActive(true);
         }
     }
 }

@@ -62,8 +62,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  networkManager: {fileID: 7921233048587166059, guid: e1c1ed46ba8dd47b2b149e8e82330427,
-    type: 3}
-  ipAddress: localhost
+  controllers:
+  - {fileID: 4136474210565227092, guid: f464da3fa5e34400fa37736f8b291184, type: 3}
+  mobile: 0
   chosenWorld: 
   playerMoving: 0
+  calibrationComplete: 0

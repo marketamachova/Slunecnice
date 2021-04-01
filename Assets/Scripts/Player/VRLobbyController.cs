@@ -89,7 +89,9 @@ namespace Player
 
         private void OnCalibrationCompleteNetwork()
         {
+            Debug.Log("Oncalibration complete network vRLOBBY CONTROLLER");
             var player = GameObject.FindWithTag("Player").GetComponent<NetworkPlayer>();
+            Debug.Log(player);
             player.calibrationComplete = true;
         }
     }

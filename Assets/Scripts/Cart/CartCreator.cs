@@ -84,7 +84,7 @@ namespace Cart
 
                 if (Input.GetKeyDown(KeyCode.X))
                 {
-                    ColorCart();
+                    EndCalibration();
                 }
             }
 
@@ -164,6 +164,7 @@ namespace Cart
 
         public void EndCalibration()
         {
+            ColorCart();
             DontDestroyOnLoad(_cart);
             OnCalibrationComplete?.Invoke();
         }
