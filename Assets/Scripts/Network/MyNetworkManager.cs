@@ -8,14 +8,14 @@ namespace Network
 {
     public class MyNetworkManager : NetworkManager
     {
-        public GameObject PlayerCamera {get; private set;}
-        public static List<GameObject> Players {get; private set;} = new List<GameObject>();
+        public GameObject PlayerCamera { get; private set; }
+        public static List<GameObject> Players { get; private set; } = new List<GameObject>();
         public event Action OnServerAddPlayerAction;
         public event Action OnClientConnectAction;
         public event Action OnClientDisconnectAction;
         public event Action OnMobileClientConnectAction;
         public event Action OnMobileClientDisconnectAction;
-        
+
 
         public override void OnServerAddPlayer(NetworkConnection conn)
         {
@@ -31,8 +31,9 @@ namespace Network
             {
                 OnMobileClientConnectAction?.Invoke();
             }
+
             Debug.Log("conn.netid" + conn.identity.netId);
-            
+
             OnServerAddPlayerAction?.Invoke();
         }
 
@@ -49,23 +50,24 @@ namespace Network
             DontDestroyOnLoad(player);
             Players.Add(player);
             Debug.Log("added a player, players length " + Players.Count);
-            
+
             networkPlayer.UpdateSceneConnected();
         }
 
         private void InstantiateCamera()
         {
             Debug.Log("adding a camera");
-            
+
             PlayerCamera = Instantiate(spawnPrefabs.Find(prefab => prefab.name == "NetworkPlayerAttachCamera"));
             NetworkServer.Spawn(PlayerCamera);
             DontDestroyOnLoad(PlayerCamera);
         }
 
-        public override void OnClientDisconnect(NetworkConnection conn)
+        public override void OnServerDisconnect(NetworkConnection conn)
         {
-            Debug.Log("client disconnected");
-            base.OnClientDisconnect(conn);
+            base.OnServerDisconnect(conn);
+            Debug.Log(numPlayers);
+            Debug.Log(conn.connectionId);
             if (numPlayers > 0)
             {
                 OnMobileClientDisconnectAction?.Invoke();
@@ -74,6 +76,13 @@ namespace Network
             {
                 OnClientDisconnectAction?.Invoke();
             }
+        }
+
+
+        public override void OnClientDisconnect(NetworkConnection conn)
+        {
+            Debug.Log("client disconnected");
+            base.OnClientDisconnect(conn);
         }
 
         public override void OnClientConnect(NetworkConnection conn)

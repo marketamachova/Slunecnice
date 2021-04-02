@@ -14,7 +14,7 @@ namespace Cart
         [SerializeField] private GameObject leftHand;
         [SerializeField] private GameObject rightHand;
         [SerializeField] private GameObject cartPrefab;
-        [SerializeField] private UIControllerVRLobby uiController;
+        [SerializeField] private BaseUIController uiController;
         [SerializeField] private Material cartMaterial;
         [SerializeField] private Vector3 defaultCartPosition;
         private readonly List<Renderer> _cartRendererComponents = new List<Renderer>();

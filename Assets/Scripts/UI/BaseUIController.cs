@@ -2,36 +2,20 @@
 using System.Linq;
 using Network;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace UI
 {
     public class BaseUIController : MonoBehaviour
     {
-        [SerializeField] private GameObject networkStatusIndicator;
-        [SerializeField] private GameObject networkStatusIndicatorMobile;
         [SerializeField] private GameObject loadingSceneIndicator;
         [SerializeField] protected List<GameObject> panels;
-        [SerializeField] protected List<Selectable> activables;
-        [SerializeField] protected List<GameObject> enalables;
+        [FormerlySerializedAs("activables")] [SerializeField] protected List<Selectable> activableSprites;
+        [FormerlySerializedAs("enalables")] [SerializeField] protected List<GameObject> enalableObjects;
         [SerializeField] protected MyNetworkManager networkManager;
         
         [SerializeField] private GameObject errorPanel;
-
-        private int _numPlayers = 0;
         
-        private void Start()
-        {
-            networkManager.OnServerAddPlayerAction += DisplayPlayersConnected;
-        }
-
-        private void DisplayPlayersConnected()
-        {
-            _numPlayers++;
-            networkStatusIndicator.SetActive(true);
-            networkStatusIndicatorMobile.SetActive(_numPlayers > 1);
-            
-        }
-
         public void DisplayLoader()
         {
             loadingSceneIndicator.SetActive(true);
@@ -49,7 +33,7 @@ namespace UI
 
         public void EnableTrue(string enalableName)
         {
-            foreach (var enalable in enalables.Where(enalable => enalable.name == enalableName))
+            foreach (var enalable in enalableObjects.Where(enalable => enalable.name == enalableName))
             {
                 enalable.SetActive(true);
             }
@@ -57,7 +41,7 @@ namespace UI
         
         public void EnableFalse(string enalableName)
         {
-            foreach (var enalable in enalables.Where(enalable => enalable.name == enalableName))
+            foreach (var enalable in enalableObjects.Where(enalable => enalable.name == enalableName))
             {
                 enalable.SetActive(false);
             }
@@ -65,12 +49,12 @@ namespace UI
         
         public void ActivateExclusive(string activableName)
         {
-            activables.ForEach(activable => activable.SetSelected(activable.name == activableName));
+            activableSprites.ForEach(activable => activable.SetSelected(activable.name == activableName));
         }
 
         public void Activate(string activableName)
         {
-            foreach (var selectable in activables.Where(selectable => selectable.name == activableName))
+            foreach (var selectable in activableSprites.Where(selectable => selectable.name == activableName))
             {
                 selectable.SetSelected(true);
             }
@@ -78,7 +62,7 @@ namespace UI
         
         public void Deactivate(string activableName)
         {
-            foreach (var selectable in activables.Where(selectable => selectable.name == activableName))
+            foreach (var selectable in activableSprites.Where(selectable => selectable.name == activableName))
             {
                 selectable.SetSelected(false);
             }

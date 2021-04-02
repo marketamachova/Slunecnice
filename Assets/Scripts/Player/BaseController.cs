@@ -27,7 +27,7 @@ namespace Player
             }
         }
 
-        protected virtual void OnCalibrationComplete()
+        public virtual void OnCalibrationComplete()
         {
             Debug.Log("On calibration complete Base controller");
         }

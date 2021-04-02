@@ -27,7 +27,7 @@ namespace Player
         [SerializeField] private UIControllerVRLobby uiController;
         [SerializeField] private SceneLoader sceneLoader;
         [SerializeField] private CartCreator cartCreator;
-        
+
         //debug only
         private bool _spacePressed = false;
 
@@ -71,28 +71,37 @@ namespace Player
         {
             uiController.Activate("AvailabilityIndicatorVR");
         }
-        
+
         private void OnClientMobileConnected()
         {
             uiController.Activate("AvailabilityIndicatorMobile");
         }
-        
+
         private void OnClientDisonnected()
         {
             uiController.Deactivate("AvailabilityIndicatorVR");
         }
-        
+
         private void OnClientMobileDisonnected()
         {
+            Debug.Log("OMCLIENTMOBILEDISCONNECT");
             uiController.Deactivate("AvailabilityIndicatorMobile");
         }
 
         private void OnCalibrationCompleteNetwork()
         {
             Debug.Log("Oncalibration complete network vRLOBBY CONTROLLER");
-            var player = GameObject.FindWithTag("Player").GetComponent<NetworkPlayer>();
-            Debug.Log(player);
-            player.calibrationComplete = true;
+            uiController.EnablePanelExclusive("SceneSelection");
+            var players = GameObject.FindObjectsOfType<NetworkPlayer>();
+            foreach (var networkPlayer in players)
+            {
+                networkPlayer.CmdSetCalibrationComplete(true);
+            }
+        }
+
+        public CartCreator GetCartCreator()
+        {
+            return cartCreator;
         }
     }
 }

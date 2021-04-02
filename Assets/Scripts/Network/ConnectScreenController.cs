@@ -12,6 +12,7 @@ namespace UI
         [SerializeField] private TextMeshProUGUI connectableDeviceText;
         [SerializeField] private GameObject connectedText;
         [SerializeField] private GameObject connectButton;
+        [SerializeField] private GameObject errorPanel;
         [SerializeField] private Selectable availabilityStatus;
         [SerializeField] private NetworkDiscovery myNetworkDiscovery;
         [SerializeField] private MyNetworkManager networkManager;
@@ -23,6 +24,7 @@ namespace UI
         {
             myNetworkDiscovery.OnServerFound.AddListener(DisplayDiscoveredServers);
             networkManager.OnClientConnectAction += IndicateConnectedStatus;
+            networkManager.OnMobileClientDisconnectAction += OnDisconnect;
         }
 
         private void DisplayDiscoveredServers(ServerResponse serverResponse)
@@ -40,8 +42,19 @@ namespace UI
             myNetworkDiscovery.StartDiscovery();
         }
 
+        public void OnDisconnect()
+        {
+            Debug.Log("ON DISCONNECT CONNECT screeen controller");   
+            connectedText.SetActive(false);
+            connectButton.SetActive(true);
+            connectButton.GetComponent<Button>().interactable = true;
+            errorPanel.SetActive(true);
+            myNetworkDiscovery.StartDiscovery();
+        }
+
         private void Connect()
         {
+            errorPanel.SetActive(false);
             connectButton.GetComponent<Button>().interactable = false;
             if (_serverResponse.Equals(null))
             {
@@ -49,11 +62,11 @@ namespace UI
                 return;
             }
             networkManager.StartClient(_serverResponse.uri);
+            myNetworkDiscovery.StopDiscovery();
         }
 
         private void IndicateConnectedStatus()
         {
-            Debug.Log("server added player PLSPLSPS");
             connectedText.SetActive(true);
             connectButton.SetActive(false);
         }

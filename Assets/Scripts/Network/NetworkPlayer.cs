@@ -11,8 +11,7 @@ namespace Network
 {
     public class NetworkPlayer : NetworkBehaviour
     {
-        [SerializeField] private List<BaseController> controllers;
-        [SerializeField] public bool mobile;
+        [SerializeField] public bool mobile = false;
 
         [SyncVar(hook = "ChangeScene")]
         public string chosenWorld;
@@ -20,29 +19,42 @@ namespace Network
         [SyncVar(hook = "SetPlayerMoving")]
         public bool playerMoving;
         
+        [SyncVar(hook = "SkipCalibration")]
+        public bool skipCalibration;
+        
         [SyncVar(hook = "SetCalibrationComplete")]
         public bool calibrationComplete;
         
         private BaseUIController _uiController;
-        private GameObject _uiControllerGO;
         private GameController _gameController;
+        private Controller _mobileController;
+        private VRLobbyController _vrLobbyController;
 
         public event Action OnCalibrationComplete;
 
-        private void Start()
+        private void Awake()
         {
-            // _gameController = GameObject.FindWithTag("Controller").GetComponent<GameController>();
-            _uiControllerGO = GameObject.FindWithTag("UIController");
+            _vrLobbyController = GameObject.FindObjectOfType<VRLobbyController>();
         }
 
-        public override void OnStartLocalPlayer()
+        public override void OnStopClient()
         {
-            base.OnStartLocalPlayer();
-            controllers.ForEach(controller => controller.AssignPlayers());
+            base.OnStopClient();
+            if (mobile)
+            {
+                _mobileController.OnDisconnect();
+            }
         }
+
+
+        // public override void OnStartLocalPlayer()
+        // {
+        //     base.OnStartLocalPlayer();
+        //     controllers.ForEach(controller => controller.AssignPlayers());
+        // }
 
         /**
-         * display available scenes in mobile and VR
+         * assign network player to mobile client
          */
         [TargetRpc]
         public void UpdateSceneConnected()
@@ -50,11 +62,9 @@ namespace Network
             if (SceneManager.GetActiveScene().name == "AppOffline")
             {
                 Debug.Log("update scene connected (MOBILE ONLY)");
-                _uiControllerGO = GameObject.FindWithTag("UIController");
-                Debug.Log(_uiControllerGO);
-                var uiController = _uiControllerGO.GetComponent<UIControllerMobile>();
-                
-                uiController.AssignPlayer(this);
+                mobile = true;
+                _mobileController = GameObject.FindObjectOfType<Controller>();
+                _mobileController.AssignPlayer(this); // mozna presunout do onstrtlocalplayer
             }
         }
 
@@ -90,6 +100,15 @@ namespace Network
             playerMoving = moving;
         }
 
+        [Command(requiresAuthority = false)]
+        public void CmdSkipCalibration(bool skip)
+        {
+            Debug.Log("CMD sskip calibration in Network pLayer, skipCalibraion: " + skip);
+            skipCalibration = true;
+        }
+
+        
+
         //volano serverem na clientech
         public void SetPlayerMoving(bool oldValue, bool moving)
         {
@@ -111,6 +130,15 @@ namespace Network
             }
         }
 
+        public void SkipCalibration(bool oldValue, bool skip)
+        {
+            Debug.Log("set player skip calibration CALLBACK in Network pLayer, skip: " + skip);
+            if (!mobile)
+            {
+                _vrLobbyController.GetCartCreator().SkipCalibration();
+            }
+        }
+
         private void AssignGameController()
         {
             _gameController = GameObject.FindWithTag("Controller").GetComponent<GameController>();
@@ -119,16 +147,7 @@ namespace Network
         }
         
 
-
-        // [Command(ignoreAuthority = true)]
-        // public void StartCart()
-        // {
-        //     _mainCamera = GameObject.FindWithTag("MainCamera");
-        //     _gameController = _mainCamera.GetComponent<GameController>();
-        //     _gameController.StartMovement(); //should add pause later
-        // }
-
-        [Command(ignoreAuthority = true)]
+        [Command] //require authority
         public void StopCart()
         {
             Debug.Log("cart stopped");
@@ -147,11 +166,25 @@ namespace Network
         //     Debug.Log("CMD set calibration completed in Network pLayer, calibration completed: " + completed);
         //     calibrationComplete = completed;
         // }
-
+        
+        
+        [Command(requiresAuthority = false)]
+        public void CmdSetCalibrationComplete(bool complete)
+        {
+            Debug.Log("CMD set calibrationComplete in Network pLayer, complete: " + complete);
+            calibrationComplete = complete;
+        }
+        
+        //called automatically, after calibrationComplete changes
         private void SetCalibrationComplete(bool oldValue, bool complete)
         {
             Debug.Log("Set calibration complete callback nETWORK PLAYER");
             OnCalibrationComplete?.Invoke(); //ma si to prevzit mobile controller (Controller)
+            if (mobile)
+            {
+                Debug.Log("mobile true");
+                _mobileController.OnCalibrationComplete();
+            }
         }
     }
 }

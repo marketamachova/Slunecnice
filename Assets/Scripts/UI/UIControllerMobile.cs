@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Player;
 using UnityEngine;
-
+using UnityEngine.Serialization;
 using NetworkPlayer = Network.NetworkPlayer;
 
 namespace UI
@@ -12,25 +13,20 @@ namespace UI
     {
         [SerializeField] public bool portraitOriented;
         
-        [SerializeField] private List<GameObject> screenPanels;
-        [SerializeField] private List<Selectable> buttons;
         [SerializeField] private List<GameObject> cameraViews;
         [SerializeField] private GameObject controls;
-        [SerializeField] private GameObject sceneSelectionPanel;
         [SerializeField] private Timer timer;
         [SerializeField] private ProgressBar progressBar;
         [SerializeField] private Selectable playButton;
         [SerializeField] private Selectable maximizeButton;
+        [SerializeField] private Controller controller;
         
-        private NetworkPlayer _networkPlayer;
-        private SceneLoader _sceneLoader;
         private bool _controlsVisible;
         private bool _playing = false;
 
         private void Awake()
         {
             networkManager.OnClientDisconnectAction += DisplayError;
-            _sceneLoader = GetComponent<SceneLoader>();
         }
 
         // public void EnablePanel(string panelName)
@@ -78,18 +74,17 @@ namespace UI
         //general controller
         public void OnSceneChosen(string chosenScene)
         {
-            _networkPlayer.CmdHandleSelectedWorld(chosenScene); //message about scene loading to other players
-            _sceneLoader.LoadScene(chosenScene, true);
+            controller.HandleSceneChosen(chosenScene);
             timer.ResetTimer(); //nevim
         }
 
 
         //general controller
-        public void AssignPlayer(NetworkPlayer player)
-        {
-            Debug.Log("assigning player ");
-            _networkPlayer = player;
-            Debug.Log(_networkPlayer);
-        }
+        // public void AssignPlayer(NetworkPlayer player)
+        // {
+        //     Debug.Log("assigning player ");
+        //     _networkPlayer = player;
+        //     Debug.Log(_networkPlayer);
+        // }
     }
 }
