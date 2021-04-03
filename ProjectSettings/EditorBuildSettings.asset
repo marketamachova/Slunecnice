@@ -17,10 +17,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/HandsScene.unity
     guid: 3a2ee17a2e5334221b4c843b378d1a60
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AppOffline.unity
     guid: f5b5a5ad3a8e148e2be96f3d2051601f
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/VROffline.unity
     guid: 05528319f187c4a60becc40e9b5ad945
   - enabled: 1

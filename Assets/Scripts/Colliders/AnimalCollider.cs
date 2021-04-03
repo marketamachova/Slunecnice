@@ -6,25 +6,20 @@ namespace Colliders
 {
     public class AnimalCollider : MonoBehaviour
     {
-        public GameObject animal;
-        public GameObject animalPrefab;
+        [SerializeField] private GameObject animal;
+        private AnimalController _controller;
 
         public void OnCollisionEnter(Collision collision)
         {
+            _controller = animal.GetComponentInChildren<AnimalController>();
+            Debug.Log(_controller);
             if (collision.gameObject.CompareTag("Player") && collision.gameObject.name != "Terrain")
             {
-                // if (animal == null)
-                // {
-                //     Debug.Log("animal null");
-                //     animal = Instantiate(animalPrefab, AnimalSpawnPositions.DeerSpawnPosition, Quaternion.identity);
-                // }
-                
-                var controller = animal.GetComponent<AnimalController>();
-                if (controller.moving)
+                if (_controller.GetMoving())
                 {
-                    controller.TriggerMove();
+                    _controller.TriggerMove();
                 }
-                controller.TriggerSound();
+                _controller.TriggerSound();
             }
         }
     }

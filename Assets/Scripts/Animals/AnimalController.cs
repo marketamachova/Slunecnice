@@ -1,15 +1,22 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Animals
 {
+
+    public enum MovingType
+    {
+        Walk, Run
+    }
     public class AnimalController : MonoBehaviour
     {
-        public GameObject animal;
-        public bool moving;
+        [SerializeField] private bool moving;
         [SerializeField] private bool destroyable;
+        [SerializeField] private bool walker;
+        [SerializeField] private MovingType movingType;
 
-        private static readonly string RunState = "run";
-        private static readonly string IdleState = "idle";
+        private string _movingState;
+        private readonly string _idleState = "idle";
 
         private Animator _animator;
         private AnimalMovement _movement;
@@ -17,17 +24,27 @@ namespace Animals
         private AudioSource _audioSource;
 
 
-        void Start()
+        void Awake()
         {
-            _animator = animal.GetComponent<Animator>();
-            _movement = animal.GetComponent<AnimalMovement>();
-            _fadeOut = animal.GetComponent<FadeOut>();
-            _audioSource = animal.GetComponent<AudioSource>();
+            _animator = GetComponent<Animator>();
+            _movement = GetComponent<AnimalMovement>();
+            _fadeOut = GetComponent<FadeOut>();
+            _audioSource = GetComponent<AudioSource>();
+            _movingState = movingType.ToString().ToLower();
+
+            if (walker)
+            {
+                _animator.Play(_movingState);
+            }
         }
 
         public void TriggerMove()
         {
-            _animator.Play(moving ? RunState : RunState);
+            Debug.Log("TROGGER MOVE");
+            _animator = GetComponent<Animator>();
+            _movement = GetComponent<AnimalMovement>();
+
+            _animator.Play(_movingState);
             _movement.enabled = true;
         }
 
@@ -35,7 +52,7 @@ namespace Animals
         {
             if (_audioSource == null)
             {
-                Debug.Log("Audio source null");
+                Debug.Log("Audio source null " + name);
                 return;
             }
 
@@ -44,16 +61,21 @@ namespace Animals
 
         public void TriggerStop()
         {
-            _animator.Play(IdleState);
+            _animator.Play(_idleState);
             if (destroyable)
             {
-                Destroy(animal);
+                Destroy(this);
             }
         }
 
         public void TriggerFadeOut()
         {
             _fadeOut.enabled = true;
+        }
+
+        public bool GetMoving()
+        {
+            return moving;
         }
     }
 }

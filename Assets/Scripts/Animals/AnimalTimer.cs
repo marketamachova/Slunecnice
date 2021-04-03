@@ -17,7 +17,7 @@ namespace Animals
         private IEnumerator AnimateDelayed()
         {
             yield return new WaitForSecondsRealtime(waitingTime);
-            if (_animalController.moving)
+            if (_animalController.GetMoving())
             {
                 _animalController.TriggerMove();
             }

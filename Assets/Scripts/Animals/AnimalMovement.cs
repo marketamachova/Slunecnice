@@ -5,7 +5,6 @@ namespace Animals
 {
     public class AnimalMovement : MonoBehaviour
     {
-        public GameObject animal;
         public PathCreator pathCreator;
         public EndOfPathInstruction endOfPathInstruction;
         public float speed;
@@ -14,15 +13,15 @@ namespace Animals
 
         void Start()
         {
-            animal.transform.position = pathCreator.path.GetPoint(0);
-            _animalController = animal.GetComponent<AnimalController>();
+            transform.position = pathCreator.path.GetPoint(0);
+            _animalController = GetComponent<AnimalController>();
         }
 
         void Update()
         {
             _distance += speed * Time.deltaTime;
-            animal.transform.position = pathCreator.path.GetPointAtDistance(_distance, endOfPathInstruction);
-            animal.transform.rotation = pathCreator.path.GetRotationAtDistance(_distance, endOfPathInstruction);
+            transform.position = pathCreator.path.GetPointAtDistance(_distance, endOfPathInstruction);
+            transform.rotation = pathCreator.path.GetRotationAtDistance(_distance, endOfPathInstruction);
             
             if (_distance >= pathCreator.path.length)
             {
