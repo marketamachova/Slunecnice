@@ -10,6 +10,8 @@ TagManager:
   - PlayerMobile
   - TopCamera
   - Controller
+  - Cart
+  - PathCreator
   layers:
   - Default
   - TransparentFX

@@ -13,7 +13,7 @@ namespace Colliders
         {
             _controller = animal.GetComponentInChildren<AnimalController>();
             Debug.Log(_controller);
-            if (collision.gameObject.CompareTag("Player") && collision.gameObject.name != "Terrain")
+            if (collision.gameObject.CompareTag("NetworkCamera") && collision.gameObject.name != "Terrain")
             {
                 if (_controller.GetMoving())
                 {

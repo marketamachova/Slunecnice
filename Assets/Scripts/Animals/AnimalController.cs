@@ -3,11 +3,12 @@ using UnityEngine.Serialization;
 
 namespace Animals
 {
-
     public enum MovingType
     {
-        Walk, Run
+        Walk,
+        Run
     }
+
     public class AnimalController : MonoBehaviour
     {
         [SerializeField] private bool moving;
@@ -31,21 +32,18 @@ namespace Animals
             _fadeOut = GetComponent<FadeOut>();
             _audioSource = GetComponent<AudioSource>();
             _movingState = movingType.ToString().ToLower();
-
-            if (walker)
-            {
-                _animator.Play(_movingState);
-            }
         }
 
         public void TriggerMove()
         {
-            Debug.Log("TROGGER MOVE");
             _animator = GetComponent<Animator>();
             _movement = GetComponent<AnimalMovement>();
 
             _animator.Play(_movingState);
-            _movement.enabled = true;
+            if (_movement)
+            {
+                _movement.enabled = true;
+            }
         }
 
         public void TriggerSound()
@@ -64,7 +62,7 @@ namespace Animals
             _animator.Play(_idleState);
             if (destroyable)
             {
-                Destroy(this);
+                Destroy(transform.parent.gameObject);
             }
         }
 

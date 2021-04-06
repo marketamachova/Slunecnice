@@ -19,9 +19,11 @@ namespace UI
             _loaderSliderComponent.value = Mathf.Clamp01(progress / 0.9f);
         }
 
-        public void DisplayLoader()
+        public void DisplayLoader(bool display)
         {
-            loader.SetActive(true);
+            loader.SetActive(display);
         }
+        
+        
     }
 }

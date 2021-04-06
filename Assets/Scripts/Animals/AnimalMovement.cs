@@ -10,6 +10,7 @@ namespace Animals
         public float speed;
         private float _distance;
         private AnimalController _animalController;
+        private bool _end = false;
 
         void Start()
         {
@@ -19,15 +20,19 @@ namespace Animals
 
         void Update()
         {
-            _distance += speed * Time.deltaTime;
-            transform.position = pathCreator.path.GetPointAtDistance(_distance, endOfPathInstruction);
-            transform.rotation = pathCreator.path.GetRotationAtDistance(_distance, endOfPathInstruction);
-            
-            if (_distance >= pathCreator.path.length)
+            if (!_end)
             {
-                if (_animalController != null)
+                _distance += speed * Time.deltaTime;
+                transform.position = pathCreator.path.GetPointAtDistance(_distance, endOfPathInstruction);
+                transform.rotation = pathCreator.path.GetRotationAtDistance(_distance, endOfPathInstruction);
+
+                if (_distance >= pathCreator.path.length)
                 {
-                    _animalController.TriggerStop();
+                    if (_animalController != null)
+                    {
+                        _animalController.TriggerStop();
+                        _end = true;
+                    }
                 }
             }
         }

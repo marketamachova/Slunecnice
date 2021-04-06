@@ -16,9 +16,9 @@ namespace UI
         
         [SerializeField] private GameObject errorPanel;
         
-        public void DisplayLoader()
+        public void DisplayLoader(bool active)
         {
-            loadingSceneIndicator.SetActive(true);
+            loadingSceneIndicator.SetActive(active);
         }
 
         public virtual void DisplayError()
@@ -67,5 +67,11 @@ namespace UI
                 selectable.SetSelected(false);
             }
         }
+        
+        public void OnQuit()
+        {
+            Application.Quit();
+        }
+
     }
 }

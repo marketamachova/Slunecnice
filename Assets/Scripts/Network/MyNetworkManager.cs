@@ -60,7 +60,11 @@ namespace Network
 
             PlayerCamera = Instantiate(spawnPrefabs.Find(prefab => prefab.name == "NetworkPlayerAttachCamera"));
             NetworkServer.Spawn(PlayerCamera);
+            var mainCamera = GameObject.FindWithTag("MainCamera");
+            mainCamera.transform.parent = PlayerCamera.transform;
+            DontDestroyOnLoad(mainCamera);
             DontDestroyOnLoad(PlayerCamera);
+
         }
 
         public override void OnServerDisconnect(NetworkConnection conn)

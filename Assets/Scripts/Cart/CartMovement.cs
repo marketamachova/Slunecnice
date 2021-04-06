@@ -1,4 +1,5 @@
-﻿using PathCreation;
+﻿using System;
+using PathCreation;
 using UnityEngine;
 
 namespace Cart
@@ -6,7 +7,7 @@ namespace Cart
     public class CartMovement : MonoBehaviour
     {
         public GameObject cart;
-        public PathCreator pathCreator;
+        private PathCreator _pathCreator;
         public float speed;
         private float _distance;
         private Animator _animator;
@@ -14,16 +15,17 @@ namespace Cart
 
         void Start()
         {
+            _pathCreator = GameObject.FindWithTag("PathCreator").GetComponent<PathCreator>();
             _animator = cart.GetComponent<Animator>();
             _animator.SetTrigger(Drive);
-            cart.transform.position = pathCreator.path.GetPoint(0);
+            cart.transform.position = _pathCreator.path.GetPoint(0);
         }
 
         void Update()
         {
             _distance += speed * Time.deltaTime;
-            cart.transform.position = pathCreator.path.GetPointAtDistance(_distance);
-            cart.transform.rotation = pathCreator.path.GetRotationAtDistance(_distance);
+            cart.transform.position = _pathCreator.path.GetPointAtDistance(_distance);
+            cart.transform.rotation = _pathCreator.path.GetRotationAtDistance(_distance);
         }
     }
 }

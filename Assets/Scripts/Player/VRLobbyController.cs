@@ -6,8 +6,7 @@ using Mirror.Discovery;
 using Network;
 using UI;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngineInternal;
+using UnityEngine.SceneManagement;
 using NetworkPlayer = Network.NetworkPlayer;
 
 namespace Player
@@ -59,12 +58,12 @@ namespace Player
 
         public void OnSceneSelected(string scene)
         {
-            uiController.DisplayLoader();
-            sceneLoader.LoadScene(scene, false);
-
-            // text.GetComponent<Text>().text = "Players count: " + networkManager.Players.Count;
-            // networkManager.Players.ForEach(player 
-            //     => player.GetComponent<NetworkPlayer>().LoadChosenScene(networkManager.Players, scene));
+            if (SceneManager.sceneCount > 1)
+            {
+                return;
+            }
+            uiController.DisplayLoader(true);
+            sceneLoader.LoadScene(scene, true);
         }
 
         private void OnClientConnected()

@@ -1,0 +1,390 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &934638010933147551
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 934638010933147550}
+  - component: {fileID: 934638010933147549}
+  m_Layer: 0
+  m_Name: FrogPathCreator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &934638010933147550
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934638010933147551}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 42.347, y: -2.3600006, z: 24.148003}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 934638011550676362}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &934638010933147549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934638010933147551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e5ac92bc18f545cc84cd886ece82b4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  editorData:
+    _bezierPath:
+      points:
+      - {x: -2.348545, y: 0.9203644, z: 0.29698372}
+      - {x: -1.0576248, y: 2.145565, z: -0.27911568}
+      - {x: -0.703228, y: 1.7874451, z: -0.5919514}
+      - {x: -0.3701973, y: 1.1153412, z: -0.9328766}
+      isClosed: 0
+      space: 0
+      controlMode: 0
+      autoControlLength: 0.3
+      boundsUpToDate: 0
+      bounds:
+        m_Center: {x: 0, y: 0, z: 0}
+        m_Extent: {x: 0, y: 0, z: 0}
+      perAnchorNormalsAngle:
+      - 0
+      - 0
+      globalNormalsAngle: 97
+      flipNormals: 0
+    vertexPathUpToDate: 1
+    vertexPathMaxAngleError: 0.3
+    vertexPathMinVertexSpacing: 0.01
+    showTransformTool: 1
+    showPathBounds: 0
+    showPerSegmentBounds: 0
+    displayAnchorPoints: 1
+    displayControlPoints: 1
+    bezierHandleScale: 1
+    globalDisplaySettingsFoldout: 0
+    keepConstantHandleSize: 0
+    showNormalsInVertexMode: 0
+    showBezierPathInVertexMode: 0
+    showDisplayOptions: 0
+    showPathOptions: 1
+    showVertexPathDisplayOptions: 0
+    showVertexPathOptions: 1
+    showNormals: 0
+    showNormalsHelpInfo: 0
+    tabIndex: 0
+  initialized: 1
+--- !u!82 &934638011143498980
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936133012388278902}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 8b38f9cf1d52e4b5bbf6ed8018cb6749, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &934638011143498982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936133012388278902}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f79b4efeb3b347b5b69f5b83fb62790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathCreator: {fileID: 934638010933147549}
+  endOfPathInstruction: 2
+  speed: 4
+--- !u!114 &934638011143498979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936133012388278902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80c5a479ad6124c0dbfc323b59fc2d38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moving: 1
+  destroyable: 1
+  walker: 0
+  movingType: 1
+--- !u!1 &934638011550676363
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 934638011550676362}
+  m_Layer: 0
+  m_Name: Frog
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &934638011550676362
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934638011550676363}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.164505, y: 35.08, z: 5.225769}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 930311203041313218}
+  - {fileID: 934638012158756588}
+  - {fileID: 934638010933147550}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &934638012158756591
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 934638012158756588}
+  - component: {fileID: 934638012158756589}
+  - component: {fileID: 934638012158756590}
+  m_Layer: 0
+  m_Name: FrogCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &934638012158756588
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934638012158756591}
+  m_LocalRotation: {x: 1.7594863e-10, y: -0.49115497, z: 4.311409e-10, w: 0.87107223}
+  m_LocalPosition: {x: 33.82, y: 5.31, z: 22.2}
+  m_LocalScale: {x: 2.6074858, y: 11.951873, z: 8.491578}
+  m_Children: []
+  m_Father: {fileID: 934638011550676362}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: -58.833004, z: 0}
+--- !u!65 &934638012158756589
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934638012158756591}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.32972386, y: 0.3812912, z: 0.7299375}
+  m_Center: {x: -0.33513856, y: -0.30935442, z: -0.101391725}
+--- !u!114 &934638012158756590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934638012158756591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5467141b850ba4279b5e4f8bc9d7d739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animal: {fileID: 936133012388278902}
+--- !u!1001 &934638010677142560
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 934638011550676362}
+    m_Modifications:
+    - target: {fileID: 1495689244071510, guid: c3bd9c7ad6a4d7d44b55b28ad5448d67, type: 3}
+      propertyPath: m_Name
+      value: Frog
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962429509641698, guid: c3bd9c7ad6a4d7d44b55b28ad5448d67, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962429509641698, guid: c3bd9c7ad6a4d7d44b55b28ad5448d67, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.1174238
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962429509641698, guid: c3bd9c7ad6a4d7d44b55b28ad5448d67, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.117424
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962429509641698, guid: c3bd9c7ad6a4d7d44b55b28ad5448d67, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.117424
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962429509641698, guid: c3bd9c7ad6a4d7d44b55b28ad5448d67, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 39.942
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962429509641698, guid: c3bd9c7ad6a4d7d44b55b28ad5448d67, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.524
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962429509641698, guid: c3bd9c7ad6a4d7d44b55b28ad5448d67, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 24.423
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962429509641698, guid: c3bd9c7ad6a4d7d44b55b28ad5448d67, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.551784
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962429509641698, guid: c3bd9c7ad6a4d7d44b55b28ad5448d67, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.09191384
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962429509641698, guid: c3bd9c7ad6a4d7d44b55b28ad5448d67, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.8167302
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962429509641698, guid: c3bd9c7ad6a4d7d44b55b28ad5448d67, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.1415558
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962429509641698, guid: c3bd9c7ad6a4d7d44b55b28ad5448d67, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -7.458
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962429509641698, guid: c3bd9c7ad6a4d7d44b55b28ad5448d67, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 470.73102
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962429509641698, guid: c3bd9c7ad6a4d7d44b55b28ad5448d67, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 17.997002
+      objectReference: {fileID: 0}
+    - target: {fileID: 95570340955496596, guid: c3bd9c7ad6a4d7d44b55b28ad5448d67,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c3bd9c7ad6a4d7d44b55b28ad5448d67, type: 3}
+--- !u!1 &936133012388278902 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1495689244071510, guid: c3bd9c7ad6a4d7d44b55b28ad5448d67,
+    type: 3}
+  m_PrefabInstance: {fileID: 934638010677142560}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &930311203041313218 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4962429509641698, guid: c3bd9c7ad6a4d7d44b55b28ad5448d67,
+    type: 3}
+  m_PrefabInstance: {fileID: 934638010677142560}
+  m_PrefabAsset: {fileID: 0}

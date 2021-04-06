@@ -17,13 +17,14 @@ namespace Cart
         [SerializeField] private BaseUIController uiController;
         [SerializeField] private Material cartMaterial;
         [SerializeField] private Vector3 defaultCartPosition;
+        [SerializeField] private bool debug = true;
+
         private readonly List<Renderer> _cartRendererComponents = new List<Renderer>();
         private OVRHand _leftHand;
         private OVRHand _rightHand;
         private OVRSkeleton _leftHandSkeleton;
         private OVRSkeleton _rightHandSkeleton;
         private int _stepCounter;
-        [SerializeField] private bool debug = true;
 
 
         private bool _interactable = true;
@@ -81,7 +82,7 @@ namespace Cart
             
                     _interactable = true;
                 }
-
+            
                 if (Input.GetKeyDown(KeyCode.X))
                 {
                     EndCalibration();
@@ -124,6 +125,7 @@ namespace Cart
             _cart = Instantiate(cartPrefab, pointPosition, cartPrefab.transform.rotation);
             _cartRendererComponents.AddRange(_cart.GetComponentsInChildren<Renderer>());
             uiController.EnablePanelExclusive("Step2");
+            // stand.SetActive(false);
         }
 
         private void RotateCart(Vector3 pos1, Vector3 pos2)
@@ -143,16 +145,12 @@ namespace Cart
             _leftSideCreated = false;
             uiController.EnablePanelExclusive("Step1");
             uiController.EnableFalse("DoneButton");
+            // stand.SetActive(true);
         }
 
         public void ColorCart()
         {
-            VRDebugger.Instance.Log("Cart creator color cart");
-            VRDebugger.Instance.Log(_cartRendererComponents.Count.ToString());
-            VRDebugger.Instance.Log(_cart.name);
             _cartRendererComponents.ForEach(component => component.material = cartMaterial);
-            VRDebugger.Instance.Log("Cart creator color cart");
-
         }
 
         public void SkipCalibration()
@@ -165,7 +163,9 @@ namespace Cart
         public void EndCalibration()
         {
             ColorCart();
-            DontDestroyOnLoad(_cart);
+            // Destroy(stand);
+            var networkCamera = GameObject.FindWithTag("NetworkCamera");
+            _cart.transform.parent = networkCamera.transform;
             OnCalibrationComplete?.Invoke();
         }
     }

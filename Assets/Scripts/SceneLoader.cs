@@ -26,7 +26,7 @@ public class SceneLoader : MonoBehaviour
     public void LoadScene(string scene, bool additiveSceneMode)
     {
         Debug.Log("scene loader.LoadScene");
-        loaderUI.DisplayLoader();
+        loaderUI.DisplayLoader(true);
         _sceneLoadingOperation = SceneManager.LoadSceneAsync(scene,
             additiveSceneMode ? LoadSceneMode.Additive : LoadSceneMode.Single);
         SceneLoadingBegin?.Invoke();
@@ -57,6 +57,7 @@ public class SceneLoader : MonoBehaviour
         Debug.Log("loading scene END");
         SceneLoadingEnd?.Invoke();
         Debug.Log("loading scene END");
+        loaderUI.DisplayLoader(false);
 
         yield return new WaitForEndOfFrame();
 

@@ -10,7 +10,7 @@ Material:
   m_Name: RHEF_SpruceLeaves
   m_Shader: {fileID: 4800000, guid: 0f4122b9a743b744abe2fb6a0a88868b, type: 3}
   m_ShaderKeywords: EFFECT_BUMP GEOM_TYPE_LEAF _ALPHATEST_ON _EMISSION _NORMALMAP
-  m_LightmapFlags: 1
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
