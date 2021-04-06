@@ -7,32 +7,30 @@ using NetworkPlayer = Network.NetworkPlayer;
 
 namespace UI
 {
-    enum WatchMode {PlayerCamera, TopCamera, Dashboard}
-
     public class UIControllerMobile : BaseUIController
     {
+        [Header("Runtime")]
         [SerializeField] public bool portraitOriented;
-        
+        [SerializeField] private bool playing = false;
+        [SerializeField] private bool controlsVisible;
+
+
+        [Header("Mobile UI Elements")]
         [SerializeField] private List<GameObject> cameraViews;
         [SerializeField] private GameObject controls;
         [SerializeField] private Timer timer;
         [SerializeField] private ProgressBar progressBar;
+
+        [Header("Special Buttons")]
         [SerializeField] private Selectable playButton;
         [SerializeField] private Selectable maximizeButton;
-        [SerializeField] private Controller controller;
-        
-        private bool _controlsVisible;
-        private bool _playing = false;
 
+        [FormerlySerializedAs("controller")] [SerializeField] private MobileController mobileController;
+        
         private void Awake()
         {
             networkManager.OnClientDisconnectAction += DisplayError;
         }
-
-        // public void EnablePanel(string panelName)
-        // {
-        //     screenPanels.ForEach(panel => panel.SetActive(panel.name == panelName));
-        // }
 
         public void EnableCameraView(string cameraViewName)
         {
@@ -41,7 +39,6 @@ namespace UI
 
         public void OnChangeScreenOrientation()
         {
-            
             Screen.orientation = portraitOriented ? ScreenOrientation.LandscapeLeft : ScreenOrientation.Portrait;
             portraitOriented = !portraitOriented;
             maximizeButton.SetSelected(!portraitOriented);
@@ -50,13 +47,13 @@ namespace UI
 
         public void ToggleControlsVisible()
         {
-            _controlsVisible = !_controlsVisible;
-            controls.SetActive(_controlsVisible);
+            controlsVisible = !controlsVisible;
+            controls.SetActive(controlsVisible);
         }
 
         private IEnumerator HideControls()
         {
-            while (_controlsVisible)
+            while (controlsVisible)
             {
                 yield return new WaitForSecondsRealtime(5);
                 controls.SetActive(false);
@@ -66,25 +63,18 @@ namespace UI
         public void OnPlayPressed(bool playing)
         {
             playButton.SetSelected(playing);
-            _playing = playing;
+            this.playing = playing;
             timer.SetTimerPlaying(playing);
             progressBar.SetProgressBarPlaying(playing);
         }
+        
+        
 
         //general controller
         public void OnSceneChosen(string chosenScene)
         {
-            controller.HandleSceneChosen(chosenScene);
+            mobileController.OnSceneSelected(chosenScene);
             timer.ResetTimer(); //nevim
         }
-
-
-        //general controller
-        // public void AssignPlayer(NetworkPlayer player)
-        // {
-        //     Debug.Log("assigning player ");
-        //     _networkPlayer = player;
-        //     Debug.Log(_networkPlayer);
-        // }
     }
 }

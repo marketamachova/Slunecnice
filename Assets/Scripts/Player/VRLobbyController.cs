@@ -2,9 +2,6 @@
 using System.Collections;
 using Cart;
 using Mirror;
-using Mirror.Discovery;
-using Network;
-using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using NetworkPlayer = Network.NetworkPlayer;
@@ -19,24 +16,20 @@ namespace Player
         Spring
     }
 
-    public class VRLobbyController : NetworkBehaviour
+    public class VRLobbyController : BaseController
     {
-        [SerializeField] private NetworkDiscovery networkDiscovery;
-        [SerializeField] private MyNetworkManager networkManager;
-        [SerializeField] private UIControllerVRLobby uiController;
-        [SerializeField] private SceneLoader sceneLoader;
         [SerializeField] private CartCreator cartCreator;
 
-        //debug only
-        private bool _spacePressed = false;
+        [Header("Debug only")] private bool _spacePressed = false;
+        private bool _debug = true;
 
         private void Awake()
         {
             networkManager.OnClientConnectAction += OnClientConnected;
             networkManager.OnMobileClientConnectAction += OnClientMobileConnected;
             networkManager.OnClientDisconnectAction += OnClientDisonnected;
-            networkManager.OnMobileClientDisconnectAction += OnClientMobileDisonnected;
-            cartCreator.OnCalibrationComplete += OnCalibrationCompleteNetwork;
+            networkManager.OnMobileClientDisconnectAction += OnClientMobileDisconnected;
+            cartCreator.OnCartCreatorCalibrationComplete += SetCalibrationComplete;
         }
 
         private IEnumerator Start()
@@ -46,26 +39,19 @@ namespace Player
             networkDiscovery.AdvertiseServer();
         }
 
+        //debug only
         private void Update()
         {
-            //debug only
-            if (Input.GetKey(KeyCode.Space) && !_spacePressed)
+            if (_debug)
             {
-                _spacePressed = true;
-                OnSceneSelected(World.MainScene.ToString());
+                if (Input.GetKey(KeyCode.Space) && !_spacePressed)
+                {
+                    _spacePressed = true;
+                    OnSceneSelected(World.MainScene.ToString());
+                }
             }
         }
-
-        public void OnSceneSelected(string scene)
-        {
-            if (SceneManager.sceneCount > 1)
-            {
-                return;
-            }
-            uiController.DisplayLoader(true);
-            sceneLoader.LoadScene(scene, true);
-        }
-
+        
         private void OnClientConnected()
         {
             uiController.Activate("AvailabilityIndicatorVR");
@@ -81,21 +67,22 @@ namespace Player
             uiController.Deactivate("AvailabilityIndicatorVR");
         }
 
-        private void OnClientMobileDisonnected()
+        private void OnClientMobileDisconnected()
         {
-            Debug.Log("OMCLIENTMOBILEDISCONNECT");
             uiController.Deactivate("AvailabilityIndicatorMobile");
         }
 
-        private void OnCalibrationCompleteNetwork()
+        public override void SetCalibrationComplete()
         {
-            Debug.Log("Oncalibration complete network vRLOBBY CONTROLLER");
+            base.SetCalibrationComplete();
+            Debug.Log("SET calibration complete network vRLOBBY CONTROLLER");
+        }
+
+        public override void OnCalibrationComplete()
+        {
+            base.OnCalibrationComplete();
             uiController.EnablePanelExclusive("SceneSelection");
-            var players = GameObject.FindObjectsOfType<NetworkPlayer>();
-            foreach (var networkPlayer in players)
-            {
-                networkPlayer.CmdSetCalibrationComplete(true);
-            }
+            Debug.Log("ON calibration complete network vRLOBBY CONTROLLER");
         }
 
         public CartCreator GetCartCreator()

@@ -41,10 +41,6 @@ namespace Network
         {
             GameObject player = Instantiate(playerPrefab);
             NetworkPlayer networkPlayer = player.GetComponent<NetworkPlayer>();
-            if (numPlayers > 1) //TODO asi ne
-            {
-                networkPlayer.mobile = true;
-            }
 
             NetworkServer.AddPlayerForConnection(conn, player);
             DontDestroyOnLoad(player);
@@ -62,13 +58,13 @@ namespace Network
             NetworkServer.Spawn(PlayerCamera);
             var mainCamera = GameObject.FindWithTag("MainCamera");
             mainCamera.transform.parent = PlayerCamera.transform;
-            DontDestroyOnLoad(mainCamera);
             DontDestroyOnLoad(PlayerCamera);
 
         }
 
         public override void OnServerDisconnect(NetworkConnection conn)
         {
+            //TODO
             base.OnServerDisconnect(conn);
             Debug.Log(numPlayers);
             Debug.Log(conn.connectionId);
@@ -78,6 +74,7 @@ namespace Network
             }
             else
             {
+                OnMobileClientDisconnectAction?.Invoke();
                 OnClientDisconnectAction?.Invoke();
             }
         }

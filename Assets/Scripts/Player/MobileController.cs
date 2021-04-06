@@ -5,10 +5,9 @@ using NetworkPlayer = Network.NetworkPlayer;
 
 namespace Player
 {
-    public class Controller : BaseController
+    public class MobileController : BaseController
     {
         [SerializeField] private UIControllerMobile uiControllerMobile;
-        [SerializeField] private MyNetworkManager networkManager;
         [SerializeField] private ConnectScreenController connectController;
         private bool _playing = false;
         private SceneLoader _sceneLoader;
@@ -29,14 +28,9 @@ namespace Player
             uiControllerMobile.ActivateExclusive("PlayerCameraButton");
         }
 
-        public void HandleSceneChosen(string sceneName)
+        public override void OnDisconnect()
         {
-            LocalNetworkPlayer.CmdHandleSelectedWorld(sceneName); //message about scene loading to other players
-            _sceneLoader.LoadScene(sceneName, true);
-        }
-
-        public void OnDisconnect()
-        {
+            base.OnDisconnect();
             uiControllerMobile.EnablePanelExclusive("ConnectScreen");
             Debug.Log("ON DISCONNECT Controller");
         }
@@ -68,22 +62,11 @@ namespace Player
             LocalNetworkPlayer.CmdSetPlayerMoving(false); //indicate END somehow
         }
 
-        public void EndCalibration() //TODO
+        public void SkipCalibration() //TODO
         {
             Debug.Log("Mobile Controller end calibration");
             LocalNetworkPlayer.CmdSkipCalibration(true); //TODO
         }
-
-        // public override void AssignPlayers()
-        // {
-        //     base.AssignPlayers();
-        //     Debug.Log("Controller assign playersss");
-        //     Debug.Log(LocalNetworkPlayer.netId);
-        //     Debug.Log(uiControllerMobile);
-        //     uiControllerMobile.EnableFalse("Calibration");
-        //     uiControllerMobile.EnableTrue("SceneSelection");
-        //     //LocalNetworkPlayer.OnCalibrationComplete += OnCalibrationComplete; TODO
-        // }
 
         public void AssignPlayer(NetworkPlayer networkPlayer)
         {
@@ -99,16 +82,18 @@ namespace Player
             {
                 Debug.Log("calibration in processs.......");
                 uiControllerMobile.EnableTrue("Calibration"); // display "Calibration in process message"
-                LocalNetworkPlayer.OnCalibrationComplete += OnCalibrationComplete; //observe calibration complete process
+                LocalNetworkPlayer.OnCalibrationComplete += OnCalibrationComplete; //observe calibration complete process TODO tohle mozna nebude potreba
             }
         }
 
         public override void OnCalibrationComplete()
         {
+            base.OnCalibrationComplete();
             Debug.Log("HIDE CALIBRATION MOBILE CONTROLLER");
-            Debug.Log(uiControllerMobile);
             uiControllerMobile.EnableFalse("Calibration");
             uiControllerMobile.EnableTrue("SceneSelection");
         }
+        
+        
     }
 }

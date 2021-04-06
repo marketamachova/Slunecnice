@@ -27,14 +27,14 @@ namespace Network
         
         private BaseUIController _uiController;
         private GameController _gameController;
-        private Controller _mobileController;
-        private VRLobbyController _vrLobbyController;
+        private BaseController _controller;
 
         public event Action OnCalibrationComplete;
 
         private void Awake()
         {
-            _vrLobbyController = GameObject.FindObjectOfType<VRLobbyController>();
+            _controller = FindObjectOfType<BaseController>();
+            Debug.Log(_controller.name);
         }
 
         public override void OnStopClient()
@@ -42,7 +42,7 @@ namespace Network
             base.OnStopClient();
             if (mobile)
             {
-                _mobileController.OnDisconnect();
+                _controller.OnDisconnect();
             }
         }
 
@@ -59,15 +59,18 @@ namespace Network
         [TargetRpc]
         public void UpdateSceneConnected()
         {
+            _controller.AssignPlayers();
+
             if (SceneManager.GetActiveScene().name == "AppOffline")
             {
                 Debug.Log("update scene connected (MOBILE ONLY)");
                 mobile = true;
-                _mobileController = GameObject.FindObjectOfType<Controller>();
-                _mobileController.AssignPlayer(this); // mozna presunout do onstrtlocalplayer
+                // _mobileController = GameObject.FindObjectOfType<MobileController>();
+                ((MobileController) _controller).AssignPlayer(this); // mozna presunout do onstrtlocalplayer
             }
         }
 
+        //TODO je to k necemu?
         public void ChangeScene(string oldScene, string newScene)
         {
             DontDestroyOnLoad(this);
@@ -76,23 +79,21 @@ namespace Network
             if (currentScene == "VROffline") //change scene for VR from mobile
             {
                 Debug.Log("about to change scene in VR");
-
-                VRLobbyController vrLobbyController =
-                    GameObject.Find("LobbyController").GetComponent<VRLobbyController>();
-                vrLobbyController.OnSceneSelected(chosenWorld);
+                
+                _controller.OnSceneSelected(chosenWorld);
             }
         }
         
 
         //mozna ze to coje ted v networkManager se da dat i sem jako serverova strana
-        [Command]
+        [Command] //require authority
         public void CmdHandleSelectedWorld(string sceneName)
         {
             chosenWorld = sceneName; //changing syncvar as cmd results in server synchronising all clients
         }
 
         //volano Controllerem
-        [Command]
+        [Command] //require authority
         public void CmdSetPlayerMoving(bool moving)
         {
             Debug.Log("CMD set player moving in Network pLayer, moving: " + moving);
@@ -106,7 +107,6 @@ namespace Network
             Debug.Log("CMD sskip calibration in Network pLayer, skipCalibraion: " + skip);
             skipCalibration = true;
         }
-
         
 
         //volano serverem na clientech
@@ -135,15 +135,14 @@ namespace Network
             Debug.Log("set player skip calibration CALLBACK in Network pLayer, skip: " + skip);
             if (!mobile)
             {
-                _vrLobbyController.GetCartCreator().SkipCalibration();
+                ((VRLobbyController) _controller).GetCartCreator().SkipCalibration();
             }
         }
 
         private void AssignGameController()
         {
-            _gameController = GameObject.FindWithTag("Controller").GetComponent<GameController>();
+            _gameController = GameObject.FindObjectOfType<GameController>();
             Debug.Log(_gameController);
-            Debug.Log(SceneManager.GetActiveScene().name);
         }
         
 
@@ -160,14 +159,7 @@ namespace Network
             Debug.Log("cart resumes going");
         }
 
-        // [Command]
-        // public void CmdSetCalibrationComplete(bool completed)
-        // {
-        //     Debug.Log("CMD set calibration completed in Network pLayer, calibration completed: " + completed);
-        //     calibrationComplete = completed;
-        // }
-        
-        
+
         [Command(requiresAuthority = false)]
         public void CmdSetCalibrationComplete(bool complete)
         {
@@ -179,12 +171,14 @@ namespace Network
         private void SetCalibrationComplete(bool oldValue, bool complete)
         {
             Debug.Log("Set calibration complete callback nETWORK PLAYER");
-            OnCalibrationComplete?.Invoke(); //ma si to prevzit mobile controller (Controller)
-            if (mobile)
-            {
-                Debug.Log("mobile true");
-                _mobileController.OnCalibrationComplete();
-            }
+            OnCalibrationComplete?.Invoke(); //ma si to prevzit mobile controller (MobileController)
+            
+            // //TODO je to potreba?
+            // if (mobile)
+            // {
+            //     Debug.Log("mobile true");
+            //     ((MobileController) _controller).OnCalibrationComplete();
+            // }
         }
     }
 }

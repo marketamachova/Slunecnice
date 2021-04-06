@@ -11,12 +11,17 @@ namespace Cart
 {
     public class CartCreator : MonoBehaviour
     {
+        [Header("Hands")]
         [SerializeField] private GameObject leftHand;
         [SerializeField] private GameObject rightHand;
-        [SerializeField] private GameObject cartPrefab;
-        [SerializeField] private BaseUIController uiController;
+
+        [Header("Cart")]
         [SerializeField] private Material cartMaterial;
+        [SerializeField] private GameObject cartPrefab;
         [SerializeField] private Vector3 defaultCartPosition;
+
+        [Header("UI")]
+        [SerializeField] private BaseUIController uiController;
         [SerializeField] private bool debug = true;
 
         private readonly List<Renderer> _cartRendererComponents = new List<Renderer>();
@@ -40,7 +45,7 @@ namespace Cart
         private List<Vector3> _createdPoints = new List<Vector3>();
         // private List<Vector3> rightSidePoints = new List<Vector3>();
 
-        public event Action OnCalibrationComplete;
+        public event Action OnCartCreatorCalibrationComplete;
 
 
         private void Awake()
@@ -57,32 +62,30 @@ namespace Cart
             {
                 var rightArrowPressed = Input.GetKeyDown(KeyCode.RightArrow);
                 var leftArrowPressed = Input.GetKeyDown(KeyCode.LeftArrow);
-            
+
                 if (rightArrowPressed || leftArrowPressed)
                 {
                     _interactable = false;
-            
+
                     if (rightArrowPressed && !_rightSideCreated)
                     {
-                        Debug.Log("RIGHT index pinhing");
                         _currentPointPositionList.Add(new Vector3(0.485f, 1.3903f, 0.163f));
                         _rightSideCreated = true;
                         _lastPointPosition = _currentPointPositionList[_currentPointPositionList.Count - 1];
                         CreateCart(_lastPointPosition);
                     }
-            
+
                     if (leftArrowPressed && !_leftSideCreated && _rightSideCreated)
                     {
-                        Debug.Log("LEFT index pinhing");
                         _currentPointPositionList.Add(new Vector3(-0.2958f, 1.3903f, 0.4578f));
                         _leftSideCreated = true;
                         RotateCart(_lastPointPosition, _currentPointPositionList[_currentPointPositionList.Count - 1]);
                     }
-            
-            
+
+
                     _interactable = true;
                 }
-            
+
                 if (Input.GetKeyDown(KeyCode.X))
                 {
                     EndCalibration();
@@ -166,7 +169,7 @@ namespace Cart
             // Destroy(stand);
             var networkCamera = GameObject.FindWithTag("NetworkCamera");
             _cart.transform.parent = networkCamera.transform;
-            OnCalibrationComplete?.Invoke();
+            OnCartCreatorCalibrationComplete?.Invoke();
         }
     }
 }

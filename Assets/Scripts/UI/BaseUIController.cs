@@ -8,14 +8,21 @@ namespace UI
 {
     public class BaseUIController : MonoBehaviour
     {
-        [SerializeField] private GameObject loadingSceneIndicator;
+        [Header("UI Elements")] [SerializeField]
+        private GameObject loadingSceneIndicator;
+
         [SerializeField] protected List<GameObject> panels;
-        [FormerlySerializedAs("activables")] [SerializeField] protected List<Selectable> activableSprites;
-        [FormerlySerializedAs("enalables")] [SerializeField] protected List<GameObject> enalableObjects;
-        [SerializeField] protected MyNetworkManager networkManager;
-        
         [SerializeField] private GameObject errorPanel;
-        
+
+        [FormerlySerializedAs("activables")] [SerializeField]
+        protected List<Selectable> activableSprites;
+
+        [FormerlySerializedAs("enalables")] [SerializeField]
+        protected List<GameObject> enalableObjects;
+
+        [SerializeField] protected MyNetworkManager networkManager;
+
+
         public void DisplayLoader(bool active)
         {
             loadingSceneIndicator.SetActive(active);
@@ -23,9 +30,12 @@ namespace UI
 
         public virtual void DisplayError()
         {
-            errorPanel.SetActive(true);
+            if (errorPanel)
+            {
+                errorPanel.SetActive(true);
+            }
         }
-        
+
         public void EnablePanelExclusive(string panelName)
         {
             panels.ForEach(panel => panel.SetActive(panel.name == panelName));
@@ -33,20 +43,14 @@ namespace UI
 
         public void EnableTrue(string enalableName)
         {
-            foreach (var enalable in enalableObjects.Where(enalable => enalable.name == enalableName))
-            {
-                enalable.SetActive(true);
-            }
+            Enable(enalableName, true);
         }
-        
+
         public void EnableFalse(string enalableName)
         {
-            foreach (var enalable in enalableObjects.Where(enalable => enalable.name == enalableName))
-            {
-                enalable.SetActive(false);
-            }
+            Enable(enalableName, false);
         }
-        
+
         public void ActivateExclusive(string activableName)
         {
             activableSprites.ForEach(activable => activable.SetSelected(activable.name == activableName));
@@ -54,24 +58,34 @@ namespace UI
 
         public void Activate(string activableName)
         {
-            foreach (var selectable in activableSprites.Where(selectable => selectable.name == activableName))
-            {
-                selectable.SetSelected(true);
-            }
+            ActivateSprite(activableName, true);
         }
-        
+
         public void Deactivate(string activableName)
         {
-            foreach (var selectable in activableSprites.Where(selectable => selectable.name == activableName))
-            {
-                selectable.SetSelected(false);
-            }
+            ActivateSprite(activableName, false);
         }
-        
+
+        //todo mozna presunout do Controller
         public void OnQuit()
         {
             Application.Quit();
         }
 
+        private void Enable(string enalableName, bool enable)
+        {
+            foreach (var enalable in enalableObjects.Where(enalable => enalable.name == enalableName))
+            {
+                enalable.SetActive(enable);
+            }
+        }
+
+        private void ActivateSprite(string activableName, bool activate)
+        {
+            foreach (var selectable in activableSprites.Where(selectable => selectable.name == activableName))
+            {
+                selectable.SetSelected(activate);
+            }
+        }
     }
 }
