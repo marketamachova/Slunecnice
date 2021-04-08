@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneId: 0
   serverOnly: 0
+  visible: 0
   m_AssetId: 
   hasSpawned: 0
 --- !u!114 &4046175393662636090
@@ -62,9 +63,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  controllers:
-  - {fileID: 4136474210565227092, guid: f464da3fa5e34400fa37736f8b291184, type: 3}
   mobile: 0
   chosenWorld: 
-  playerMoving: 0
+  playerMoving: 1
+  skipCalibration: 0
   calibrationComplete: 0

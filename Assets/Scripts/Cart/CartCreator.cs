@@ -21,7 +21,7 @@ namespace Cart
         [SerializeField] private Vector3 defaultCartPosition;
 
         [Header("UI")]
-        [SerializeField] private BaseUIController uiController;
+        [SerializeField] private CartCreationUIController uiController;
         [SerializeField] private bool debug = true;
 
         private readonly List<Renderer> _cartRendererComponents = new List<Renderer>();
@@ -30,13 +30,14 @@ namespace Cart
         private OVRSkeleton _leftHandSkeleton;
         private OVRSkeleton _rightHandSkeleton;
         private int _stepCounter;
-
-
+        
         private bool _interactable = true;
+        
         private bool _isLeftIndexFingerPinching = false;
         private bool _isRightIndexFingerPinching = false;
         private bool _leftSideCreated = false;
         private bool _rightSideCreated = false;
+
         private List<Vector3> _currentPointPositionList = new List<Vector3>();
         private Vector3 _lastPointPosition;
         private GameObject _cart;
@@ -127,7 +128,8 @@ namespace Cart
         {
             _cart = Instantiate(cartPrefab, pointPosition, cartPrefab.transform.rotation);
             _cartRendererComponents.AddRange(_cart.GetComponentsInChildren<Renderer>());
-            uiController.EnablePanelExclusive("Step2");
+
+            uiController.DisplayCalibrationStep2();
             // stand.SetActive(false);
         }
 
@@ -136,22 +138,21 @@ namespace Cart
             Vector3 pointsDifferenceVector = new Vector3(pos2.x - pos1.x, 0, pos2.z - pos1.z);
             var rotationAngle = Vector3.SignedAngle(Vector2.left, pointsDifferenceVector.normalized, Vector3.up);
             _cart.transform.Rotate(new Vector3(0, rotationAngle, 0));
-            uiController.EnablePanelExclusive("Step3");
-            uiController.EnableTrue("DoneButton");
+            
+            uiController.DisplayCalibrationStep3();
         }
 
         public void Reset()
         {
             Destroy(_cart);
             _currentPointPositionList = new List<Vector3>();
-            _rightSideCreated = false;
-            _leftSideCreated = false;
-            uiController.EnablePanelExclusive("Step1");
-            uiController.EnableFalse("DoneButton");
+            _rightSideCreated = _leftSideCreated = false;
+            
+            uiController.DisplayCalibrationStep1();
             // stand.SetActive(true);
         }
 
-        public void ColorCart()
+        private void ColorCart()
         {
             _cartRendererComponents.ForEach(component => component.material = cartMaterial);
         }
@@ -159,16 +160,19 @@ namespace Cart
         public void SkipCalibration()
         {
             VRDebugger.Instance.Log("skip calibration");
-            _cart = Instantiate(cartPrefab, defaultCartPosition, cartPrefab.transform.rotation);
+            _cart = Instantiate(cartPrefab, cartPrefab.transform.position, cartPrefab.transform.rotation);
             EndCalibration();
         }
 
         public void EndCalibration()
         {
+            _interactable = false;
             ColorCart();
             // Destroy(stand);
+            
             var networkCamera = GameObject.FindWithTag("NetworkCamera");
             _cart.transform.parent = networkCamera.transform;
+
             OnCartCreatorCalibrationComplete?.Invoke();
         }
     }

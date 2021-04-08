@@ -11,7 +11,7 @@ namespace UI
     {
         [Header("Runtime")]
         [SerializeField] public bool portraitOriented;
-        [SerializeField] private bool playing = false;
+        [SerializeField] private bool playing = true;
         [SerializeField] private bool controlsVisible;
 
 

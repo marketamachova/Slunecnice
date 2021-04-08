@@ -11,19 +11,20 @@ namespace Player
     public class GameController : MonoBehaviour
     {
         [SerializeField] public List<GameObject> player;
-        [SerializeField] private GameObject finalUI;
         [SerializeField] private SceneController sceneController;
         [SerializeField] private List<PathCreator> pathCreators;
-        
+
         public readonly List<PlayerMovement> PlayerMovementScripts = new List<PlayerMovement>();
         private GameObject _cart;
         private GameObject _player;
         private CartMovement _cartMovement;
+        private Animator _cartAnimator;
         private AudioSource _cartAudio;
         private Fader _fader;
         private string _currentScene = "MainScene";
-        
+
         private static readonly int Stop = Animator.StringToHash("Stop");
+        private static readonly int Drive = Animator.StringToHash("Drive");
 
         private void Awake()
         {
@@ -31,15 +32,21 @@ namespace Player
             _player = GameObject.FindWithTag("NetworkCamera");
             player.Add(_player);
             Debug.Log(player.Count);
-            
+
             foreach (var o in player)
             {
                 PlayerMovementScripts.Add(o.GetComponent<PlayerMovement>());
             }
-            
+
             PlayerMovementScripts.ForEach(script => script.SetPathCreator(pathCreators));
-            _cartMovement = _cart.GetComponent<CartMovement>();
-            _cartAudio = _cart.GetComponent<AudioSource>();
+
+            if (_cart != null)
+            {
+                _cartMovement = _cart.GetComponent<CartMovement>();
+                _cartAudio = _cart.GetComponent<AudioSource>();
+                _cartAnimator = _cart.GetComponent<Animator>();
+            }
+
             // _fader = GetComponent<Fader>();
         }
 
@@ -52,48 +59,62 @@ namespace Player
 
         IEnumerator InitialCoroutine()
         {
-            PlayerMovementScripts.ForEach(Enable);
-            _cartAudio.Play();
+            StartMovement();
             yield return null;
         }
-        
+
         public void StartMovement()
         {
             Debug.Log("game controller starting movement");
+            PlayerMovementScripts.ForEach(Debug.Log);
             PlayerMovementScripts.ForEach(Enable);
+            if (_cart != null)
+            {
+                StartCart();
+            }
         }
-        
+
         public void PauseMovement()
         {
             PlayerMovementScripts.ForEach(Disable);
+            if (_cart != null)
+            {
+                StopCart();
+            }
         }
 
         public void End()
         {
             PlayerMovementScripts.ForEach(Disable);
-            StopCart();
+            if (_cart != null)
+            {
+                StopCart();
+            }
+
             StartCoroutine(GoToLobby());
         }
-        
+
         private void Enable(PlayerMovement script)
         {
             script.enabled = true;
         }
-        
+
         private void Disable(PlayerMovement script)
         {
             script.enabled = false;
         }
-        
-        private void DisplayUI()
+
+        private void StartCart()
         {
-            finalUI.SetActive(true);
+            _cartAnimator.SetTrigger(Drive);
+            _cartAudio.Play();
         }
+
 
         private void StopCart()
         {
-            var animator = _cart.GetComponent<Animator>();
-            animator.SetTrigger(Stop);
+            _cartAnimator = _cart.GetComponent<Animator>();
+            _cartAnimator.SetTrigger(Stop);
             _cartAudio.Stop();
         }
 

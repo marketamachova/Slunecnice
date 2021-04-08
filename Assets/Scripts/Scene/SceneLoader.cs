@@ -16,7 +16,6 @@ public class SceneLoader : MonoBehaviour
 
     public event Action SceneLoadingBegin;
     public event Action SceneLoadingEnd;
-    public event Action RandomEvent;
 
     void Start()
     {
@@ -26,7 +25,7 @@ public class SceneLoader : MonoBehaviour
     public void LoadScene(string scene, bool additiveSceneMode)
     {
         Debug.Log("scene loader.LoadScene");
-        loaderUI.DisplayLoader(true);
+        loaderUI.DisplayLoader(true); //potreba?
         _sceneLoadingOperation = SceneManager.LoadSceneAsync(scene,
             additiveSceneMode ? LoadSceneMode.Additive : LoadSceneMode.Single);
         SceneLoadingBegin?.Invoke();
@@ -45,7 +44,6 @@ public class SceneLoader : MonoBehaviour
 
     private IEnumerator LoadSceneAsync()
     {
-        RandomEvent?.Invoke();
         while (!_sceneLoadingOperation.isDone)
         {
             float loadingProgress = _sceneLoadingOperation.progress;
@@ -54,18 +52,9 @@ public class SceneLoader : MonoBehaviour
             yield return null;
         }
         
-        Debug.Log("loading scene END");
         SceneLoadingEnd?.Invoke();
-        Debug.Log("loading scene END");
         loaderUI.DisplayLoader(false);
 
         yield return new WaitForEndOfFrame();
-
-
-        // Debug.Log("joining");
-        // _networkPlayer.GetComponent<NetworkPlayer>().Join();
-        // Debug.Log("joined");
-
-        // EnableVRController();
     }
 }

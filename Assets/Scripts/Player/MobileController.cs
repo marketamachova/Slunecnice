@@ -9,7 +9,7 @@ namespace Player
     {
         [SerializeField] private UIControllerMobile uiControllerMobile;
         [SerializeField] private ConnectScreenController connectController;
-        private bool _playing = false;
+        private bool _playing = true;
         private SceneLoader _sceneLoader;
 
         public void Awake()
@@ -19,13 +19,13 @@ namespace Player
             _sceneLoader.SceneLoadingEnd += OnSceneLoaded;
             networkManager.OnServerAddPlayerAction += AssignPlayers;
         }
-        
+
         private void OnSceneLoaded()
         {
             Debug.Log("Controller scene loaded");
             uiControllerMobile.EnablePanelExclusive("WatchScreenPortrait");
             uiControllerMobile.ToggleControlsVisible();
-            uiControllerMobile.ActivateExclusive("PlayerCameraButton");
+            // uiControllerMobile.ActivateExclusive("PlayerCameraButton");
         }
 
         public override void OnDisconnect()
@@ -34,11 +34,13 @@ namespace Player
             uiControllerMobile.EnablePanelExclusive("ConnectScreen");
             Debug.Log("ON DISCONNECT Controller");
         }
-        
+
         public void OnPlayPressed()
         {
+            Debug.Log("play pressed NOW");
+
             _playing = !_playing;
-        
+
             if (Players.Count == 0)
             {
                 AssignPlayers();
@@ -52,7 +54,7 @@ namespace Player
                     networkPlayer.CmdSetPlayerMoving(_playing);
                 }
             }
-        
+
             uiControllerMobile.OnPlayPressed(_playing);
         }
 
@@ -74,7 +76,8 @@ namespace Player
             if (LocalNetworkPlayer.calibrationComplete) //calibration complete in VR
             {
                 //display scene selection
-            } else if (!string.IsNullOrEmpty(LocalNetworkPlayer.chosenWorld)) //scene selected in VR
+            }
+            else if (!string.IsNullOrEmpty(LocalNetworkPlayer.chosenWorld)) //scene selected in VR
             {
                 //load chosen world and get VR player's position
             }
@@ -82,7 +85,8 @@ namespace Player
             {
                 Debug.Log("calibration in processs.......");
                 uiControllerMobile.EnableTrue("Calibration"); // display "Calibration in process message"
-                LocalNetworkPlayer.OnCalibrationComplete += OnCalibrationComplete; //observe calibration complete process TODO tohle mozna nebude potreba
+                LocalNetworkPlayer.OnCalibrationComplete +=
+                    OnCalibrationComplete; //observe calibration complete process TODO tohle mozna nebude potreba
             }
         }
 
@@ -93,7 +97,5 @@ namespace Player
             uiControllerMobile.EnableFalse("Calibration");
             uiControllerMobile.EnableTrue("SceneSelection");
         }
-        
-        
     }
 }

@@ -7,14 +7,11 @@ using UnityEngine;
 public class SceneController : MonoBehaviour
 {
     [SerializeField] private Transform startingPoint;
-    [SerializeField] private Vector3 cameraStartingPosition;
-    [SerializeField] private Quaternion cameraStartingRotation;
     [SerializeField] private Vector3 startingPositionLobby;
     [SerializeField] private Quaternion startingRotationLobby;
-    [SerializeField] private MyNetworkManager networkManager;
-    [SerializeField] private bool debug;
     private GameObject _player;
     private GameObject _mainCamera;
+    private GameObject _rtCamera;
 
     void Start()
     {
@@ -38,7 +35,6 @@ public class SceneController : MonoBehaviour
         _mainCamera.transform.localPosition = new Vector3(0, 1.5f, -0.273f);
         Debug.Log(_mainCamera.transform.position);
         Debug.Log(_mainCamera.transform.localPosition);
-        // _mainCamera.transform.Rotate(0, -90f, 0);
     }
 
     public void MovePlayersAtStartingPositionLobby()

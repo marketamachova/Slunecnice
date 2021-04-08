@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using Mirror;
 using Player;
 using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 namespace Network
 {
@@ -13,28 +11,27 @@ namespace Network
     {
         [SerializeField] public bool mobile = false;
 
-        [SyncVar(hook = "ChangeScene")]
-        public string chosenWorld;
-        
-        [SyncVar(hook = "SetPlayerMoving")]
-        public bool playerMoving;
-        
-        [SyncVar(hook = "SkipCalibration")]
-        public bool skipCalibration;
-        
+        [SyncVar(hook = "ChangeScene")] public string chosenWorld;
+
+        [SyncVar(hook = "SetPlayerMoving")] public bool playerMoving = true;
+
+        [SyncVar(hook = "SkipCalibration")] public bool skipCalibration;
+
         [SyncVar(hook = "SetCalibrationComplete")]
         public bool calibrationComplete;
-        
+
         private BaseUIController _uiController;
         private GameController _gameController;
         private BaseController _controller;
+        private SceneLoader _sceneLoader;
 
         public event Action OnCalibrationComplete;
 
         private void Awake()
         {
             _controller = FindObjectOfType<BaseController>();
-            Debug.Log(_controller.name);
+            _sceneLoader = FindObjectOfType<SceneLoader>();
+            _gameController = FindObjectOfType<GameController>();
         }
 
         public override void OnStopClient()
@@ -45,7 +42,6 @@ namespace Network
                 _controller.OnDisconnect();
             }
         }
-
 
         // public override void OnStartLocalPlayer()
         // {
@@ -65,25 +61,18 @@ namespace Network
             {
                 Debug.Log("update scene connected (MOBILE ONLY)");
                 mobile = true;
-                // _mobileController = GameObject.FindObjectOfType<MobileController>();
                 ((MobileController) _controller).AssignPlayer(this); // mozna presunout do onstrtlocalplayer
             }
         }
 
-        //TODO je to k necemu?
+        // //TODO je to k necemu?
         public void ChangeScene(string oldScene, string newScene)
         {
             DontDestroyOnLoad(this);
-            var currentScene = SceneManager.GetActiveScene().name;
-            Debug.Log(currentScene);
-            if (currentScene == "VROffline") //change scene for VR from mobile
-            {
-                Debug.Log("about to change scene in VR");
-                
-                _controller.OnSceneSelected(chosenWorld);
-            }
+            _sceneLoader.LoadScene(newScene, true);
+
         }
-        
+
 
         //mozna ze to coje ted v networkManager se da dat i sem jako serverova strana
         [Command] //require authority
@@ -107,17 +96,17 @@ namespace Network
             Debug.Log("CMD sskip calibration in Network pLayer, skipCalibraion: " + skip);
             skipCalibration = true;
         }
-        
+
 
         //volano serverem na clientech
         public void SetPlayerMoving(bool oldValue, bool moving)
         {
             Debug.Log("set player moving in Network pLayer, moving: " + moving);
-            
+
             Debug.Log(mobile);
-            if (!mobile)
+            // if (!mobile)
             {
-                AssignGameController();
+                AssignGameController(); //TODO nejak jinak mozna smazat
 
                 if (moving)
                 {
@@ -141,10 +130,10 @@ namespace Network
 
         private void AssignGameController()
         {
-            _gameController = GameObject.FindObjectOfType<GameController>();
+            _gameController = FindObjectOfType<GameController>();
             Debug.Log(_gameController);
         }
-        
+
 
         [Command] //require authority
         public void StopCart()
@@ -166,19 +155,12 @@ namespace Network
             Debug.Log("CMD set calibrationComplete in Network pLayer, complete: " + complete);
             calibrationComplete = complete;
         }
-        
+
         //called automatically, after calibrationComplete changes
         private void SetCalibrationComplete(bool oldValue, bool complete)
         {
             Debug.Log("Set calibration complete callback nETWORK PLAYER");
             OnCalibrationComplete?.Invoke(); //ma si to prevzit mobile controller (MobileController)
-            
-            // //TODO je to potreba?
-            // if (mobile)
-            // {
-            //     Debug.Log("mobile true");
-            //     ((MobileController) _controller).OnCalibrationComplete();
-            // }
         }
     }
 }

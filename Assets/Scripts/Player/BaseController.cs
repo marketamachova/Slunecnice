@@ -19,6 +19,7 @@ namespace Player
 
         protected readonly List<NetworkPlayer> Players = new List<NetworkPlayer>();
         protected NetworkPlayer LocalNetworkPlayer;
+        protected bool _worldSelected = false;
 
         public virtual void OnDisconnect()
         {
@@ -58,14 +59,16 @@ namespace Player
 
         public virtual void OnSceneSelected(string sceneName)
         {
-            if (SceneManager.sceneCount > 1)
+            Debug.Log("OnSceneSelected .......");
+            if (_worldSelected)
             {
                 Debug.Log("sceneCount > 1");
                 return;
             }
+            _worldSelected = true;
+
             LocalNetworkPlayer.CmdHandleSelectedWorld(sceneName); //message about scene loading to other players
-            uiController.DisplayLoader(true); //TODO je to potreba?
-            sceneLoader.LoadScene(sceneName, true);
+            // uiController.DisplayLoader(true); //TODO je to potreba?
         }
     }
 }

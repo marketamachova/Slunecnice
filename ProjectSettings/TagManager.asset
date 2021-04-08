@@ -12,6 +12,7 @@ TagManager:
   - Controller
   - Cart
   - PathCreator
+  - CenterEyeAnchor
   layers:
   - Default
   - TransparentFX
