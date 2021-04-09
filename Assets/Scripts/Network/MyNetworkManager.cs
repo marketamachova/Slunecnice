@@ -56,13 +56,12 @@ namespace Network
 
             PlayerCamera = Instantiate(spawnPrefabs.Find(prefab => prefab.name == "NetworkPlayerAttachCamera"));
             NetworkServer.Spawn(PlayerCamera);
-            
+
             // for VR it is OVRCameraRig, for mobile it is Camera
             var mainCamera = GameObject.FindWithTag("MainCamera");
             mainCamera.transform.parent = PlayerCamera.transform;
             
             DontDestroyOnLoad(PlayerCamera);
-
         }
 
         public override void OnServerDisconnect(NetworkConnection conn)

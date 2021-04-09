@@ -3,18 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using Cart;
 using PathCreation;
+using Scenes;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace Player
 {
     public class GameController : MonoBehaviour
     {
-        [SerializeField] public List<GameObject> player;
-        [SerializeField] private SceneController sceneController;
-        [SerializeField] private List<PathCreator> pathCreators;
+        public List<GameObject> player = new List<GameObject>();
+        private SceneController _sceneController;
+        private PathCreator _pathCreator;
 
-        public readonly List<PlayerMovement> PlayerMovementScripts = new List<PlayerMovement>();
+         private PlayerMovement[] _playerMovementScripts;
         private GameObject _cart;
         private GameObject _player;
         private CartMovement _cartMovement;
@@ -22,24 +25,29 @@ namespace Player
         private AudioSource _cartAudio;
         private Fader _fader;
         private string _currentScene = "MainScene";
+        private bool _mobile;
 
         private static readonly int Stop = Animator.StringToHash("Stop");
         private static readonly int Drive = Animator.StringToHash("Drive");
-
+        
+        //TODO refactor
         private void Awake()
         {
+            _mobile = SceneManager.GetSceneAt(0).name == "AppOffline";
+            
             _cart = GameObject.FindWithTag("Cart");
             _player = GameObject.FindWithTag("NetworkCamera");
+            _sceneController = GameObject.FindObjectOfType<SceneController>();
+            _pathCreator = FindObjectOfType<PathCreator>();
+                
             player.Add(_player);
-            Debug.Log(player.Count);
 
-            foreach (var o in player)
+            _playerMovementScripts = FindObjectsOfType<PlayerMovement>();
+            foreach (var script in _playerMovementScripts)
             {
-                PlayerMovementScripts.Add(o.GetComponent<PlayerMovement>());
+                script.SetPathCreator(_pathCreator);
             }
-
-            PlayerMovementScripts.ForEach(script => script.SetPathCreator(pathCreators));
-
+            
             if (_cart != null)
             {
                 _cartMovement = _cart.GetComponent<CartMovement>();
@@ -66,8 +74,12 @@ namespace Player
         public void StartMovement()
         {
             Debug.Log("game controller starting movement");
-            PlayerMovementScripts.ForEach(Debug.Log);
-            PlayerMovementScripts.ForEach(Enable);
+            
+            foreach (var script in _playerMovementScripts)
+            {
+                Enable(script);
+            }
+            
             if (_cart != null)
             {
                 StartCart();
@@ -76,7 +88,10 @@ namespace Player
 
         public void PauseMovement()
         {
-            PlayerMovementScripts.ForEach(Disable);
+            foreach (var script in _playerMovementScripts)
+            {
+                Disable(script);
+            }
             if (_cart != null)
             {
                 StopCart();
@@ -85,7 +100,10 @@ namespace Player
 
         public void End()
         {
-            PlayerMovementScripts.ForEach(Disable);
+            foreach (var script in _playerMovementScripts)
+            {
+                Disable(script);
+            }
             if (_cart != null)
             {
                 StopCart();
@@ -122,7 +140,7 @@ namespace Player
         {
             yield return new WaitForSecondsRealtime(3);
             DontDestroyOnLoad(this);
-            sceneController.MovePlayersAtStartingPositionLobby();
+            _sceneController.MovePlayersAtStartingPositionLobby();
             SceneManager.UnloadSceneAsync(_currentScene);
         }
 

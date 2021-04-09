@@ -1,4 +1,5 @@
 ﻿using Network;
+using Scenes;
 using UI;
 using UnityEngine;
 using NetworkPlayer = Network.NetworkPlayer;
@@ -32,6 +33,7 @@ namespace Player
         {
             base.OnDisconnect();
             uiControllerMobile.EnablePanelExclusive("ConnectScreen");
+            connectController.OnDisconnect();
             Debug.Log("ON DISCONNECT Controller");
         }
 
@@ -40,7 +42,7 @@ namespace Player
             Debug.Log("play pressed NOW");
 
             _playing = !_playing;
-
+            
             if (Players.Count == 0)
             {
                 AssignPlayers();

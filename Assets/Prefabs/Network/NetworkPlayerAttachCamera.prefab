@@ -47,7 +47,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4615209268392955068}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -228,7 +228,6 @@ GameObject:
   - component: {fileID: 911396877859726288}
   - component: {fileID: -6856841697663539212}
   - component: {fileID: 2585152040486979133}
-  - component: {fileID: 3501459200649049597}
   - component: {fileID: 8813167845267455269}
   - component: {fileID: 4639664115769948233}
   m_Layer: 0
@@ -333,21 +332,6 @@ MonoBehaviour:
   interpolateScale: 1
   syncScale: 1
   target: {fileID: 1581871501859394670}
---- !u!114 &3501459200649049597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5047950622085930364}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cfbd2eef5399468b9352d1293750e70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: {x: 0, y: 0, z: 0}
-  speed: 2
-  rotateCamera: 1
 --- !u!54 &8813167845267455269
 Rigidbody:
   m_ObjectHideFlags: 0

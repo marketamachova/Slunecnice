@@ -1,6 +1,7 @@
 ﻿using System;
 using Mirror;
 using Player;
+using Scenes;
 using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -65,24 +66,29 @@ namespace Network
             }
         }
 
-        // //TODO je to k necemu?
         public void ChangeScene(string oldScene, string newScene)
         {
             DontDestroyOnLoad(this);
-            _sceneLoader.LoadScene(newScene, true);
+            string sceneToLoad = newScene;
+            if (mobile)
+            {
+                Debug.Log("mobile true");
+                sceneToLoad = "PlsMobile";
+            }
+            _sceneLoader.LoadScene(sceneToLoad, true);
 
         }
 
 
         //mozna ze to coje ted v networkManager se da dat i sem jako serverova strana
-        [Command] //require authority
+        [Command(requiresAuthority = false)] //require authority
         public void CmdHandleSelectedWorld(string sceneName)
         {
             chosenWorld = sceneName; //changing syncvar as cmd results in server synchronising all clients
         }
 
         //volano Controllerem
-        [Command] //require authority
+        [Command(requiresAuthority = false)] //require authority
         public void CmdSetPlayerMoving(bool moving)
         {
             Debug.Log("CMD set player moving in Network pLayer, moving: " + moving);
@@ -104,7 +110,7 @@ namespace Network
             Debug.Log("set player moving in Network pLayer, moving: " + moving);
 
             Debug.Log(mobile);
-            // if (!mobile)
+            if (!mobile)
             {
                 AssignGameController(); //TODO nejak jinak mozna smazat
 

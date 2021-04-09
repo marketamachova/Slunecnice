@@ -12,7 +12,6 @@ namespace UI
         private GameObject loadingSceneIndicator;
 
         [SerializeField] protected List<GameObject> panels;
-        [SerializeField] private GameObject errorPanel;
 
         [FormerlySerializedAs("activables")] [SerializeField]
         protected List<Selectable> activableSprites;
@@ -30,10 +29,11 @@ namespace UI
 
         public virtual void DisplayError()
         {
-            if (errorPanel)
-            {
-                errorPanel.SetActive(true);
-            }
+            EnableTrue("ErrorPanel");
+            EnableTrue("ErrorBackdrop");
+            EnableFalse("VideoControls");
+            EnableFalse("SceneSelection");
+            EnableFalse("Calibration");
         }
 
         public void EnablePanelExclusive(string panelName)

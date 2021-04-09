@@ -48,7 +48,7 @@ namespace UI
             connectedText.SetActive(false);
             connectButton.SetActive(true);
             connectButton.GetComponent<Button>().interactable = true;
-            errorPanel.SetActive(true);
+            // errorPanel.SetActive(true);
             myNetworkDiscovery.StartDiscovery();
         }
 

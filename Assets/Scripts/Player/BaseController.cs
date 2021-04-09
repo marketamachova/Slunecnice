@@ -5,6 +5,7 @@ using NetworkPlayer = Network.NetworkPlayer;
 using Mirror;
 using Mirror.Discovery;
 using Network;
+using Scenes;
 using UI;
 using UnityEngine.SceneManagement;
 
@@ -23,6 +24,7 @@ namespace Player
 
         public virtual void OnDisconnect()
         {
+            sceneLoader.UnloadScene(); //VR dobry?
             uiController.DisplayError();
         }
 
