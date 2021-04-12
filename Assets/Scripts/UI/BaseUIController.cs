@@ -51,6 +51,15 @@ namespace UI
             Enable(enalableName, false);
         }
 
+        public void ToggleEnable(string enalableName)
+        {
+            foreach (var enalable in enalableObjects.Where(enalable => enalable.name == enalableName))
+            {
+                var enable = enalable.activeSelf;
+                enalable.SetActive(!enable);
+            }
+        }
+
         public void ActivateExclusive(string activableName)
         {
             activableSprites.ForEach(activable => activable.SetSelected(activable.name == activableName));
@@ -72,7 +81,7 @@ namespace UI
             Application.Quit();
         }
 
-        private void Enable(string enalableName, bool enable)
+        protected void Enable(string enalableName, bool enable)
         {
             foreach (var enalable in enalableObjects.Where(enalable => enalable.name == enalableName))
             {
@@ -87,5 +96,7 @@ namespace UI
                 selectable.SetSelected(activate);
             }
         }
+        
+   
     }
 }

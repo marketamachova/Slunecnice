@@ -10,7 +10,8 @@ namespace Network
     {
         [SerializeField] private SceneController sceneController;
         [SerializeField] private GameObject rtCamera;
-        [SerializeField] private GameObject playerGazeDummy;
+        [SerializeField] private GameObject rtTopCamera;
+        // [SerializeField] private GameObject playerGazeDummy;
 
         private bool _vrInstance;
 
@@ -70,11 +71,12 @@ namespace Network
                 rtCamera.transform.rotation = playerViewportRotation;
                 // rtCamera.transform.Rotate(0, 70f, 0);
 
-                playerGazeDummy.transform.position = playerViewportPosition;
-                playerGazeDummy.transform.rotation = playerViewportRotation;
+                // playerGazeDummy.transform.position = playerViewportPosition;
+                // playerGazeDummy.transform.rotation = playerViewportRotation;
 
                 var playerPosition = _cameraRig.transform.position;
                 rtCamera.transform.position = playerViewportPosition;
+                rtTopCamera.transform.position = new Vector3(playerPosition.x, 30f, playerPosition.z);
             }
         }
 

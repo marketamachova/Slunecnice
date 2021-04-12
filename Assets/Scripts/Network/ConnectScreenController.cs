@@ -12,11 +12,11 @@ namespace UI
         [SerializeField] private TextMeshProUGUI connectableDeviceText;
         [SerializeField] private GameObject connectedText;
         [SerializeField] private GameObject connectButton;
-        [SerializeField] private GameObject errorPanel;
         [SerializeField] private Selectable availabilityStatus;
         [SerializeField] private NetworkDiscovery myNetworkDiscovery;
         [SerializeField] private MyNetworkManager networkManager;
         [SerializeField] private GameObject hintBar;
+        [SerializeField] private string defaultText = "Žádná zařízení nalezena.";
     
         private ServerResponse _serverResponse;
 
@@ -47,14 +47,15 @@ namespace UI
             Debug.Log("ON DISCONNECT CONNECT screeen controller");   
             connectedText.SetActive(false);
             connectButton.SetActive(true);
-            connectButton.GetComponent<Button>().interactable = true;
-            // errorPanel.SetActive(true);
+            connectButton.GetComponent<Button>().interactable = false;
+            availabilityStatus.SetSelected(false);
+            connectableDeviceText.text = defaultText;
+            hintBar.SetActive(true);
             myNetworkDiscovery.StartDiscovery();
         }
 
         private void Connect()
         {
-            errorPanel.SetActive(false);
             connectButton.GetComponent<Button>().interactable = false;
             if (_serverResponse.Equals(null))
             {

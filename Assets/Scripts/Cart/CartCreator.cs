@@ -4,6 +4,7 @@ using System.Numerics;
 using TMPro;
 using UI;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
@@ -41,10 +42,6 @@ namespace Cart
         private List<Vector3> _currentPointPositionList = new List<Vector3>();
         private Vector3 _lastPointPosition;
         private GameObject _cart;
-
-
-        private List<Vector3> _createdPoints = new List<Vector3>();
-        // private List<Vector3> rightSidePoints = new List<Vector3>();
 
         public event Action OnCartCreatorCalibrationComplete;
 
@@ -93,7 +90,9 @@ namespace Cart
                 }
             }
 
-            if (_interactable)
+
+
+            if (_interactable && !EventSystem.current.currentSelectedGameObject)
             {
                 _isLeftIndexFingerPinching = _leftHand.GetFingerIsPinching(OVRHand.HandFinger.Index);
                 _isRightIndexFingerPinching = _rightHand.GetFingerIsPinching(OVRHand.HandFinger.Index);
@@ -145,6 +144,7 @@ namespace Cart
         public void Reset()
         {
             Destroy(_cart);
+            _cart = null;
             _currentPointPositionList = new List<Vector3>();
             _rightSideCreated = _leftSideCreated = false;
             
@@ -159,7 +159,10 @@ namespace Cart
 
         public void SkipCalibration()
         {
-            VRDebugger.Instance.Log("skip calibration");
+            if (_cart != null)
+            {
+                Destroy(_cart);
+            }
             _cart = Instantiate(cartPrefab, cartPrefab.transform.position, cartPrefab.transform.rotation);
             EndCalibration();
         }
@@ -175,5 +178,6 @@ namespace Cart
 
             OnCartCreatorCalibrationComplete?.Invoke();
         }
+        
     }
 }

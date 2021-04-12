@@ -4,15 +4,6 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    // enum SelectableType
-    // {
-    //     PlayerCameraButton, 
-    //     TopCameraButton, 
-    //     DashboardButton,
-    //     AvailabilityIndicator,
-    //     PlayButton,
-    //     MaximizeButton
-    // }
 
     public class Selectable : MonoBehaviour
     {

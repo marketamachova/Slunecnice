@@ -20,11 +20,15 @@ namespace Player
 
         protected readonly List<NetworkPlayer> Players = new List<NetworkPlayer>();
         protected NetworkPlayer LocalNetworkPlayer;
-        protected bool _worldSelected = false;
+        protected bool WorldSelected = false;
+        protected string CurrentScene;
 
         public virtual void OnDisconnect()
         {
-            sceneLoader.UnloadScene(); //VR dobry?
+            if (SceneManager.sceneCount > 1)
+            {
+                sceneLoader.UnloadScene(); //VR dobry?
+            }
             uiController.DisplayError();
         }
 
@@ -56,21 +60,36 @@ namespace Player
             {
                 networkPlayer.CmdSetCalibrationComplete(true);
             }
+
             Debug.Log("SET calibration complete Base controller");
         }
 
         public virtual void OnSceneSelected(string sceneName)
         {
             Debug.Log("OnSceneSelected .......");
-            if (_worldSelected)
+            if (WorldSelected)
             {
                 Debug.Log("sceneCount > 1");
                 return;
             }
-            _worldSelected = true;
 
+            Debug.Log(LocalNetworkPlayer);
             LocalNetworkPlayer.CmdHandleSelectedWorld(sceneName); //message about scene loading to other players
-            // uiController.DisplayLoader(true); //TODO je to potreba?
+            WorldSelected = true;
+        }
+
+        public virtual void OnGoToLobby()
+        {
+        }
+
+        public virtual void TriggerGoToLobby()
+        {
+            WorldSelected = false;
+            var players = GameObject.FindObjectsOfType<NetworkPlayer>();
+            foreach (var networkPlayer in players)
+            {
+                networkPlayer.CmdGoToLobby();
+            }
         }
     }
 }

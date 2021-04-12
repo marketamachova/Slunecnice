@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Mirror;
 using Player;
 using Scenes;
@@ -14,12 +15,15 @@ namespace Network
 
         [SyncVar(hook = "ChangeScene")] public string chosenWorld;
 
-        [SyncVar(hook = "SetPlayerMoving")] public bool playerMoving = true;
+        [SyncVar(hook = "SetPlayerMoving")] public bool playerMoving = false;
 
         [SyncVar(hook = "SkipCalibration")] public bool skipCalibration;
 
         [SyncVar(hook = "SetCalibrationComplete")]
         public bool calibrationComplete;
+
+        [SyncVar(hook = "GoToLobby")]
+        public bool goToLobby;
 
         private BaseUIController _uiController;
         private GameController _gameController;
@@ -68,15 +72,34 @@ namespace Network
 
         public void ChangeScene(string oldScene, string newScene)
         {
+            if (String.IsNullOrEmpty(newScene))
+            {
+                return;
+            }
+            
             DontDestroyOnLoad(this);
             string sceneToLoad = newScene;
             if (mobile)
             {
                 Debug.Log("mobile true");
-                sceneToLoad = "PlsMobile";
+                sceneToLoad = "PlsMobile"; //TODO
             }
-            _sceneLoader.LoadScene(sceneToLoad, true);
 
+            _sceneLoader.LoadScene(sceneToLoad, true);
+        }
+
+        public void GoToLobby(bool oldValue, bool exit)
+        {
+            chosenWorld = String.Empty;
+            if (mobile)
+            {
+                ((MobileController) _controller).OnGoToLobby();
+            }
+            else
+            {
+                _gameController = FindObjectOfType<GameController>();
+                _gameController.GoToLobby();
+            }
         }
 
 
@@ -84,7 +107,10 @@ namespace Network
         [Command(requiresAuthority = false)] //require authority
         public void CmdHandleSelectedWorld(string sceneName)
         {
-            chosenWorld = sceneName; //changing syncvar as cmd results in server synchronising all clients
+            if (String.IsNullOrEmpty(chosenWorld))
+            {
+                chosenWorld = sceneName; //changing syncvar as cmd results in server synchronising all clients
+            }
         }
 
         //volano Controllerem
@@ -102,6 +128,12 @@ namespace Network
             Debug.Log("CMD sskip calibration in Network pLayer, skipCalibraion: " + skip);
             skipCalibration = true;
         }
+        
+        [Command(requiresAuthority = false)] //require authority
+        public void CmdGoToLobby()
+        {
+            goToLobby = true;
+        }
 
 
         //volano serverem na clientech
@@ -116,6 +148,7 @@ namespace Network
 
                 if (moving)
                 {
+                    Debug.Log("VR plater moving true");
                     _gameController.StartMovement();
                 }
                 else
@@ -140,18 +173,21 @@ namespace Network
             Debug.Log(_gameController);
         }
 
-
-        [Command] //require authority
-        public void StopCart()
-        {
-            Debug.Log("cart stopped");
-            _gameController.End(); //should add pause later
-        }
-
         //TODO
         public void ResumeCartDrive()
         {
             Debug.Log("cart resumes going");
+        }
+
+        private bool IsMobileClientConnected()
+        {
+            var players = FindObjectsOfType<NetworkPlayer>();
+            if (players.Any(player => player.mobile))
+            {
+                Debug.Log("mobile network player");
+                return true;
+            }
+            return false;
         }
 
 

@@ -11,7 +11,6 @@ namespace UI
     {
         [Header("Runtime")]
         [SerializeField] public bool portraitOriented;
-        [SerializeField] private bool playing = true;
         [SerializeField] private bool controlsVisible;
 
 
@@ -26,7 +25,8 @@ namespace UI
         [SerializeField] private Selectable maximizeButton;
 
         [FormerlySerializedAs("controller")] [SerializeField] private MobileController mobileController;
-        
+
+        private string _panelOnTopOfStack;
         private void Awake()
         {
             networkManager.OnClientDisconnectAction += DisplayError;
@@ -63,7 +63,6 @@ namespace UI
         public void OnPlayPressed(bool playing)
         {
             playButton.SetSelected(playing);
-            this.playing = playing;
             timer.SetTimerPlaying(playing);
             progressBar.SetProgressBarPlaying(playing);
         }
@@ -75,6 +74,19 @@ namespace UI
         {
             mobileController.OnSceneSelected(chosenScene);
             timer.ResetTimer(); //nevim
+        }
+
+        public void AddPanelToStack(string panelName)
+        {
+            _panelOnTopOfStack = panelName;
+            Enable(panelName, true);
+            Enable("BackButton", true);
+        }
+
+        public void RemovePanelFromStack()
+        {
+            Enable(_panelOnTopOfStack, false);
+            Enable("BackButton", false);
         }
     }
 }

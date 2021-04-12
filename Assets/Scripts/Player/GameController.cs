@@ -2,12 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cart;
+using Network;
 using PathCreation;
 using Scenes;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using NetworkPlayer = Network.NetworkPlayer;
 
 namespace Player
 {
@@ -16,8 +18,9 @@ namespace Player
         public List<GameObject> player = new List<GameObject>();
         private SceneController _sceneController;
         private PathCreator _pathCreator;
+        private MyNetworkManager _networkManager;
 
-         private PlayerMovement[] _playerMovementScripts;
+        private PlayerMovement[] _playerMovementScripts;
         private GameObject _cart;
         private GameObject _player;
         private CartMovement _cartMovement;
@@ -29,17 +32,18 @@ namespace Player
 
         private static readonly int Stop = Animator.StringToHash("Stop");
         private static readonly int Drive = Animator.StringToHash("Drive");
-        
+
         //TODO refactor
         private void Awake()
         {
             _mobile = SceneManager.GetSceneAt(0).name == "AppOffline";
-            
+
             _cart = GameObject.FindWithTag("Cart");
             _player = GameObject.FindWithTag("NetworkCamera");
             _sceneController = GameObject.FindObjectOfType<SceneController>();
             _pathCreator = FindObjectOfType<PathCreator>();
-                
+            _networkManager = FindObjectOfType<MyNetworkManager>();
+
             player.Add(_player);
 
             _playerMovementScripts = FindObjectsOfType<PlayerMovement>();
@@ -47,7 +51,7 @@ namespace Player
             {
                 script.SetPathCreator(_pathCreator);
             }
-            
+
             if (_cart != null)
             {
                 _cartMovement = _cart.GetComponent<CartMovement>();
@@ -61,8 +65,12 @@ namespace Player
         public IEnumerator Start()
         {
             // yield return StartCoroutine(_fader.FadeCoroutine());
-            yield return new WaitForSecondsRealtime(4);
-            yield return StartCoroutine(InitialCoroutine());
+
+            if (_networkManager.numPlayers == 1)
+            {
+                yield return new WaitForSecondsRealtime(4);
+                yield return StartCoroutine(InitialCoroutine());
+            }
         }
 
         IEnumerator InitialCoroutine()
@@ -74,12 +82,12 @@ namespace Player
         public void StartMovement()
         {
             Debug.Log("game controller starting movement");
-            
+
             foreach (var script in _playerMovementScripts)
             {
                 Enable(script);
             }
-            
+
             if (_cart != null)
             {
                 StartCart();
@@ -92,6 +100,7 @@ namespace Player
             {
                 Disable(script);
             }
+
             if (_cart != null)
             {
                 StopCart();
@@ -104,12 +113,14 @@ namespace Player
             {
                 Disable(script);
             }
+
             if (_cart != null)
             {
                 StopCart();
             }
 
-            StartCoroutine(GoToLobby());
+            var networkPlayer = FindObjectOfType<NetworkPlayer>();
+            networkPlayer.CmdGoToLobby();
         }
 
         private void Enable(PlayerMovement script)
@@ -136,7 +147,13 @@ namespace Player
             _cartAudio.Stop();
         }
 
-        private IEnumerator GoToLobby()
+        public void GoToLobby()
+        {
+            StartCoroutine(GoToLobbyCoroutine());
+        }
+        
+
+        private IEnumerator GoToLobbyCoroutine()
         {
             yield return new WaitForSecondsRealtime(3);
             DontDestroyOnLoad(this);

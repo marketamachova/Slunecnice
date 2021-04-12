@@ -228,6 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneId: 0
   serverOnly: 0
+  visible: 0
   m_AssetId: 
   hasSpawned: 0
 --- !u!114 &6283072857296402769
@@ -248,6 +249,9 @@ MonoBehaviour:
   localPositionSensitivity: 0.01
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
+  compressRotation: 0
+  interpolateScale: 1
+  syncScale: 1
 --- !u!1 &3994893692606799971
 GameObject:
   m_ObjectHideFlags: 0

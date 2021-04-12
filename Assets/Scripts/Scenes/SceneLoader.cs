@@ -13,14 +13,17 @@ namespace Scenes
         private AsyncOperation _sceneLoadingOperation;
         private GameObject _camera;
         private GameObject _networkCamera;
+        private Fader _fader;
         private string _currentSceneName;
 
         public event Action SceneLoadingBegin;
         public event Action SceneLoadingEnd;
+        public event Action UnloadSceneBegin;
 
         void Start()
         {
             _camera = GameObject.FindWithTag("MainCamera");
+            _fader = GetComponent<Fader>();
         }
     
         public void LoadScene(string scene, bool additiveSceneMode)
@@ -46,25 +49,37 @@ namespace Scenes
 
         private IEnumerator LoadSceneAsync()
         {
+            var cameraFader = _camera.GetComponent<Fader>();
+            if (cameraFader != null)
+            {
+                cameraFader.FadeOut();
+            }
+
             while (!_sceneLoadingOperation.isDone)
             {
                 float loadingProgress = _sceneLoadingOperation.progress;
                 loaderUI.UpdateLoader(loadingProgress);
-            
+
                 yield return null;
             }
-        
+
             SceneLoadingEnd?.Invoke();
             loaderUI.DisplayLoader(false);
+            // _camera.GetComponent<Fader>().FadeIn();
 
+            
+            if (cameraFader != null)
+            {
+                cameraFader.FadeIn();
+            }
             yield return new WaitForEndOfFrame();
         }
         
 
         public void UnloadScene()
         {
+            UnloadSceneBegin?.Invoke();
             SceneManager.UnloadSceneAsync(_currentSceneName);
-
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Network;
+﻿using System.Linq;
+using Network;
 using Scenes;
 using UI;
 using UnityEngine;
@@ -10,7 +11,7 @@ namespace Player
     {
         [SerializeField] private UIControllerMobile uiControllerMobile;
         [SerializeField] private ConnectScreenController connectController;
-        private bool _playing = true;
+        private bool _playing = false;
         private SceneLoader _sceneLoader;
 
         public void Awake()
@@ -42,20 +43,27 @@ namespace Player
             Debug.Log("play pressed NOW");
 
             _playing = !_playing;
-            
+
             if (Players.Count == 0)
             {
                 AssignPlayers();
             }
 
-            foreach (var networkPlayer in Players)
+            var networkPlayer = LocalNetworkPlayer;
+            if (networkPlayer == null)
             {
-                Debug.Log(networkPlayer);
-                if (networkPlayer.hasAuthority)
-                {
-                    networkPlayer.CmdSetPlayerMoving(_playing);
-                }
+                networkPlayer = FindObjectOfType<NetworkPlayer>();
             }
+            networkPlayer.CmdSetPlayerMoving(_playing);
+            
+            // foreach (var networkPlayer in Players)
+            // {
+            //     Debug.Log(networkPlayer);
+            //     if (networkPlayer.hasAuthority)
+            //     {
+            //         networkPlayer.CmdSetPlayerMoving(_playing);
+            //     }
+            // }
 
             uiControllerMobile.OnPlayPressed(_playing);
         }
@@ -74,14 +82,27 @@ namespace Player
 
         public void AssignPlayer(NetworkPlayer networkPlayer)
         {
-            LocalNetworkPlayer = networkPlayer;
-            if (LocalNetworkPlayer.calibrationComplete) //calibration complete in VR
+            NetworkPlayer vrPlayer = networkPlayer;
+            foreach (var player in FindObjectsOfType<NetworkPlayer>().Where(p => !p.isLocalPlayer))
             {
+                vrPlayer = player;
+            }
+
+            FindObjectOfType<NetworkPlayer>();
+
+
+            Debug.Log("ASSIGN PLAYER " + networkPlayer);
+            LocalNetworkPlayer = networkPlayer;
+            if (vrPlayer.calibrationComplete) //calibration complete in VR
+            {
+                Debug.Log("calibration complete");
                 //display scene selection
+                OnCalibrationComplete();
             }
             else if (!string.IsNullOrEmpty(LocalNetworkPlayer.chosenWorld)) //scene selected in VR
             {
                 //load chosen world and get VR player's position
+                OnSceneSelected(vrPlayer.chosenWorld);
             }
             else //calibration in process
             {
@@ -98,6 +119,15 @@ namespace Player
             Debug.Log("HIDE CALIBRATION MOBILE CONTROLLER");
             uiControllerMobile.EnableFalse("Calibration");
             uiControllerMobile.EnableTrue("SceneSelection");
+        }
+
+        public override void OnGoToLobby()
+        {
+            base.OnGoToLobby();
+            sceneLoader.UnloadScene();
+            uiController.EnablePanelExclusive("ConnectScreen");
+            uiController.EnableTrue("SceneSelection");
+            uiController.EnableFalse("VideoControls");
         }
     }
 }
