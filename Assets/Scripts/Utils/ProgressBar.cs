@@ -34,5 +34,11 @@ public class ProgressBar : MonoBehaviour
         time = 0f;
         UpdateProgressBar();
     }
+
+    public void SetProgressBarValue(float value)
+    {
+        time = value;
+        UpdateProgressBar();
+    }
     
 }

@@ -32,7 +32,11 @@ namespace Player
 
             Debug.Log("RemoteNetworkPlayer.playerMoving " + RemoteNetworkPlayer.playerMoving);
             _playing = RemoteNetworkPlayer.playerMoving;
-            
+
+            if (NetworkPlayers.Length < 2)
+            {
+                AssignPlayers();
+            }
             foreach (var networkPlayer in NetworkPlayers)
             {
                 networkPlayer.CmdTriggerTimeSync();
@@ -109,8 +113,7 @@ namespace Player
             {
                 LocalNetworkPlayer.CmdSetPlayerMoving(true);
             }
-            // LocalNetworkPlayer.calibrationComplete = _vrPlayer.calibrationComplete;
-            // LocalNetworkPlayer.playerMoving = _vrPlayer.playerMoving;
+
 
             Debug.Log("ASSIGN PLAYER " + networkPlayer);
             if (_vrPlayer.calibrationComplete) //calibration complete in VR
@@ -137,8 +140,17 @@ namespace Player
         {
             base.OnCalibrationComplete();
             Debug.Log("HIDE CALIBRATION MOBILE CONTROLLER");
-            uiControllerMobile.EnableFalse("Calibration");
-            uiControllerMobile.EnableTrue("SceneSelection");
+            if (!string.IsNullOrEmpty(_vrPlayer.chosenWorld))
+            {
+                DisplaySceneSelected(_vrPlayer.chosenWorld);
+
+            }
+            else
+            {
+                uiController.EnableTrue("SceneSelection");
+
+            }
+            uiController.EnableFalse("Calibration");
         }
 
         public override void OnGoToLobby()
@@ -148,6 +160,7 @@ namespace Player
             uiController.EnablePanelExclusive("ConnectScreen");
             uiController.EnableTrue("SceneSelection");
             uiController.EnableFalse("VideoControls");
+            uiController.EnableFalse("SceneJoin");
         }
 
         private void DisplaySceneSelected(string sceneName)
@@ -168,7 +181,6 @@ namespace Player
             AssignPlayers();
             foreach (var networkPlayer in NetworkPlayers) //tady asi neni VR player
             {
-                Debug.Log("kuk");
                 networkPlayer.CmdSetSpeed(value);
             }
         }

@@ -7,19 +7,18 @@ namespace Player
 {
     public class PlayerMovement : MonoBehaviour
     {
-        [SerializeField] private EndOfPathInstruction endOfPathInstruction;
+        [SerializeField] public float Speed { get;  set; } = 2f;
 
+        [SerializeField] private EndOfPathInstruction endOfPathInstruction;
+        [SerializeField] private GameObject player;
+        [SerializeField] private Vector3 offset = new Vector3(0, 5, 0);
+        [SerializeField] private bool rotateCamera = true;
+
+        private Animator _animator;
         private PathCreator _pathCreator;
         private GameController _controller;
-        [FormerlySerializedAs("_player")] [SerializeField] private GameObject player;
-        
-        public Vector3 offset = new Vector3(0, 5, 0);
-        public float speed = 2f;
-        public bool rotateCamera = true;
-
         private float _distance;
         private bool _shiftCamera = false;
-        private Animator _animator;
         private float _time;
 
         private static readonly int Drive = Animator.StringToHash("Drive");
@@ -30,14 +29,13 @@ namespace Player
             {
                 player = GameObject.FindWithTag("NetworkCamera");
             }
-                
         }
 
         void Start()
         {
             _controller = FindObjectOfType<GameController>();
             _pathCreator = GameObject.FindWithTag("PathCreator").GetComponent<PathCreator>();
-            
+
             player.transform.position = _pathCreator.path.GetPoint(0) + offset;
             _animator = player.GetComponentInChildren<Animator>();
             if (_animator)
@@ -50,11 +48,13 @@ namespace Player
         {
             var cameraOffset = 0f;
             if (_shiftCamera) cameraOffset += 0.1f;
-            
+
             _time += Time.deltaTime;
-            
-            _distance += speed * Time.deltaTime;
-            player.transform.position = _pathCreator.path.GetPointAtDistance(_distance + cameraOffset, endOfPathInstruction) + offset;
+
+            _distance += Speed * Time.deltaTime;
+            player.transform.position =
+                _pathCreator.path.GetPointAtDistance(_distance + cameraOffset, endOfPathInstruction) + offset;
+
             if (rotateCamera)
             {
                 player.transform.rotation = _pathCreator.path.GetRotationAtDistance(_distance, endOfPathInstruction);
@@ -62,15 +62,9 @@ namespace Player
 
             if (_distance >= _pathCreator.path.length)
             {
-                // if (_currentPathCreator == _pathCreators[_pathCreators.Count - 1])
-                {
-                    Debug.Log("calling controller.End");
-                    Debug.Log("controller" + _controller);
-                    _controller.End();
-                }
-
-                // _counter++;
-                // _currentPathCreator = _pathCreators[_counter];
+                Debug.Log("calling controller.End");
+                Debug.Log("controller" + _controller);
+                _controller.End();
             }
         }
 

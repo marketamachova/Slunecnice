@@ -37,6 +37,7 @@ namespace Network
         private GameController _gameController;
         private BaseController _controller;
         private SceneLoader _sceneLoader;
+        private NetworkPlayer[] _networkPlayers;
 
         public event Action OnCalibrationComplete;
 
@@ -46,6 +47,7 @@ namespace Network
             _sceneLoader = FindObjectOfType<SceneLoader>();
             _gameController = FindObjectOfType<GameController>();
             _uiController = FindObjectOfType<BaseUIController>();
+            _networkPlayers = FindObjectsOfType<NetworkPlayer>();
         }
 
         public override void OnStopClient()
@@ -117,6 +119,16 @@ namespace Network
             {
                 playerMoving = false;
                 chosenWorld = String.Empty;
+
+                if (_networkPlayers.Length < 2)
+                {
+                    AssignNetworkPlayers();
+                }
+                foreach (var networkPlayer in _networkPlayers)
+                {
+                    networkPlayer.CmdSyncTimePlaying(0f);
+                }
+                
                 if (mobile && isLocalPlayer)
                 {
                     _controller.OnGoToLobby();
@@ -153,14 +165,11 @@ namespace Network
 
         public void SetSpeed(int oldValue, int movingSpeed)
         {
-            Debug.Log("network player set speed");
             if (isLocalPlayer)
             {
                 Debug.Log("good");
                 if (!mobile)
                 {
-                    Debug.Log("good mobile");
-
                     _gameController.SetMovementSpeed(movingSpeed);
                 }
             }
@@ -175,12 +184,6 @@ namespace Network
                 // ((VRLobbyController) _controller).GetCartCreator().SkipCalibration();
             }
         }
-
-        private void AssignGameController()
-        {
-            _gameController = FindObjectOfType<GameController>();
-        }
-
 
         //called automatically, after calibrationComplete changes
         private void SetCalibrationComplete(bool oldValue, bool complete)
@@ -203,12 +206,16 @@ namespace Network
             if (timeSyncTrigger && !mobile && isLocalPlayer)
             {
                 Debug.Log("VR local player cmd time sync");
-                var networkPlayers = FindObjectsOfType<NetworkPlayer>();
                 if (!_gameController)
                 {
                     AssignGameController();
                 }
-                foreach (var networkPlayer in networkPlayers)
+
+                if (_networkPlayers.Length < 2)
+                {
+                    AssignNetworkPlayers();
+                }
+                foreach (var networkPlayer in _networkPlayers)
                 {
                     networkPlayer.CmdSyncTimePlaying(_gameController.GetTimePlaying());
                 }
@@ -297,5 +304,16 @@ namespace Network
 
             return _gameController;
         }
+        
+        private void AssignGameController()
+        {
+            _gameController = FindObjectOfType<GameController>();
+        }
+
+        private void AssignNetworkPlayers()
+        {
+            _networkPlayers = FindObjectsOfType<NetworkPlayer>();
+        }
+
     }
 }

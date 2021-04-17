@@ -50,7 +50,7 @@ namespace Player
             foreach (var script in _playerMovementScripts)
             {
                 script.SetPathCreator(_pathCreator);
-                script.speed = _customSpeed;
+                script.Speed = _customSpeed;
             }
 
             if (_cart != null)
@@ -167,7 +167,7 @@ namespace Player
             {
                 foreach (var playerMovement in _playerMovementScripts)
                 {
-                    playerMovement.speed = speed;
+                    playerMovement.Speed = speed;
                     _customSpeed = speed;
                 }
             }

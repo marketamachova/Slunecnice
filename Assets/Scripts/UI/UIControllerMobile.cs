@@ -1,33 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Player;
+using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
-using NetworkPlayer = Network.NetworkPlayer;
 
 namespace UI
 {
     public class UIControllerMobile : BaseUIController
     {
-        [Header("Runtime")]
-        [SerializeField] public bool portraitOriented;
+        [Header("Runtime")] [SerializeField] public bool portraitOriented;
         [SerializeField] private bool controlsVisible;
 
 
-        [Header("Mobile UI Elements")]
-        [SerializeField] private List<GameObject> cameraViews;
+        [Header("Mobile UI Elements")] [SerializeField]
+        private List<GameObject> cameraViews;
+
         [SerializeField] private GameObject controls;
         [SerializeField] private Timer timer;
         [SerializeField] private ProgressBar progressBar;
 
-        [Header("Special Buttons")]
+        [Header("Special Elements")]
         [SerializeField] private Selectable playButton;
         [SerializeField] private Selectable maximizeButton;
-
-        [FormerlySerializedAs("controller")] [SerializeField] private MobileController mobileController;
+        [SerializeField] private MobileController mobileController;
+        [SerializeField] private Slider speedSlider;
+        [SerializeField] private TextMeshProUGUI sliderText;
 
         private string _panelOnTopOfStack;
+
         private void Awake()
         {
             networkManager.OnClientDisconnectAction += DisplayError;
@@ -67,8 +68,7 @@ namespace UI
             timer.SetTimerPlaying(playing);
             progressBar.SetProgressBarPlaying(playing);
         }
-        
-        
+
 
         //general controller
         public void OnSceneChosen(string chosenScene)
@@ -90,17 +90,32 @@ namespace UI
             Enable("BackButton", false);
         }
 
-        public void SetPlayButtonSelected(bool playing)
+
+        public void SetPlayButtonSelected(bool playing) //TODO
         {
-            playButton.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/PlayButtonActive");
-            // timer.SetTimerPlaying(playing);
-            progressBar.SetProgressBarPlaying(playing);
+            var playButtonImage = playButton.gameObject.GetComponent<Image>();
+            if (playing)
+            {
+                playButtonImage.sprite = Resources.Load<Sprite>("UI/PlayButtonActive");
+            }
+            else
+            {
+                playButtonImage.sprite = Resources.Load<Sprite>("UI/PlayButton");
+            }
         }
 
         public void UpdateTimer(bool playing, float time)
         {
             timer.SetTime(time);
             timer.SetTimerPlaying(playing);
+            progressBar.SetProgressBarPlaying(playing);
+            progressBar.SetProgressBarValue(time);
+        }
+
+        public void OnSpeedSliderUpdate()
+        {
+            sliderText.text = speedSlider.value.ToString();
+            mobileController.SetSpeed((int) speedSlider.value);
         }
     }
 }

@@ -23,17 +23,7 @@ namespace Scenes
             _mainCamera = GameObject.FindWithTag("MainCamera");
             
             MovePlayersAtStartingPosition();
-
-
-            // if (_mobile)
-            // {
-            //     _mainCamera.transform.parent = null;
-            // }
-            // else
-            // {
-            //     MovePlayersAtStartingPosition();
-            //     AttachScriptsVR();
-            // }
+            
         }
 
         public void MovePlayersAtStartingPosition()

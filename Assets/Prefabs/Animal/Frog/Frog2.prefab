@@ -1,96 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6106770141017616193
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6106770141017616192}
-  m_Layer: 0
-  m_Name: Frog2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6106770141017616192
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6106770141017616193}
-  m_LocalRotation: {x: -0, y: 0.49078888, z: -0, w: 0.8712785}
-  m_LocalPosition: {x: 27.519997, y: 29.48, z: 233.62}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 6101878709655378696}
-  - {fileID: 6106770141483359270}
-  - {fileID: 6106770142545341780}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 58.785004, z: 0}
---- !u!1 &6106770141483359269
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6106770141483359270}
-  - component: {fileID: 6106770141483359271}
-  - component: {fileID: 6106770141483359268}
-  m_Layer: 0
-  m_Name: FrogCollider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6106770141483359270
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6106770141483359269}
-  m_LocalRotation: {x: 1.16068516e-10, y: -0.36892927, z: 4.5096402e-10, w: 0.92945755}
-  m_LocalPosition: {x: 38.22, y: 10.15, z: 35.55}
-  m_LocalScale: {x: 2.6074858, y: 20.523756, z: 8.491578}
-  m_Children: []
-  m_Father: {fileID: 6106770141017616192}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: -43.299004, z: 0}
---- !u!65 &6106770141483359271
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6106770141483359269}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.32972386, y: 0.3812912, z: 0.7299375}
-  m_Center: {x: -0.33513856, y: -0.30935442, z: -0.101391725}
---- !u!114 &6106770141483359268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6106770141483359269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5467141b850ba4279b5e4f8bc9d7d739, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animal: {fileID: 6105415740283971772}
 --- !u!82 &6106770142615975470
 AudioSource:
   m_ObjectHideFlags: 0
@@ -187,21 +96,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6106770142615975468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6105415740283971772}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f79b4efeb3b347b5b69f5b83fb62790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pathCreator: {fileID: 6106770142545341783}
-  endOfPathInstruction: 2
-  speed: 4
 --- !u!114 &6106770142615975465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,6 +112,112 @@ MonoBehaviour:
   destroyable: 1
   walker: 0
   movingType: 1
+--- !u!114 &6106770142615975468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6105415740283971772}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f79b4efeb3b347b5b69f5b83fb62790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathCreator: {fileID: 6106770142545341783}
+  endOfPathInstruction: 2
+  speed: 4
+--- !u!1 &6106770141017616193
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6106770141017616192}
+  m_Layer: 0
+  m_Name: Frog2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6106770141017616192
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6106770141017616193}
+  m_LocalRotation: {x: -0, y: 0.49078888, z: -0, w: 0.8712785}
+  m_LocalPosition: {x: 27.519997, y: 29.48, z: 233.62}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 6101878709655378696}
+  - {fileID: 6106770141483359270}
+  - {fileID: 6106770142545341780}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 58.785004, z: 0}
+--- !u!1 &6106770141483359269
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6106770141483359270}
+  - component: {fileID: 6106770141483359271}
+  - component: {fileID: 6106770141483359268}
+  m_Layer: 0
+  m_Name: FrogCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6106770141483359270
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6106770141483359269}
+  m_LocalRotation: {x: 1.16068516e-10, y: -0.36892927, z: 4.5096402e-10, w: 0.92945755}
+  m_LocalPosition: {x: 38.22, y: 10.15, z: 35.55}
+  m_LocalScale: {x: 2.6074858, y: 20.523756, z: 8.491578}
+  m_Children: []
+  m_Father: {fileID: 6106770141017616192}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: -43.299004, z: 0}
+--- !u!65 &6106770141483359271
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6106770141483359269}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.32972386, y: 0.3812912, z: 0.7299375}
+  m_Center: {x: -0.33513856, y: -0.30935442, z: -0.101391725}
+--- !u!114 &6106770141483359268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6106770141483359269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5467141b850ba4279b5e4f8bc9d7d739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animal: {fileID: 6105415740283971772}
 --- !u!1 &6106770142545341781
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,9 +279,9 @@ MonoBehaviour:
       perAnchorNormalsAngle:
       - 0
       - 0
-      globalNormalsAngle: 97
+      globalNormalsAngle: 180
       flipNormals: 0
-    vertexPathUpToDate: 1
+    vertexPathUpToDate: 0
     vertexPathMaxAngleError: 0.3
     vertexPathMinVertexSpacing: 0.01
     showTransformTool: 1
@@ -298,7 +298,7 @@ MonoBehaviour:
     showPathOptions: 1
     showVertexPathDisplayOptions: 0
     showVertexPathOptions: 1
-    showNormals: 0
+    showNormals: 1
     showNormalsHelpInfo: 0
     tabIndex: 0
   initialized: 1
