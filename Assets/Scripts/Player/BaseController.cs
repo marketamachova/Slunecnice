@@ -18,16 +18,15 @@ namespace Player
         [SerializeField] protected SceneLoader sceneLoader;
         [SerializeField] protected BaseUIController uiController;
 
-        protected readonly List<NetworkPlayer> Players = new List<NetworkPlayer>();
+        protected NetworkPlayer[] NetworkPlayers;
         protected NetworkPlayer LocalNetworkPlayer;
-        protected bool WorldSelected = false;
-        protected string CurrentScene;
+        protected NetworkPlayer RemoteNetworkPlayer;
 
         public virtual void OnDisconnect()
         {
             if (SceneManager.sceneCount > 1)
             {
-                sceneLoader.UnloadScene(); //VR dobry?
+                sceneLoader.UnloadScene();
             }
             uiController.DisplayError();
         }
@@ -35,47 +34,59 @@ namespace Player
         public virtual void AssignPlayers()
         {
             Debug.Log("assign players in BASE Controller called");
-            var networkPlayers = GameObject.FindObjectsOfType<NetworkPlayer>();
-            foreach (var networkPlayer in networkPlayers)
+            NetworkPlayers = GameObject.FindObjectsOfType<NetworkPlayer>();
+            foreach (var networkPlayer in NetworkPlayers)
             {
-                Players.Add(networkPlayer);
                 if (networkPlayer.isLocalPlayer)
                 {
                     Debug.Log("found network player LOCAL");
+                    
                     LocalNetworkPlayer = networkPlayer;
                     LocalNetworkPlayer.OnCalibrationComplete += OnCalibrationComplete;
+                }
+                else
+                {
+                    RemoteNetworkPlayer = networkPlayer;
                 }
             }
         }
 
         public virtual void OnCalibrationComplete()
         {
-            Debug.Log("base onCalibrationComplete");
+        }
+
+        public virtual void SkipCalibration()
+        {
         }
 
         public virtual void SetCalibrationComplete()
         {
-            var players = GameObject.FindObjectsOfType<NetworkPlayer>();
-            foreach (var networkPlayer in players)
+            if (NetworkPlayers.Length < 2)
             {
+                AssignPlayers();
+            }
+            
+            foreach (var networkPlayer in NetworkPlayers)
+            {
+                Debug.Log("setting cmdsetcalibrationcomplete");
                 networkPlayer.CmdSetCalibrationComplete(true);
             }
-
-            Debug.Log("SET calibration complete Base controller");
         }
 
         public virtual void OnSceneSelected(string sceneName)
         {
             Debug.Log("OnSceneSelected .......");
-            if (WorldSelected)
+            if (SceneManager.sceneCount > 1)
             {
                 Debug.Log("sceneCount > 1");
                 return;
             }
 
-            Debug.Log(LocalNetworkPlayer);
-            LocalNetworkPlayer.CmdHandleSelectedWorld(sceneName); //message about scene loading to other players
-            WorldSelected = true;
+            foreach (var networkPlayer in NetworkPlayers)
+            {
+                Debug.Log("setting cmd hanlde selected world called");
+                networkPlayer.CmdHandleSelectedWorld(sceneName);
+            }//message about scene loading to other players
         }
 
         public virtual void OnGoToLobby()
@@ -84,9 +95,7 @@ namespace Player
 
         public virtual void TriggerGoToLobby()
         {
-            WorldSelected = false;
-            var players = GameObject.FindObjectsOfType<NetworkPlayer>();
-            foreach (var networkPlayer in players)
+            foreach (var networkPlayer in NetworkPlayers)
             {
                 networkPlayer.CmdGoToLobby();
             }

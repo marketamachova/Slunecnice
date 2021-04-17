@@ -19,25 +19,25 @@ namespace Player
         private SceneController _sceneController;
         private PathCreator _pathCreator;
         private MyNetworkManager _networkManager;
-
         private PlayerMovement[] _playerMovementScripts;
         private GameObject _cart;
         private GameObject _player;
-        private CartMovement _cartMovement;
         private Animator _cartAnimator;
         private AudioSource _cartAudio;
+        private NetworkPlayer _networkPlayer;
         private Fader _fader;
-        private string _currentScene = "MainScene";
-        private bool _mobile;
 
-        private static readonly int Stop = Animator.StringToHash("Stop");
+        private string _currentScene = "MainScene";
+        private int _customSpeed = 2;
+
+        private static readonly int Idle = Animator.StringToHash("Idle");
         private static readonly int Drive = Animator.StringToHash("Drive");
 
-        //TODO refactor
         private void Awake()
         {
-            _mobile = SceneManager.GetSceneAt(0).name == "AppOffline";
+            _networkPlayer = FindObjectOfType<NetworkPlayer>();
 
+            _customSpeed = _networkPlayer.speed;
             _cart = GameObject.FindWithTag("Cart");
             _player = GameObject.FindWithTag("NetworkCamera");
             _sceneController = GameObject.FindObjectOfType<SceneController>();
@@ -50,11 +50,11 @@ namespace Player
             foreach (var script in _playerMovementScripts)
             {
                 script.SetPathCreator(_pathCreator);
+                script.speed = _customSpeed;
             }
 
             if (_cart != null)
             {
-                _cartMovement = _cart.GetComponent<CartMovement>();
                 _cartAudio = _cart.GetComponent<AudioSource>();
                 _cartAnimator = _cart.GetComponent<Animator>();
             }
@@ -69,15 +69,10 @@ namespace Player
             if (_networkManager.numPlayers == 1)
             {
                 yield return new WaitForSecondsRealtime(4);
-                yield return StartCoroutine(InitialCoroutine());
+                _networkPlayer.CmdSetPlayerMoving(true);
             }
         }
 
-        IEnumerator InitialCoroutine()
-        {
-            StartMovement();
-            yield return null;
-        }
 
         public void StartMovement()
         {
@@ -119,7 +114,10 @@ namespace Player
                 StopCart();
             }
 
+            Debug.Log("calling CmdGoToLobby");
+
             var networkPlayer = FindObjectOfType<NetworkPlayer>();
+            Debug.Log("networkPlayer" + networkPlayer);
             networkPlayer.CmdGoToLobby();
         }
 
@@ -135,7 +133,7 @@ namespace Player
 
         private void StartCart()
         {
-            _cartAnimator.SetTrigger(Drive);
+            _cartAnimator.Play(Drive);
             _cartAudio.Play();
         }
 
@@ -143,27 +141,51 @@ namespace Player
         private void StopCart()
         {
             _cartAnimator = _cart.GetComponent<Animator>();
-            _cartAnimator.SetTrigger(Stop);
+            _cartAnimator.Play(Idle);
             _cartAudio.Stop();
         }
 
         public void GoToLobby()
         {
+            Debug.Log("game controller go to lobby");
             StartCoroutine(GoToLobbyCoroutine());
         }
-        
+
 
         private IEnumerator GoToLobbyCoroutine()
         {
-            yield return new WaitForSecondsRealtime(3);
-            DontDestroyOnLoad(this);
+            yield return new WaitForSecondsRealtime(2);
             _sceneController.MovePlayersAtStartingPositionLobby();
             SceneManager.UnloadSceneAsync(_currentScene);
         }
 
-        private void OnSceneLoaded()
+        public void SetMovementSpeed(int speed)
         {
-            //center player
+            Debug.Log("better");
+
+            if (_playerMovementScripts.Length > 0)
+            {
+                foreach (var playerMovement in _playerMovementScripts)
+                {
+                    playerMovement.speed = speed;
+                    _customSpeed = speed;
+                }
+            }
+            else
+            {
+                Debug.Log("custom speed set");
+                _customSpeed = speed;
+            }
+        }
+
+        public float GetTimePlaying()
+        {
+            if (_playerMovementScripts.Length > 0)
+            {
+                return _playerMovementScripts[0].GetTime();
+            }
+
+            return 0f;
         }
     }
 }

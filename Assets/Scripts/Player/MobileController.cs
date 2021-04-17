@@ -13,57 +13,61 @@ namespace Player
         [SerializeField] private ConnectScreenController connectController;
         private bool _playing = false;
         private SceneLoader _sceneLoader;
+        private NetworkPlayer _vrPlayer;
 
         public void Awake()
         {
             _sceneLoader = GetComponent<SceneLoader>();
-            Debug.Log(_sceneLoader);
+
             _sceneLoader.SceneLoadingEnd += OnSceneLoaded;
             networkManager.OnServerAddPlayerAction += AssignPlayers;
+
+            AssignPlayers();
         }
 
         private void OnSceneLoaded()
         {
-            Debug.Log("Controller scene loaded");
             uiControllerMobile.EnablePanelExclusive("WatchScreenPortrait");
-            uiControllerMobile.ToggleControlsVisible();
-            // uiControllerMobile.ActivateExclusive("PlayerCameraButton");
+            uiControllerMobile.EnableTrue("VideoControls");
+
+            Debug.Log("RemoteNetworkPlayer.playerMoving " + RemoteNetworkPlayer.playerMoving);
+            _playing = RemoteNetworkPlayer.playerMoving;
+            
+            foreach (var networkPlayer in NetworkPlayers)
+            {
+                networkPlayer.CmdTriggerTimeSync();
+            }
+
+
+            LocalNetworkPlayer.CmdSetPlayerMoving(_playing);
+            uiControllerMobile.SetPlayButtonSelected(_playing);
         }
+
 
         public override void OnDisconnect()
         {
             base.OnDisconnect();
             uiControllerMobile.EnablePanelExclusive("ConnectScreen");
             connectController.OnDisconnect();
+
             Debug.Log("ON DISCONNECT Controller");
         }
 
         public void OnPlayPressed()
         {
-            Debug.Log("play pressed NOW");
+            Debug.Log("playing " + LocalNetworkPlayer.playerMoving);
 
-            _playing = !_playing;
+            _playing = !LocalNetworkPlayer.playerMoving;
 
-            if (Players.Count == 0)
+            if (NetworkPlayers.Length < 2)
             {
                 AssignPlayers();
             }
 
-            var networkPlayer = LocalNetworkPlayer;
-            if (networkPlayer == null)
+            foreach (var networkPlayer in NetworkPlayers)
             {
-                networkPlayer = FindObjectOfType<NetworkPlayer>();
+                networkPlayer.CmdSetPlayerMoving(_playing);
             }
-            networkPlayer.CmdSetPlayerMoving(_playing);
-            
-            // foreach (var networkPlayer in Players)
-            // {
-            //     Debug.Log(networkPlayer);
-            //     if (networkPlayer.hasAuthority)
-            //     {
-            //         networkPlayer.CmdSetPlayerMoving(_playing);
-            //     }
-            // }
 
             uiControllerMobile.OnPlayPressed(_playing);
         }
@@ -74,42 +78,58 @@ namespace Player
             LocalNetworkPlayer.CmdSetPlayerMoving(false); //indicate END somehow
         }
 
-        public void SkipCalibration() //TODO
+        public void SkipCalibration()
         {
-            Debug.Log("Mobile Controller end calibration");
-            LocalNetworkPlayer.CmdSkipCalibration(true); //TODO
+            if (NetworkPlayers.Length < 2)
+            {
+                AssignPlayers();
+            }
+
+            foreach (var networkPlayer in NetworkPlayers)
+            {
+                networkPlayer.CmdSkipCalibration(true);
+            }
         }
 
         public void AssignPlayer(NetworkPlayer networkPlayer)
         {
-            NetworkPlayer vrPlayer = networkPlayer;
+            LocalNetworkPlayer = networkPlayer;
+            _vrPlayer = networkPlayer;
             foreach (var player in FindObjectsOfType<NetworkPlayer>().Where(p => !p.isLocalPlayer))
             {
-                vrPlayer = player;
+                _vrPlayer = player;
             }
 
-            FindObjectOfType<NetworkPlayer>();
+            if (_vrPlayer.calibrationComplete)
+            {
+                LocalNetworkPlayer.CmdSetCalibrationComplete(true);
+            }
 
+            if (_vrPlayer.playerMoving)
+            {
+                LocalNetworkPlayer.CmdSetPlayerMoving(true);
+            }
+            // LocalNetworkPlayer.calibrationComplete = _vrPlayer.calibrationComplete;
+            // LocalNetworkPlayer.playerMoving = _vrPlayer.playerMoving;
 
             Debug.Log("ASSIGN PLAYER " + networkPlayer);
-            LocalNetworkPlayer = networkPlayer;
-            if (vrPlayer.calibrationComplete) //calibration complete in VR
+            if (_vrPlayer.calibrationComplete) //calibration complete in VR
             {
                 Debug.Log("calibration complete");
-                //display scene selection
                 OnCalibrationComplete();
-            }
-            else if (!string.IsNullOrEmpty(LocalNetworkPlayer.chosenWorld)) //scene selected in VR
-            {
-                //load chosen world and get VR player's position
-                OnSceneSelected(vrPlayer.chosenWorld);
             }
             else //calibration in process
             {
                 Debug.Log("calibration in processs.......");
                 uiControllerMobile.EnableTrue("Calibration"); // display "Calibration in process message"
                 LocalNetworkPlayer.OnCalibrationComplete +=
-                    OnCalibrationComplete; //observe calibration complete process TODO tohle mozna nebude potreba
+                    OnCalibrationComplete; //observe calibration complete process 
+            }
+
+            if (!string.IsNullOrEmpty(_vrPlayer.chosenWorld)) //scene selected in VR
+            {
+                Debug.Log("chosen world " + _vrPlayer.chosenWorld);
+                DisplaySceneSelected(_vrPlayer.chosenWorld);
             }
         }
 
@@ -128,6 +148,29 @@ namespace Player
             uiController.EnablePanelExclusive("ConnectScreen");
             uiController.EnableTrue("SceneSelection");
             uiController.EnableFalse("VideoControls");
+        }
+
+        private void DisplaySceneSelected(string sceneName)
+        {
+            Debug.Log("display scene selected");
+            uiController.EnableFalse("SceneSelection");
+            uiController.EnableTrue("SceneJoin");
+        }
+
+        public void OnLoadedSceneJoin()
+        {
+            OnSceneSelected(_vrPlayer.chosenWorld);
+        }
+
+        public void SetSpeed(int value)
+        {
+            Debug.Log("setting speed to " + value);
+            AssignPlayers();
+            foreach (var networkPlayer in NetworkPlayers) //tady asi neni VR player
+            {
+                Debug.Log("kuk");
+                networkPlayer.CmdSetSpeed(value);
+            }
         }
     }
 }

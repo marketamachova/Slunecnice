@@ -20,7 +20,6 @@ namespace Player
     {
         [SerializeField] private CartCreator cartCreator;
 
-        [Header("Debug only")] private bool _spacePressed = false;
         private bool _debug = true;
 
         private void Awake()
@@ -44,9 +43,10 @@ namespace Player
         {
             if (_debug)
             {
-                if (Input.GetKey(KeyCode.Space) && !_spacePressed)
+                if (Input.GetKey(KeyCode.Space))
                 {
-                    _spacePressed = true;
+                    Debug.Log("Pressed space");
+
                     OnSceneSelected(World.MainScene.ToString());
                 }
             }
@@ -83,6 +83,12 @@ namespace Player
             base.OnCalibrationComplete();
             uiController.EnablePanelExclusive("SceneSelection");
             Debug.Log("ON calibration complete network vRLOBBY CONTROLLER");
+        }
+
+        public override void SkipCalibration()
+        {
+            base.SkipCalibration();
+            cartCreator.SkipCalibration();
         }
 
         public CartCreator GetCartCreator()

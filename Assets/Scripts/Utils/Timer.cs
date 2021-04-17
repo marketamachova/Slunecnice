@@ -43,4 +43,11 @@ public class Timer : MonoBehaviour
     {
         _playing = playing;
     }
+
+    public void SetTime(float time)
+    {
+        this._totalTime = time;
+        UpdateTextTimer();
+        SetTimerPlaying(true);
+    }
 }

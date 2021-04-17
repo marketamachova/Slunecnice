@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Player;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 using NetworkPlayer = Network.NetworkPlayer;
 
 namespace UI
@@ -87,6 +88,19 @@ namespace UI
         {
             Enable(_panelOnTopOfStack, false);
             Enable("BackButton", false);
+        }
+
+        public void SetPlayButtonSelected(bool playing)
+        {
+            playButton.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/PlayButtonActive");
+            // timer.SetTimerPlaying(playing);
+            progressBar.SetProgressBarPlaying(playing);
+        }
+
+        public void UpdateTimer(bool playing, float time)
+        {
+            timer.SetTime(time);
+            timer.SetTimerPlaying(playing);
         }
     }
 }

@@ -65,6 +65,7 @@ MonoBehaviour:
   syncInterval: 0.1
   mobile: 0
   chosenWorld: 
-  playerMoving: 1
+  playerMoving: 0
   skipCalibration: 0
   calibrationComplete: 0
+  goToLobby: 0
