@@ -64,6 +64,7 @@ namespace Player
 
         private void OnClientDisonnected()
         {
+            LocalNetworkPlayer.CmdSetPlayerMoving(true);
             uiController.Deactivate("AvailabilityIndicatorVR");
         }
 

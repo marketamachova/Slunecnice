@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Network;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace UI
 {
@@ -97,6 +99,15 @@ namespace UI
             }
         }
         
-   
+        protected IEnumerator ActivateButtons(Button[] buttons, int time, bool interactable)
+        {
+            yield return new WaitForSecondsRealtime(time);
+
+            foreach (var button in buttons)
+            {
+                button.interactable = interactable;
+            }
+        }
+        
     }
 }

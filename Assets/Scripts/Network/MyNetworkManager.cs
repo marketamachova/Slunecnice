@@ -68,15 +68,14 @@ namespace Network
         {
             //TODO
             base.OnServerDisconnect(conn);
+
             Debug.Log(numPlayers);
-            Debug.Log(conn.connectionId);
-            if (numPlayers > 0)
+            if (numPlayers >= 1)
             {
                 OnMobileClientDisconnectAction?.Invoke();
             }
             else
             {
-                OnMobileClientDisconnectAction?.Invoke();
                 OnClientDisconnectAction?.Invoke();
             }
         }
@@ -84,6 +83,8 @@ namespace Network
 
         public override void OnClientDisconnect(NetworkConnection conn)
         {
+            OnClientDisconnectAction?.Invoke();
+
             Debug.Log("client disconnected");
             base.OnClientDisconnect(conn);
         }

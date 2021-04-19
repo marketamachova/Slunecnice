@@ -37,10 +37,12 @@ public class Timer : MonoBehaviour
     {
         _totalTime = 0f;
         UpdateTextTimer();
+        SetTimerPlaying(false);
     }
 
     public void SetTimerPlaying(bool playing)
     {
+        Debug.Log("SET TIMER PLAYING IN TIMER PLAYING " + playing);
         _playing = playing;
     }
 

@@ -10,6 +10,7 @@ namespace Network
     {
         [SerializeField] private SceneController sceneController;
         [SerializeField] private GameObject rtCamera;
+        [SerializeField] private GameObject rtWideCamera;
 
         [SerializeField] private GameObject rtTopCamera;
         // [SerializeField] private GameObject playerGazeDummy;
@@ -60,10 +61,12 @@ namespace Network
             var playerViewportRotation = _centerEyeAnchor.transform.rotation;
 
             rtCamera.transform.rotation = playerViewportRotation;
+            rtWideCamera.transform.rotation = playerViewportRotation;
 
 
             var playerPosition = _cameraRig.transform.position;
             rtCamera.transform.position = playerViewportPosition;
+            rtWideCamera.transform.position = playerViewportPosition;
             rtTopCamera.transform.position = new Vector3(playerPosition.x, 30f, playerPosition.z);
         }
 

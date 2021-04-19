@@ -39,7 +39,7 @@ namespace Player
             }
             foreach (var networkPlayer in NetworkPlayers)
             {
-                networkPlayer.CmdTriggerTimeSync();
+                networkPlayer.CmdTriggerTimeSync(true);
             }
 
 
@@ -157,10 +157,7 @@ namespace Player
         {
             base.OnGoToLobby();
             sceneLoader.UnloadScene();
-            uiController.EnablePanelExclusive("ConnectScreen");
-            uiController.EnableTrue("SceneSelection");
-            uiController.EnableFalse("VideoControls");
-            uiController.EnableFalse("SceneJoin");
+            uiControllerMobile.OnGoToLobby();
         }
 
         private void DisplaySceneSelected(string sceneName)
@@ -175,13 +172,13 @@ namespace Player
             OnSceneSelected(_vrPlayer.chosenWorld);
         }
 
-        public void SetSpeed(int value)
+        public void SetSpeed(float value)
         {
             Debug.Log("setting speed to " + value);
             AssignPlayers();
             foreach (var networkPlayer in NetworkPlayers) //tady asi neni VR player
             {
-                networkPlayer.CmdSetSpeed(value);
+                networkPlayer.CmdSetSpeed((int) value);
             }
         }
     }

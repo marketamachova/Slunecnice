@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Linq;
 using Mirror;
 using Player;
 using Scenes;
 using UI;
-using UnityEditorInternal.VersionControl;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 namespace Network
@@ -27,9 +24,8 @@ namespace Network
 
         [SyncVar(hook = "SetCalibrationComplete")]
         public bool calibrationComplete;
-        
-        [SyncVar(hook = "TriggerTimeSync")]
-        public bool triggerTimeSync;
+
+        [SyncVar(hook = "TriggerTimeSync")] public bool triggerTimeSync;
 
         [SyncVar(hook = "GoToLobby")] public bool goToLobby;
 
@@ -61,7 +57,13 @@ namespace Network
             {
                 if (!playerMoving)
                 {
-                    playerMoving = true;
+                    foreach (var networkPlayer in _networkPlayers)
+                    {
+                        if (networkPlayer.isActiveAndEnabled)
+                        {
+                            networkPlayer.CmdSetPlayerMoving(true);
+                        }
+                    }
                 }
             }
         }
@@ -76,7 +78,6 @@ namespace Network
 
             if (SceneManager.GetActiveScene().name == "AppOffline" && isLocalPlayer)
             {
-                Debug.Log("update scene connected (MOBILE ONLY)");
                 CmdSetMobile(true);
                 ((MobileController) _controller).AssignPlayer(this); // mozna presunout do onstrtlocalplayer
             }
@@ -100,7 +101,6 @@ namespace Network
             {
                 if ((mobile || SceneManager.GetActiveScene().name == "AppOffline"))
                 {
-                    Debug.Log("mobile true");
                     sceneToLoad = "PlsMobile"; //TODO
                 }
 
@@ -124,11 +124,15 @@ namespace Network
                 {
                     AssignNetworkPlayers();
                 }
+
                 foreach (var networkPlayer in _networkPlayers)
                 {
+                    networkPlayer.CmdSetPlayerMoving(false);
+                    networkPlayer.CmdHandleSelectedWorld("");
                     networkPlayer.CmdSyncTimePlaying(0f);
+                    networkPlayer.CmdTriggerTimeSync(false);
                 }
-                
+
                 if (mobile && isLocalPlayer)
                 {
                     _controller.OnGoToLobby();
@@ -142,7 +146,6 @@ namespace Network
             }
         }
 
-        //volano serverem na clientech
         public void SetPlayerMoving(bool oldValue, bool moving)
         {
             Debug.Log("set player moving in Network pLayer, moving: " + moving);
@@ -154,6 +157,7 @@ namespace Network
                 if (moving)
                 {
                     Debug.Log(_gameController);
+
                     _gameController.StartMovement();
                 }
                 else
@@ -167,7 +171,6 @@ namespace Network
         {
             if (isLocalPlayer)
             {
-                Debug.Log("good");
                 if (!mobile)
                 {
                     _gameController.SetMovementSpeed(movingSpeed);
@@ -195,8 +198,10 @@ namespace Network
         private void SetTimePlaying(float oldValue, float playTime)
         {
             Debug.Log("set time playing in network player");
+
             if (mobile && isLocalPlayer)
             {
+                Debug.Log("((UIControllerMobile) _uiController).UpdateTimer(playerMoving, playTime);" + playerMoving);
                 ((UIControllerMobile) _uiController).UpdateTimer(playerMoving, playTime);
             }
         }
@@ -206,18 +211,26 @@ namespace Network
             if (timeSyncTrigger && !mobile && isLocalPlayer)
             {
                 Debug.Log("VR local player cmd time sync");
+
                 if (!_gameController)
                 {
                     AssignGameController();
                 }
 
+                if (!_gameController)
+                {
+                    return;
+                }
+                var currentTimePlaying = _gameController.GetTimePlaying();
+
                 if (_networkPlayers.Length < 2)
                 {
                     AssignNetworkPlayers();
                 }
+
                 foreach (var networkPlayer in _networkPlayers)
                 {
-                    networkPlayer.CmdSyncTimePlaying(_gameController.GetTimePlaying());
+                    networkPlayer.CmdSyncTimePlaying(currentTimePlaying);
                 }
             }
         }
@@ -232,6 +245,7 @@ namespace Network
         public void CmdHandleSelectedWorld(string sceneName)
         {
             Debug.Log(chosenWorld);
+
             if (String.IsNullOrEmpty(chosenWorld))
             {
                 chosenWorld = sceneName; //changing syncvar as cmd results in server synchronising all clients
@@ -242,15 +256,13 @@ namespace Network
         [Command(requiresAuthority = false)] //require authority
         public void CmdSetPlayerMoving(bool moving)
         {
-            Debug.Log("CMD set player moving in Network pLayer, moving: " + moving);
-
+            Debug.Log("cmd set player moving");
             playerMoving = moving;
         }
 
         [Command(requiresAuthority = false)]
         public void CmdSkipCalibration(bool skip)
         {
-            Debug.Log("CMD sskip calibration in Network pLayer, skipCalibraion: " + skip);
             skipCalibration = true;
         }
 
@@ -264,7 +276,6 @@ namespace Network
         [Command(requiresAuthority = false)]
         public void CmdSetCalibrationComplete(bool complete)
         {
-            Debug.Log("CMD set calibrationComplete in Network pLayer, complete: " + complete);
             calibrationComplete = complete;
         }
 
@@ -286,13 +297,15 @@ namespace Network
             Debug.Log("CmdSyncTimePlaying " + timePlayingValue);
             timePlaying = timePlayingValue;
         }
-        
-        [Command(requiresAuthority = false)]
-        public void CmdTriggerTimeSync()
-        {
-            Debug.Log("CmdTriggerTimeSync " + true);
 
-            triggerTimeSync = true;
+        [Command(requiresAuthority = false)]
+        public void CmdTriggerTimeSync(bool trigger)
+        {
+            Debug.Log("CmdTriggerTimeSync " + trigger);
+            if (trigger)
+            {
+                triggerTimeSync = true;
+            }
         }
 
         public GameController GetGameController()
@@ -304,7 +317,7 @@ namespace Network
 
             return _gameController;
         }
-        
+
         private void AssignGameController()
         {
             _gameController = FindObjectOfType<GameController>();
@@ -314,6 +327,5 @@ namespace Network
         {
             _networkPlayers = FindObjectsOfType<NetworkPlayer>();
         }
-
     }
 }

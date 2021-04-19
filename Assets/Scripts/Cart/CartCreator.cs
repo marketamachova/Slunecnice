@@ -5,6 +5,7 @@ using TMPro;
 using UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
@@ -126,7 +127,6 @@ namespace Cart
         private void CreateCart(Vector3 pointPosition)
         {
             _cart = Instantiate(cartPrefab, pointPosition, cartPrefab.transform.rotation);
-            _cartRendererComponents.AddRange(_cart.GetComponentsInChildren<Renderer>());
 
             uiController.DisplayCalibrationStep2();
             // stand.SetActive(false);
@@ -154,6 +154,7 @@ namespace Cart
 
         private void ColorCart()
         {
+            _cartRendererComponents.AddRange(_cart.GetComponentsInChildren<Renderer>());
             _cartRendererComponents.ForEach(component => component.material = cartMaterial);
         }
 
@@ -175,6 +176,14 @@ namespace Cart
             
             var networkCamera = GameObject.FindWithTag("NetworkCamera");
             _cart.transform.parent = networkCamera.transform;
+            var childrenTransform = networkCamera.GetComponentsInChildren<Transform>();
+            var children = networkCamera.GetComponentsInChildren<Transform>();
+            foreach (var child in children)
+            {
+                var rotation = child.transform.rotation;
+                rotation = Quaternion.Euler(rotation.x, 0, rotation.z);
+                child.transform.rotation = rotation;
+            }
 
             OnCartCreatorCalibrationComplete?.Invoke();
         }

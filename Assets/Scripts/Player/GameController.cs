@@ -59,7 +59,9 @@ namespace Player
                 _cartAnimator = _cart.GetComponent<Animator>();
             }
 
-            // _fader = GetComponent<Fader>();
+            _networkManager.OnMobileClientDisconnectAction += TriggerPlayerMoving;
+            _networkManager.OnClientDisconnectAction += TriggerPlayerMoving;
+            // _fader = GetComponent<Fader>(
         }
 
         public IEnumerator Start()
@@ -69,7 +71,7 @@ namespace Player
             if (_networkManager.numPlayers == 1)
             {
                 yield return new WaitForSecondsRealtime(4);
-                _networkPlayer.CmdSetPlayerMoving(true);
+                TriggerPlayerMoving();
             }
         }
 
@@ -116,9 +118,11 @@ namespace Player
 
             Debug.Log("calling CmdGoToLobby");
 
-            var networkPlayer = FindObjectOfType<NetworkPlayer>();
-            Debug.Log("networkPlayer" + networkPlayer);
-            networkPlayer.CmdGoToLobby();
+            var networkPlayers = FindObjectsOfType<NetworkPlayer>();
+            foreach (var networkPlayer in networkPlayers)
+            {
+                networkPlayer.CmdGoToLobby();
+            }
         }
 
         private void Enable(PlayerMovement script)
@@ -186,6 +190,12 @@ namespace Player
             }
 
             return 0f;
+        }
+
+        private void TriggerPlayerMoving()
+        {
+            Debug.Log("trigger player move");
+            _networkPlayer.CmdSetPlayerMoving(true);
         }
     }
 }
