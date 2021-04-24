@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/HandsScene.unity
     guid: 3a2ee17a2e5334221b4c843b378d1a60
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AppOffline.unity
     guid: f5b5a5ad3a8e148e2be96f3d2051601f
   - enabled: 0
@@ -29,7 +29,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/ISSTest.unity
     guid: 0e0578adddb2740e6a9a4151f9277d8e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PlsMobile.unity
     guid: 99124cf8e5e584228822a4246ac82563
   - enabled: 0
@@ -47,6 +47,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/DummyRT.unity
     guid: 799041ab9fa8f420082e6f58792a3df0
+  - enabled: 1
+    path: Assets/Scenes/WinterScene.unity
+    guid: b6c74f5c413584aeab69a53129bdbd30
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 4a687ddd122a04b8d8030d30d784faca,
       type: 2}

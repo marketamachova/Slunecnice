@@ -27,6 +27,8 @@ namespace Player
 
         private void OnSceneLoaded()
         {
+            Debug.Log("ON SCENE LOADED");
+            
             uiControllerMobile.EnablePanelExclusive("WatchScreenPortrait");
             uiControllerMobile.EnableTrue("VideoControls");
 
@@ -53,6 +55,7 @@ namespace Player
             base.OnDisconnect();
             uiControllerMobile.EnablePanelExclusive("ConnectScreen");
             connectController.OnDisconnect();
+            sceneLoader.UnloadScene();
 
             Debug.Log("ON DISCONNECT Controller");
         }
