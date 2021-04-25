@@ -25,28 +25,37 @@ namespace Player
             AssignPlayers();
         }
 
-        private void OnSceneLoaded()
+        public override void OnSceneLoaded()
         {
             Debug.Log("ON SCENE LOADED");
-            
-            uiControllerMobile.EnablePanelExclusive("WatchScreenPortrait");
-            uiControllerMobile.EnableTrue("VideoControls");
 
-            Debug.Log("RemoteNetworkPlayer.playerMoving " + RemoteNetworkPlayer.playerMoving);
-            _playing = RemoteNetworkPlayer.playerMoving;
-
-            if (NetworkPlayers.Length < 2)
+            if (RemoteNetworkPlayer.worldLoaded)
             {
-                AssignPlayers();
+                uiControllerMobile.EnablePanelExclusive("WatchScreenPortrait");
+                uiControllerMobile.EnableTrue("VideoControls");
+
+                Debug.Log("RemoteNetworkPlayer.playerMoving " + RemoteNetworkPlayer.playerMoving);
+                _playing = RemoteNetworkPlayer.playerMoving;
+
+                if (NetworkPlayers.Length < 2)
+                {
+                    AssignPlayers();
+                }
+
+                foreach (var networkPlayer in NetworkPlayers)
+                {
+                    networkPlayer.CmdTriggerTimeSync(true);
+                }
+
+
+                LocalNetworkPlayer.CmdSetPlayerMoving(_playing);
+                uiControllerMobile.SetPlayButtonSelected(_playing);
             }
-            foreach (var networkPlayer in NetworkPlayers)
+
+            else
             {
-                networkPlayer.CmdTriggerTimeSync(true);
+                RemoteNetworkPlayer.OnSceneLoadedAction += OnSceneLoaded;
             }
-
-
-            LocalNetworkPlayer.CmdSetPlayerMoving(_playing);
-            uiControllerMobile.SetPlayButtonSelected(_playing);
         }
 
 
@@ -146,13 +155,12 @@ namespace Player
             if (!string.IsNullOrEmpty(_vrPlayer.chosenWorld))
             {
                 DisplaySceneSelected(_vrPlayer.chosenWorld);
-
             }
             else
             {
                 uiController.EnableTrue("SceneSelection");
-
             }
+
             uiController.EnableFalse("Calibration");
         }
 

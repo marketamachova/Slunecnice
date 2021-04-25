@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 7921233048587166134}
   - component: {fileID: 7921233048587166059}
   - component: {fileID: 6841262507131882075}
-  - component: {fileID: 5599612955636760696}
+  - component: {fileID: 6935551268559201717}
+  - component: {fileID: 2413331157511429472}
   m_Layer: 0
   m_Name: NetworkManagerTest
   m_TagString: Untagged
@@ -49,16 +50,16 @@ MonoBehaviour:
   PersistNetworkManagerToOfflineScene: 0
   runInBackground: 1
   autoStartServerBuild: 1
-  serverTickRate: 30
+  serverTickRate: 60
   serverBatching: 1
   serverBatchInterval: 0
   offlineScene: 
   onlineScene: 
-  transport: {fileID: 5599612955636760696}
+  transport: {fileID: 2413331157511429472}
   networkAddress: 192.168.212.105
   maxConnections: 4
   disconnectInactiveConnections: 0
-  disconnectInactiveTimeout: 60
+  disconnectInactiveTimeout: 120
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 4228830701967972636, guid: 60e2e152813dc405a817ba5bab8a5b9d,
     type: 3}
@@ -97,7 +98,26 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5599612955636760696
+--- !u!114 &6935551268559201717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7921233048587166164}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96b149f511061407fb54895c057b7736, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wrap: {fileID: 0}
+  latencySpikeMultiplier: 0
+  latencySpikeSpeedMultiplier: 1
+  reliableLatency: 3
+  unreliableLoss: 0.413
+  unreliableLatency: 3
+  unreliableScramble: 0.157
+--- !u!114 &2413331157511429472
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,16 +126,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 7921233048587166164}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b0fecffa3f624585964b0d0eb21b18e, type: 3}
+  m_Script: {fileID: 11500000, guid: 872fa23ef6e77334ca452ce16f6cd091, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Port: 7777
-  NoDelay: 1
-  Interval: 10
-  FastResend: 2
-  CongestionWindow: 0
-  SendWindowSize: 4096
-  ReceiveWindowSize: 4096
-  debugLog: 0
-  statisticsGUI: 0
-  statisticsLog: 0
+  port: 7777
+  LogType: 1
+  DebugDisplay: 1
+  serverBindsAll: 1
+  serverBindAddress: 
+  serverMaxPeerCapacity: 50
+  serverMaxNativeWaitTime: 1
+  clientMaxNativeWaitTime: 3
+  clientStatusUpdateInterval: -1
+  Channels: 0100000002000000
+  PacketBufferCapacity: 4096
+  MaxAllowedPacketSize: 33554432

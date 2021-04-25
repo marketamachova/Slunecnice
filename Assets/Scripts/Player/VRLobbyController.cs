@@ -2,6 +2,7 @@
 using System.Collections;
 using Cart;
 using Mirror;
+using Scenes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using NetworkPlayer = Network.NetworkPlayer;
@@ -24,6 +25,7 @@ namespace Player
 
         private void Awake()
         {
+            sceneLoader.SceneLoadingEnd += OnSceneLoaded;
             networkManager.OnClientConnectAction += OnClientConnected;
             networkManager.OnMobileClientConnectAction += OnClientMobileConnected;
             networkManager.OnClientDisconnectAction += OnClientDisonnected;
@@ -92,9 +94,22 @@ namespace Player
             cartCreator.SkipCalibration();
         }
 
+        public override void OnSceneLoaded()
+        {
+            Debug.Log("On scene loaded VRVRVRVRVRV");
+            LocalNetworkPlayer.CmdSetWorldLoaded(true);
+        }
+
+        public override void OnGoToLobby()
+        {
+            LocalNetworkPlayer.CmdSetWorldLoaded(false);
+        }
+        
         public CartCreator GetCartCreator()
         {
             return cartCreator;
         }
+
+       
     }
 }

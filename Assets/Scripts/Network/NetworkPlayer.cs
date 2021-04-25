@@ -29,6 +29,9 @@ namespace Network
 
         [SyncVar(hook = "GoToLobby")] public bool goToLobby;
 
+        [SyncVar(hook = "OnWorldLoaded")] public bool worldLoaded;
+
+
         private BaseUIController _uiController;
         private GameController _gameController;
         private BaseController _controller;
@@ -36,6 +39,7 @@ namespace Network
         private NetworkPlayer[] _networkPlayers;
 
         public event Action OnCalibrationComplete;
+        public event Action OnSceneLoadedAction;
 
         private void Awake()
         {
@@ -221,6 +225,7 @@ namespace Network
                 {
                     return;
                 }
+
                 var currentTimePlaying = _gameController.GetTimePlaying();
 
                 if (_networkPlayers.Length < 2)
@@ -231,6 +236,19 @@ namespace Network
                 foreach (var networkPlayer in _networkPlayers)
                 {
                     networkPlayer.CmdSyncTimePlaying(currentTimePlaying);
+                }
+            }
+        }
+
+        private void OnWorldLoaded(bool oldValue, bool loaded)
+        {
+            if (loaded)
+            {
+                Debug.Log("WORLD LOADED");
+                if (!mobile)
+                {
+                    Debug.Log("On world loaded VR playrt invoking onsceneloaded");
+                    OnSceneLoadedAction?.Invoke();
                 }
             }
         }
@@ -306,6 +324,12 @@ namespace Network
             {
                 triggerTimeSync = true;
             }
+        }
+
+        [Command]
+        public void CmdSetWorldLoaded(bool loaded)
+        {
+            worldLoaded = loaded;
         }
 
         public GameController GetGameController()

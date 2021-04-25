@@ -63,7 +63,7 @@ namespace Scenes
                 yield return new WaitForSecondsRealtime(0.05f);
             }
 
-
+            yield return new WaitForSecondsRealtime(1);
             SceneLoadingEnd?.Invoke();
             loaderUI.DisplayLoader(false);
 
@@ -74,24 +74,6 @@ namespace Scenes
 
             yield return new WaitForEndOfFrame();
         }
-
-        // private IEnumerator LoadSceneAsyncMobile()
-        // {
-        //     Debug.Log("LOAD SCENE ASYNC MOBLE");
-        //     while (_sceneLoadingOperation.isDone)
-        //     {
-        //         float loadingProgress = _sceneLoadingOperation.progress;
-        //         loaderUI.UpdateLoader(loadingProgress);
-        //
-        //         yield return null;
-        //     }
-        //
-        //     
-        //     yield return new WaitForEndOfFrame();
-        //     loaderUI.DisplayLoader(false);
-        //
-        //     SceneLoadingEnd?.Invoke();
-        // }
 
 
         public void UnloadScene()

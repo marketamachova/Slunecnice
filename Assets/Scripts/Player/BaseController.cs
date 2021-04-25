@@ -100,5 +100,10 @@ namespace Player
                 networkPlayer.CmdGoToLobby();
             }
         }
+
+        public virtual void OnSceneLoaded()
+        {
+            
+        }
     }
 }
