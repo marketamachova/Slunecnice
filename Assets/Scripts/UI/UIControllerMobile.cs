@@ -77,7 +77,7 @@ namespace UI
             else
             {
                 controlButtons.transform.localScale = new Vector3(1.034554f, 0.1034285f, 1.034554f);
-                timer.transform.localScale = new Vector3(1.034554f, 0.1034285f, 1.034554f);
+                timer.transform.localScale = new Vector3(1.034554f, 1.034554f, 1.034554f);
             }
         }
 
