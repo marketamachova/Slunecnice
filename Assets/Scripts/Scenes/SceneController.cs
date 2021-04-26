@@ -1,7 +1,9 @@
-﻿using PathCreation;
+﻿using System;
+using PathCreation;
 using Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using NetworkPlayer = Network.NetworkPlayer;
 
 
 namespace Scenes
@@ -16,24 +18,38 @@ namespace Scenes
         private GameObject _mainCamera;
         private GameObject _rtCamera;
         private GameObject _cart;
+        private NetworkPlayer _vrNetworkPlayer;
         private bool _mobile;
-        
+
         private const float CartHeight = 1.49222f;
+
+        public event Action PlayerMovedToStartingPosition;
 
         void Start()
         {
             _mobile = SceneManager.GetSceneAt(0).name == "AppOffline";
             _player = GameObject.FindWithTag("NetworkCamera");
             _cart = GameObject.FindWithTag("Cart");
-            
+            var players = GameObject.FindObjectsOfType<NetworkPlayer>();
+
             _mainCamera = GameObject.FindWithTag("MainCamera");
-            
+
             MovePlayersAtStartingPosition();
-            
+
+            foreach (var player in players)
+            {
+                if (!player.mobile)
+                {
+                    Debug.Log("On scene loaded VRVRVRVRVRV");
+
+                    player.CmdSetWorldLoaded(true);
+                }
+            }
         }
 
         public void MovePlayersAtStartingPosition()
         {
+            DontDestroyOnLoad(_player);
             Debug.Log("MOVE player at starting position");
             _player.transform.position = startingPoint.position;
             _player.transform.rotation = startingPoint.rotation;
@@ -44,8 +60,6 @@ namespace Scenes
                 _mainCamera.transform.position = _player.transform.position;
                 _mainCamera.transform.localPosition = new Vector3(0, 1.5f, -0.273f);
             }
-            
-            // PositionPathCreator();
         }
 
         private void PositionPathCreator()
@@ -66,6 +80,12 @@ namespace Scenes
 
         public void MovePlayersAtStartingPositionLobby()
         {
+            Debug.Log("move player at lobby");
+            if (!_player)
+            {
+                _player = GameObject.FindWithTag("NetworkCamera");
+
+            }
             _player.transform.position = startingPositionLobby;
             _player.transform.rotation = startingRotationLobby;
         }

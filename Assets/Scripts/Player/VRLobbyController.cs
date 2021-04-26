@@ -12,9 +12,9 @@ namespace Player
     public enum World
     {
         MainScene,
-        Forest,
-        Winter,
-        Spring
+        ForestScene,
+        WinterScene,
+        SpringScene
     }
 
     public class VRLobbyController : BaseController
@@ -97,7 +97,9 @@ namespace Player
         public override void OnSceneLoaded()
         {
             Debug.Log("On scene loaded VRVRVRVRVRV");
-            LocalNetworkPlayer.CmdSetWorldLoaded(true);
+            Debug.Log("LocalNetworkPlayer.chosenWorld " + LocalNetworkPlayer.chosenWorld);
+            var scene = SceneManager.GetSceneByName(LocalNetworkPlayer.chosenWorld);
+            SceneManager.SetActiveScene(scene);
         }
 
         public override void OnGoToLobby()

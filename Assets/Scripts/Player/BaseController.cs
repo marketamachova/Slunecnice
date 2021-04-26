@@ -17,7 +17,7 @@ namespace Player
         [SerializeField] protected MyNetworkManager networkManager;
         [SerializeField] protected SceneLoader sceneLoader;
         [SerializeField] protected BaseUIController uiController;
-
+        
         protected NetworkPlayer[] NetworkPlayers;
         protected NetworkPlayer LocalNetworkPlayer;
         protected NetworkPlayer RemoteNetworkPlayer;
@@ -105,5 +105,7 @@ namespace Player
         {
             
         }
+
+
     }
 }

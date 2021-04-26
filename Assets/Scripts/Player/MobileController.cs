@@ -3,6 +3,7 @@ using Network;
 using Scenes;
 using UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using NetworkPlayer = Network.NetworkPlayer;
 
 namespace Player
@@ -27,14 +28,23 @@ namespace Player
 
         public override void OnSceneLoaded()
         {
+            base.OnSceneLoaded();
             Debug.Log("ON SCENE LOADED");
+            
+            Debug.Log("LocalNetworkPlayer.chosenWorld " + LocalNetworkPlayer.chosenWorld);
+            var scene = SceneManager.GetSceneByName(LocalNetworkPlayer.chosenWorld  + "Mobile");
+            SceneManager.SetActiveScene(scene);
 
+            Debug.Log("RemoteNetworkPlayer.mobile" + RemoteNetworkPlayer);
             if (RemoteNetworkPlayer.worldLoaded)
             {
+                MoveNetworkPlayerToStartingPoint();
+                
+                Debug.Log("RemoteNetworkPlayer.worldLoaded");
+                
                 uiControllerMobile.EnablePanelExclusive("WatchScreenPortrait");
                 uiControllerMobile.EnableTrue("VideoControls");
 
-                Debug.Log("RemoteNetworkPlayer.playerMoving " + RemoteNetworkPlayer.playerMoving);
                 _playing = RemoteNetworkPlayer.playerMoving;
 
                 if (NetworkPlayers.Length < 2)
@@ -56,6 +66,11 @@ namespace Player
             {
                 RemoteNetworkPlayer.OnSceneLoadedAction += OnSceneLoaded;
             }
+        }
+
+        private void MoveNetworkPlayerToStartingPoint()
+        {
+            
         }
 
 

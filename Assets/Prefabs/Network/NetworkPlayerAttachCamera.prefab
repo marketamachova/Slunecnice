@@ -380,6 +380,7 @@ MonoBehaviour:
     type: 3}
   rtCamera: {fileID: 4698358865480770299}
   rtWideCamera: {fileID: 6557675609222332811}
+  rtWideTopCamera: {fileID: 1205369975420959837}
   rtTopCamera: {fileID: 5739491300682339289}
 --- !u!114 &2585152040486979133
 MonoBehaviour:

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cart;
+using Mirror;
 using Network;
 using PathCreation;
 using Scenes;
@@ -27,7 +28,8 @@ namespace Player
         private NetworkPlayer _networkPlayer;
         private Fader _fader;
 
-        private string _currentScene = "MainScene";
+        private string _currentScene;
+
         private int _customSpeed = 2;
 
         private static readonly int Idle = Animator.StringToHash("Idle");
@@ -36,6 +38,7 @@ namespace Player
         private void Awake()
         {
             _networkPlayer = FindObjectOfType<NetworkPlayer>();
+            _currentScene = SceneManager.GetActiveScene().name;
 
             _customSpeed = _networkPlayer.speed;
             _cart = GameObject.FindWithTag("Cart");
@@ -50,7 +53,7 @@ namespace Player
             foreach (var script in _playerMovementScripts)
             {
                 script.SetPathCreator(_pathCreator);
-                script.Speed = _customSpeed;
+                script.speed = _customSpeed;
             }
 
             if (_cart != null)
@@ -159,19 +162,23 @@ namespace Player
         private IEnumerator GoToLobbyCoroutine()
         {
             yield return new WaitForSecondsRealtime(2);
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName("VROffline"));
+
             _sceneController.MovePlayersAtStartingPositionLobby();
-            SceneManager.UnloadSceneAsync(_currentScene);
+            yield return new WaitForSecondsRealtime(1);
+
+            Debug.Log("Unloading main secene");
+            SceneManager.UnloadSceneAsync("MainScene");
         }
 
         public void SetMovementSpeed(int speed)
         {
-            Debug.Log("better");
 
             if (_playerMovementScripts.Length > 0)
             {
                 foreach (var playerMovement in _playerMovementScripts)
                 {
-                    playerMovement.Speed = speed;
+                    playerMovement.speed = speed;
                     _customSpeed = speed;
                 }
             }

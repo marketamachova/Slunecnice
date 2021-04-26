@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Mirror;
 using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -29,6 +30,7 @@ namespace Scenes
         public void LoadScene(string scene, bool additiveSceneMode)
         {
             _currentSceneName = scene;
+            Debug.Log("_currentSceneName" + _currentSceneName);
             Debug.Log("scene loader.LoadScene");
             loaderUI.DisplayLoader(true); //potreba?
             _sceneLoadingOperation = SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
@@ -55,7 +57,7 @@ namespace Scenes
                 cameraFader.FadeOut();
             }
 
-            while (_sceneLoadingOperation.progress < 0.9f)
+            while (!_sceneLoadingOperation.isDone)
             {
                 float loadingProgress = _sceneLoadingOperation.progress;
                 loaderUI.UpdateLoader(loadingProgress);

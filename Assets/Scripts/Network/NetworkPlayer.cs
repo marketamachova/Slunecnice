@@ -105,7 +105,7 @@ namespace Network
             {
                 if ((mobile || SceneManager.GetActiveScene().name == "AppOffline"))
                 {
-                    sceneToLoad = "PlsMobile"; //TODO
+                    sceneToLoad = sceneToLoad + "Mobile";
                 }
 
                 _sceneLoader.LoadScene(sceneToLoad, true);

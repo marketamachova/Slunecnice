@@ -7,7 +7,7 @@ namespace Player
 {
     public class PlayerMovement : MonoBehaviour
     {
-        [SerializeField] public float Speed { get;  set; } = 2f;
+        [FormerlySerializedAs("Speed")] [SerializeField] public float speed = 2f;
 
         [SerializeField] private EndOfPathInstruction endOfPathInstruction;
         [SerializeField] private GameObject player;
@@ -51,7 +51,7 @@ namespace Player
 
             _time += Time.deltaTime;
 
-            _distance += Speed * Time.deltaTime;
+            _distance += speed * Time.deltaTime;
             player.transform.position =
                 _pathCreator.path.GetPointAtDistance(_distance + cameraOffset, endOfPathInstruction) + offset;
 
