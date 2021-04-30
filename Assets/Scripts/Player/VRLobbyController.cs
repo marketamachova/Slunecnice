@@ -49,7 +49,7 @@ namespace Player
                 {
                     Debug.Log("Pressed space");
 
-                    OnSceneSelected(World.MainScene.ToString());
+                    OnSceneSelected(World.WinterScene.ToString());
                 }
             }
         }

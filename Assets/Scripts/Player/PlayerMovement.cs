@@ -1,18 +1,21 @@
 ﻿using System.Collections.Generic;
 using PathCreation;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 namespace Player
 {
     public class PlayerMovement : MonoBehaviour
     {
-        [FormerlySerializedAs("Speed")] [SerializeField] public float speed = 2f;
+        [FormerlySerializedAs("Speed")] [SerializeField]
+        public float speed = 2f;
 
         [SerializeField] private EndOfPathInstruction endOfPathInstruction;
         [SerializeField] private GameObject player;
         [SerializeField] private Vector3 offset = new Vector3(0, 5, 0);
         [SerializeField] private bool rotateCamera = true;
+        [SerializeField] public bool reverse;
 
         private Animator _animator;
         private PathCreator _pathCreator;
@@ -29,6 +32,8 @@ namespace Player
             {
                 player = GameObject.FindWithTag("NetworkCamera");
             }
+
+            reverse = SceneManager.GetActiveScene().name.Equals("WinterScene");
         }
 
         void Start()
@@ -36,7 +41,13 @@ namespace Player
             _controller = FindObjectOfType<GameController>();
             _pathCreator = GameObject.FindWithTag("PathCreator").GetComponent<PathCreator>();
 
-            player.transform.position = _pathCreator.path.GetPoint(0) + offset;
+            var startingPos = _pathCreator.path.GetPoint(0) + offset;
+            if (reverse)
+            {
+                startingPos = _pathCreator.path.GetPoint(_pathCreator.path.NumPoints -1) + offset;
+            }
+
+            player.transform.position = startingPos;
             _animator = player.GetComponentInChildren<Animator>();
             if (_animator)
             {
@@ -51,7 +62,15 @@ namespace Player
 
             _time += Time.deltaTime;
 
-            _distance += speed * Time.deltaTime;
+            if (reverse)
+            {
+                _distance -= speed * Time.deltaTime;
+            }
+            else
+            {
+                _distance += speed * Time.deltaTime;
+            }
+
             player.transform.position =
                 _pathCreator.path.GetPointAtDistance(_distance + cameraOffset, endOfPathInstruction) + offset;
 
