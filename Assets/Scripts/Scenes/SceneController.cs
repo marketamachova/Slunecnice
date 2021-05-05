@@ -1,6 +1,7 @@
 ﻿using System;
 using PathCreation;
 using Player;
+using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using NetworkPlayer = Network.NetworkPlayer;
@@ -53,8 +54,11 @@ namespace Scenes
             Debug.Log("MOVE player at starting position");
             _player.transform.position = startingPoint.position;
             _player.transform.rotation = startingPoint.rotation;
+            // var rotationY = _player.transform.rotation.y;
+            //
+            // _player.transform.rotation = new Quaternion(startingPoint.rotation.x, startingPoint.rotation.y + rotationY, startingPoint.rotation.z, Single.Epsilon);
 
-            if (_mainCamera) //wtf
+            if (_mainCamera)
             {
                 _mainCamera.transform.parent = _player.transform;
                 _mainCamera.transform.position = _player.transform.position;
@@ -80,12 +84,13 @@ namespace Scenes
 
         public void MovePlayersAtStartingPositionLobby()
         {
+
             Debug.Log("move player at lobby");
             if (!_player)
             {
                 _player = GameObject.FindWithTag("NetworkCamera");
-
             }
+
             _player.transform.position = startingPositionLobby;
             _player.transform.rotation = startingRotationLobby;
         }

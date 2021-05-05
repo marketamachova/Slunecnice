@@ -13,17 +13,14 @@ namespace Cart
 {
     public class CartCreator : MonoBehaviour
     {
-        [Header("Hands")]
-        [SerializeField] private GameObject leftHand;
+        [Header("Hands")] [SerializeField] private GameObject leftHand;
         [SerializeField] private GameObject rightHand;
 
-        [Header("Cart")]
-        [SerializeField] private Material cartMaterial;
+        [Header("Cart")] [SerializeField] private Material cartMaterial;
         [SerializeField] private GameObject cartPrefab;
         [SerializeField] private Vector3 defaultCartPosition;
 
-        [Header("UI")]
-        [SerializeField] private CartCreationUIController uiController;
+        [Header("UI")] [SerializeField] private CartCreationUIController uiController;
         [SerializeField] private bool debug = true;
 
         private readonly List<Renderer> _cartRendererComponents = new List<Renderer>();
@@ -32,9 +29,9 @@ namespace Cart
         private OVRSkeleton _leftHandSkeleton;
         private OVRSkeleton _rightHandSkeleton;
         private int _stepCounter;
-        
+
         private bool _interactable = true;
-        
+
         private bool _isLeftIndexFingerPinching = false;
         private bool _isRightIndexFingerPinching = false;
         private bool _leftSideCreated = false;
@@ -57,6 +54,7 @@ namespace Cart
 
         private void Update()
         {
+            //TODO remove
             if (_interactable && debug)
             {
                 var rightArrowPressed = Input.GetKeyDown(KeyCode.RightArrow);
@@ -90,7 +88,6 @@ namespace Cart
                     EndCalibration();
                 }
             }
-
 
 
             if (_interactable && !EventSystem.current.currentSelectedGameObject)
@@ -129,7 +126,6 @@ namespace Cart
             _cart = Instantiate(cartPrefab, pointPosition, cartPrefab.transform.rotation);
 
             uiController.DisplayCalibrationStep2();
-            // stand.SetActive(false);
         }
 
         private void RotateCart(Vector3 pos1, Vector3 pos2)
@@ -137,7 +133,7 @@ namespace Cart
             Vector3 pointsDifferenceVector = new Vector3(pos2.x - pos1.x, 0, pos2.z - pos1.z);
             var rotationAngle = Vector3.SignedAngle(Vector2.left, pointsDifferenceVector.normalized, Vector3.up);
             _cart.transform.Rotate(new Vector3(0, rotationAngle, 0));
-            
+
             uiController.DisplayCalibrationStep3();
         }
 
@@ -147,9 +143,8 @@ namespace Cart
             _cart = null;
             _currentPointPositionList = new List<Vector3>();
             _rightSideCreated = _leftSideCreated = false;
-            
+
             uiController.DisplayCalibrationStep1();
-            // stand.SetActive(true);
         }
 
         private void ColorCart()
@@ -164,6 +159,7 @@ namespace Cart
             {
                 Destroy(_cart);
             }
+
             _cart = Instantiate(cartPrefab, cartPrefab.transform.position, cartPrefab.transform.rotation);
             EndCalibration();
         }
@@ -172,21 +168,35 @@ namespace Cart
         {
             _interactable = false;
             ColorCart();
-            // Destroy(stand);
-            
+
             var networkCamera = GameObject.FindWithTag("NetworkCamera");
-            _cart.transform.parent = networkCamera.transform;
-            var childrenTransform = networkCamera.GetComponentsInChildren<Transform>();
+            
+            // var cartRotation = _cart.transform.parent.eulerAngles - _cart.transform.eulerAngles;
+            var cartRotation = _cart.transform.eulerAngles;
+            Debug.Log(cartRotation);
+            _cart.transform.Rotate(-cartRotation);
+
+            
+            // networkCamera.transform.Rotate(cartRotation);
             var children = networkCamera.GetComponentsInChildren<Transform>();
             foreach (var child in children)
             {
-                var rotation = child.transform.rotation;
-                rotation = Quaternion.Euler(rotation.x, 0, rotation.z);
-                child.transform.rotation = rotation;
+                Debug.Log(child);
+                // var rotation = child.transform.rotation;
+                // rotation = Quaternion.Euler(rotation.x, cartRotation.y, rotation.z);
+                child.transform.Rotate(-cartRotation);
             }
+            networkCamera.transform.Rotate(cartRotation);
+            _cart.transform.parent = networkCamera.transform;
 
             OnCartCreatorCalibrationComplete?.Invoke();
         }
-        
+
+        private void RotatePlayer(GameObject networkCamera)
+        {
+            networkCamera.transform.Rotate(Vector3.up, _cart.transform.rotation.y);
+
+
+        }
     }
 }

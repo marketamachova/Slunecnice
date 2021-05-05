@@ -108,7 +108,8 @@ namespace Player
 
         public override void OnSceneLoaded()
         {
-            Debug.Log("On scene loaded VRVRVRVRVRV");
+            uiController.gameObject.SetActive(false);
+
             Debug.Log("LocalNetworkPlayer.chosenWorld " + LocalNetworkPlayer.chosenWorld);
             var scene = SceneManager.GetSceneByName(LocalNetworkPlayer.chosenWorld);
             SceneManager.SetActiveScene(scene);
@@ -116,6 +117,8 @@ namespace Player
 
         public override void OnGoToLobby()
         {
+            Debug.Log("on go to lobbyyyyyyyy");
+            uiController.gameObject.SetActive(true);
             LocalNetworkPlayer.CmdSetWorldLoaded(false);
         }
         

@@ -146,6 +146,7 @@ namespace Network
                     Debug.Log("network player go to lobby");
                     _gameController = FindObjectOfType<GameController>();
                     _gameController.GoToLobby();
+                    _controller.OnGoToLobby();
                 }
             }
         }

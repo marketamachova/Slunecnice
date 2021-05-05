@@ -18,6 +18,7 @@ namespace Player
     {
         public List<GameObject> player = new List<GameObject>();
         private SceneController _sceneController;
+        private SceneLoader _sceneLoader;
         private PathCreator _pathCreator;
         private MyNetworkManager _networkManager;
         private PlayerMovement[] _playerMovementScripts;
@@ -30,7 +31,7 @@ namespace Player
 
         private string _currentScene;
 
-        private int _customSpeed = 2;
+        private int _customSpeed = 10;
 
         private static readonly int Idle = Animator.StringToHash("Idle");
         private static readonly int Drive = Animator.StringToHash("Drive");
@@ -44,6 +45,7 @@ namespace Player
             _cart = GameObject.FindWithTag("Cart");
             _player = GameObject.FindWithTag("NetworkCamera");
             _sceneController = GameObject.FindObjectOfType<SceneController>();
+            _sceneLoader = GameObject.FindObjectOfType<SceneLoader>();
             _pathCreator = FindObjectOfType<PathCreator>();
             _networkManager = FindObjectOfType<MyNetworkManager>();
 
@@ -165,10 +167,11 @@ namespace Player
             SceneManager.SetActiveScene(SceneManager.GetSceneByName("VROffline"));
 
             _sceneController.MovePlayersAtStartingPositionLobby();
-            yield return new WaitForSecondsRealtime(1);
+            // yield return new WaitForSecondsRealtime(1);
 
-            Debug.Log("Unloading main secene");
-            SceneManager.UnloadSceneAsync("MainScene");
+            Debug.Log("Unloading scene");
+            
+            _sceneLoader.UnloadScene();
         }
 
         public void SetMovementSpeed(int speed)
