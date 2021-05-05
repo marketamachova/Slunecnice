@@ -14,7 +14,7 @@ namespace Player
         MainScene,
         ForestScene,
         WinterScene,
-        SpringScene
+        RuralScene
     }
 
     public class VRLobbyController : BaseController
@@ -45,11 +45,23 @@ namespace Player
         {
             if (_debug)
             {
-                if (Input.GetKey(KeyCode.Space))
+                if (Input.GetKey(KeyCode.R))
                 {
-                    Debug.Log("Pressed space");
+                    Debug.Log("Pressed R");
+
+                    OnSceneSelected(World.RuralScene.ToString());
+                }
+                if (Input.GetKey(KeyCode.W))
+                {
+                    Debug.Log("Pressed W");
 
                     OnSceneSelected(World.WinterScene.ToString());
+                }
+                if (Input.GetKey(KeyCode.M))
+                {
+                    Debug.Log("Pressed M");
+
+                    OnSceneSelected(World.MainScene.ToString());
                 }
             }
         }

@@ -6,18 +6,15 @@ namespace Colliders
 {
     public class DestroyObjectCollider : MonoBehaviour
     {
-        [SerializeField] private GameObject objectToDestroy;
-        [SerializeField] private GameObject objectToSetActive;
+        [SerializeField] private List<GameObject> objectsToDestroy;
+        [SerializeField] private List<GameObject>  objectsToSetActive;
 
         public void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.CompareTag("NetworkCamera") && !collision.gameObject.CompareTag("Terrain") && gameObject.name != "Terrain")
             {
-                Destroy(objectToDestroy);
-                if (objectToSetActive != null)
-                {
-                    objectToSetActive.SetActive(true);
-                }
+                objectsToDestroy.ForEach(Destroy);
+                objectsToSetActive.ForEach(o => o.SetActive(true));
             }
         }
     }
