@@ -43,7 +43,10 @@ namespace Scenes
         private void DetachCameraFromNetworkPlayer()
         {
             //detach camera from networkCamera
-            _camera.transform.parent = null;
+            if (_camera)
+            {
+                _camera.transform.parent = null;
+            }
 
             // move camera out of DontDestroyOnLoad
             SceneManager.MoveGameObjectToScene(_camera, SceneManager.GetActiveScene());

@@ -196,6 +196,7 @@ namespace UI
         public void SetCurrentPlayMode(string playMode)
         {
             currentPlayMode = ParsePlayMode(playMode);
+            mobileController.EnableCamera(currentPlayMode, portraitOriented);
             switch (currentPlayMode)
             {
                 case PlayMode.PlayerCamera:

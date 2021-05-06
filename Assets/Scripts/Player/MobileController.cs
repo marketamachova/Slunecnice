@@ -1,10 +1,13 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Network;
 using Scenes;
 using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngineInternal;
 using NetworkPlayer = Network.NetworkPlayer;
+using PlayMode = UI.PlayMode;
 
 namespace Player
 {
@@ -15,6 +18,7 @@ namespace Player
         private bool _playing = false;
         private SceneLoader _sceneLoader;
         private NetworkPlayer _vrPlayer;
+        private GameObject[] _cameras;
 
         public void Awake()
         {
@@ -30,18 +34,18 @@ namespace Player
         {
             base.OnSceneLoaded();
             Debug.Log("ON SCENE LOADED");
-            
+
             Debug.Log("LocalNetworkPlayer.chosenWorld " + LocalNetworkPlayer.chosenWorld);
-            var scene = SceneManager.GetSceneByName(LocalNetworkPlayer.chosenWorld  + "Mobile");
+            var scene = SceneManager.GetSceneByName(LocalNetworkPlayer.chosenWorld + "Mobile");
             SceneManager.SetActiveScene(scene);
 
             Debug.Log("RemoteNetworkPlayer.mobile" + RemoteNetworkPlayer);
             if (RemoteNetworkPlayer.worldLoaded)
             {
                 MoveNetworkPlayerToStartingPoint();
-                
+
                 Debug.Log("RemoteNetworkPlayer.worldLoaded");
-                
+
                 uiControllerMobile.EnablePanelExclusive("WatchScreenPortrait");
                 uiControllerMobile.EnableTrue("VideoControls");
 
@@ -60,6 +64,7 @@ namespace Player
 
                 LocalNetworkPlayer.CmdSetPlayerMoving(_playing);
                 uiControllerMobile.SetPlayButtonSelected(_playing);
+                EnableCamera(PlayMode.PlayerCamera, true);
             }
 
             else
@@ -70,7 +75,6 @@ namespace Player
 
         private void MoveNetworkPlayerToStartingPoint()
         {
-            
         }
 
 
@@ -161,6 +165,8 @@ namespace Player
                 Debug.Log("chosen world " + _vrPlayer.chosenWorld);
                 DisplaySceneSelected(_vrPlayer.chosenWorld);
             }
+
+            AssignCameras();
         }
 
         public override void OnCalibrationComplete()
@@ -206,6 +212,46 @@ namespace Player
             {
                 networkPlayer.CmdSetSpeed((int) value);
             }
+        }
+
+        public void EnableCamera(PlayMode playMode, bool portrait)
+        {
+            switch (playMode)
+            {
+                case PlayMode.PlayerCamera:
+                    EnableCamerasExclusive(new List<string>(){"RTCamera"}, portrait);
+                    break;
+                case PlayMode.TopCamera:
+                    EnableCamerasExclusive(new List<string>(){"RTTopCamera"}, portrait);
+                    break;
+                case PlayMode.Multiview:
+                    EnableCamerasExclusive(new List<string>(){"RTCamera", "RTTopCamera"}, portrait);
+                    break;
+            }
+        }
+
+        private void EnableCamerasExclusive(List<string> activeCameras, bool portrait)
+        {
+            foreach (var activeCamera in activeCameras)
+            {
+                var activeCameraName = activeCamera;
+                
+                if (!portrait)
+                {
+                    activeCameraName += "Landscape";
+                }
+                
+                foreach (var o in _cameras)
+                {
+                    o.GetComponent<Camera>().enabled = o.name.Equals(activeCameraName);
+                }
+            }
+        }
+
+        private void AssignCameras()
+        {
+            Debug.Log("assign cameras");
+            _cameras = GameObject.FindGameObjectsWithTag("RTCamera");
         }
     }
 }

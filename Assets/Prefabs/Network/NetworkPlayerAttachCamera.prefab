@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 7996348717401076892}
   - component: {fileID: 1525559882379998775}
   m_Layer: 0
-  m_Name: RTWideTopCamera
-  m_TagString: TopCamera
+  m_Name: RTTopCameraLandscape
+  m_TagString: RTCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 687357728494317267}
   m_Layer: 0
   m_Name: RTCamera
-  m_TagString: Untagged
+  m_TagString: RTCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -468,7 +468,7 @@ GameObject:
   - component: {fileID: 8364753832509905374}
   m_Layer: 0
   m_Name: RTTopCamera
-  m_TagString: TopCamera
+  m_TagString: RTCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -573,8 +573,8 @@ GameObject:
   - component: {fileID: 748719806587246828}
   - component: {fileID: 3559332599179511648}
   m_Layer: 0
-  m_Name: RTWideCamera
-  m_TagString: Untagged
+  m_Name: RTCameraLandscape
+  m_TagString: RTCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

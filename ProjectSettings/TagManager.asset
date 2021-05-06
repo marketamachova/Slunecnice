@@ -14,6 +14,7 @@ TagManager:
   - PathCreator
   - CenterEyeAnchor
   - Terrain
+  - RTCamera
   layers:
   - Default
   - TransparentFX
