@@ -135,7 +135,7 @@ Material:
     - _Metallic1: 0
     - _Metallic2: 0
     - _Metallic3: 0
-    - _NumLayersCount: 6
+    - _NumLayersCount: 4
     - _OcclusionStrength: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
