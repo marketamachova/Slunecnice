@@ -219,33 +219,24 @@ namespace Player
             switch (playMode)
             {
                 case PlayMode.PlayerCamera:
-                    EnableCamerasExclusive(new List<string>(){"RTCamera"}, portrait);
+                    EnableCamerasExclusive(new []{portrait ? "RTCamera" : "RTCameraLandscape", ""});
                     break;
                 case PlayMode.TopCamera:
-                    EnableCamerasExclusive(new List<string>(){"RTTopCamera"}, portrait);
+                    EnableCamerasExclusive(new []{portrait ? "RTTopCamera" : "RTTopCameraLandscape", ""});
                     break;
                 case PlayMode.Multiview:
-                    EnableCamerasExclusive(new List<string>(){"RTCamera", "RTTopCamera"}, portrait);
+                    EnableCamerasExclusive(new []{"RTCamera", "RTTopCamera"});
                     break;
             }
         }
 
-        private void EnableCamerasExclusive(List<string> activeCameras, bool portrait)
+        private void EnableCamerasExclusive(string[] activeCameras)
         {
-            foreach (var activeCamera in activeCameras)
+            foreach (var o in _cameras)
             {
-                var activeCameraName = activeCamera;
-                
-                if (!portrait)
-                {
-                    activeCameraName += "Landscape";
-                }
-                
-                foreach (var o in _cameras)
-                {
-                    o.GetComponent<Camera>().enabled = o.name.Equals(activeCameraName);
-                }
+                o.GetComponent<Camera>().enabled = o.name.Equals(activeCameras[0]) || o.name.Equals(activeCameras[1]);
             }
+            
         }
 
         private void AssignCameras()

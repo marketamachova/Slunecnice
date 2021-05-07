@@ -27,6 +27,7 @@ namespace UI
 
         [SerializeField] private GameObject controls;
         [SerializeField] private GameObject controlButtons;
+        [SerializeField] private GameObject topBar;
         [SerializeField] private Timer timer;
         [SerializeField] private ProgressBar progressBar;
         [SerializeField] private Button[] sceneButtons;
@@ -69,16 +70,14 @@ namespace UI
                 SetCurrentPlayMode(currentPlayMode.ToString());
             }
 
-            if (!portraitOriented)
-            {
-                controlButtons.transform.localScale = new Vector3(1.559694f, 0.1559289f, 1.559694f);
-                timer.transform.localScale = new Vector3(1.559694f, 0.1559289f, 1.559694f);
-            }
-            else
-            {
-                controlButtons.transform.localScale = new Vector3(1.034554f, 0.1034285f, 1.034554f);
-                timer.transform.localScale = new Vector3(1.034554f, 1.034554f, 1.034554f);
-            }
+            timer.gameObject.SetActive(portraitOriented);
+            // progressBar.gameObject.SetActive(portraitOriented);
+            // topBar.SetActive(portraitOriented);
+
+            controlButtons.transform.localScale = portraitOriented
+                ? new Vector3(1.034554f, 0.1034285f, 1.034554f)
+                : new Vector3(1.559694f, 0.1559289f, 1.559694f);
+            // timer.transform.localScale = portraitOriented ? new Vector3(1.034554f, 1.034554f, 1.034554f) : new Vector3(1.559694f, 1.605603f, 1.559694f);
         }
 
         public void ToggleControlsVisible()
