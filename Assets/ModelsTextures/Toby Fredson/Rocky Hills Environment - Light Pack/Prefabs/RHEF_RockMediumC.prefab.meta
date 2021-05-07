@@ -8,9 +8,8 @@ labels:
 - rocks
 - smalldetails
 - stones
-timeCreated: 1493587480
-licenseType: Store
-NativeFormatImporter:
+PrefabImporter:
+  externalObjects: {}
   userData: 
-  assetBundleName: prefabs
+  assetBundleName: 
   assetBundleVariant: 

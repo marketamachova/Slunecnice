@@ -8,9 +8,8 @@ labels:
 - rockgrass
 - rocks
 - stones
-timeCreated: 1494164073
-licenseType: Store
-NativeFormatImporter:
+PrefabImporter:
+  externalObjects: {}
   userData: 
-  assetBundleName: prefabsmobile
+  assetBundleName: 
   assetBundleVariant: 

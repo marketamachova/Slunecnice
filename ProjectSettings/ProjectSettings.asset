@@ -8,7 +8,7 @@ PlayerSettings:
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
-  defaultScreenOrientation: 0
+  defaultScreenOrientation: 3
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
@@ -125,7 +125,8 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 1.0
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: 11400000, guid: 101659cf1892b41b69ea6a12253c5207, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -606,29 +607,6 @@ PlayerSettings:
   - libSceNpToolkit2.prx
   - libSceS3DConversion.prx
   ps4attribVROutputEnabled: 0
-  ps5ParamFilePath: 
-  ps5VideoOutPixelFormat: 0
-  ps5VideoOutInitialWidth: 1920
-  ps5VideoOutOutputMode: 1
-  ps5BackgroundImagePath: 
-  ps5StartupImagePath: 
-  ps5Pic2Path: 
-  ps5StartupImagesFolder: 
-  ps5IconImagesFolder: 
-  ps5SaveDataImagePath: 
-  ps5SdkOverride: 
-  ps5BGMPath: 
-  ps5ShareOverlayImagePath: 
-  ps5NPConfigZipPath: 
-  ps5Passcode: 5PN2qmWqBlQ9wQj99nsQzldVI5ZuGXbE
-  ps5UseResolutionFallback: 0
-  ps5UseAudio3dBackend: 0
-  ps5ScriptOptimizationLevel: 2
-  ps5Audio3dVirtualSpeakerCount: 14
-  ps5UpdateReferencePackage: 
-  ps5disableAutoHideSplash: 0
-  ps5OperatingSystemCanDisableSplashScreen: 0
-  ps5IncludedModules: []
   monoEnv: 
   splashScreenBackgroundSourceLandscape: {fileID: 0}
   splashScreenBackgroundSourcePortrait: {fileID: 0}

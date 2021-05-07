@@ -40,6 +40,8 @@ namespace UI
             EnableFalse("VideoControls");
             EnableFalse("SceneSelection");
             EnableFalse("Calibration");
+            EnableFalse("SceneJoin");
+            EnableFalse("Loader");
         }
 
         public void EnablePanelExclusive(string panelName)
@@ -115,8 +117,12 @@ namespace UI
 
         public void OnLanguageSelected()
         {
-
             controller.OnLanguageSelected(languagesDropdown.value);
+        }
+
+        public void SetLanguageDropdownValue(int index)
+        {
+            languagesDropdown.value = index;
         }
         
     }

@@ -1,11 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Network;
+﻿using System.Linq;
 using Scenes;
 using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngineInternal;
 using NetworkPlayer = Network.NetworkPlayer;
 using PlayMode = UI.PlayMode;
 
@@ -26,6 +23,8 @@ namespace Player
 
             _sceneLoader.SceneLoadingEnd += OnSceneLoaded;
             networkManager.OnServerAddPlayerAction += AssignPlayers;
+
+            SetLanguage();
 
             AssignPlayers();
         }
@@ -243,6 +242,12 @@ namespace Player
         {
             Debug.Log("assign cameras");
             _cameras = GameObject.FindGameObjectsWithTag("RTCamera");
+        }
+
+        private void SetLanguage()
+        {
+            int dropdownValueIndex = Application.systemLanguage == SystemLanguage.Czech ? 0 : 1;
+            uiController.SetLanguageDropdownValue(dropdownValueIndex);
         }
     }
 }

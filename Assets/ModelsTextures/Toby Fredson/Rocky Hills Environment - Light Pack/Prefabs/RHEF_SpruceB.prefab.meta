@@ -6,9 +6,8 @@ labels:
 - prefabs
 - spruce
 - tree
-timeCreated: 1493422043
-licenseType: Store
-NativeFormatImporter:
+PrefabImporter:
+  externalObjects: {}
   userData: 
-  assetBundleName: prefabs
+  assetBundleName: 
   assetBundleVariant: 

@@ -163,11 +163,10 @@ namespace Player
 
         private IEnumerator GoToLobbyCoroutine()
         {
-            yield return new WaitForSecondsRealtime(2);
+            yield return new WaitForSecondsRealtime(GameConstants.ReturnToLobbyWaitingTime);
             SceneManager.SetActiveScene(SceneManager.GetSceneByName("VROffline"));
 
             _sceneController.MovePlayersAtStartingPositionLobby();
-            // yield return new WaitForSecondsRealtime(1);
 
             Debug.Log("Unloading scene");
             

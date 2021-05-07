@@ -162,7 +162,7 @@ namespace UI
         {
             Debug.Log("on go to lobby");
             StartCoroutine(ActivateButtons(sceneButtons, 0, false));
-            StartCoroutine(ActivateButtons(sceneButtons, 3, true));
+            StartCoroutine(ActivateButtons(sceneButtons, GameConstants.ReturnToLobbyWaitingTime, true));
             EnablePanelExclusive(UIConstants.ConnectScreen);
             EnableCameraView(UIConstants.PlayerCameraRT);
             EnableTrue(UIConstants.SceneSelection);
