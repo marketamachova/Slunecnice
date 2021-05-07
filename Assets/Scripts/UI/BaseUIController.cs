@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Network;
+using Player;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -12,6 +14,7 @@ namespace UI
     {
         [Header("UI Elements")] [SerializeField]
         private GameObject loadingSceneIndicator;
+        [SerializeField] private TMP_Dropdown languagesDropdown;
 
         [SerializeField] protected List<GameObject> panels;
 
@@ -22,6 +25,7 @@ namespace UI
         protected List<GameObject> enalableObjects;
 
         [SerializeField] protected MyNetworkManager networkManager;
+        [SerializeField] protected BaseController controller;
 
 
         public void DisplayLoader(bool active)
@@ -107,6 +111,12 @@ namespace UI
             {
                 button.interactable = interactable;
             }
+        }
+
+        public void OnLanguageSelected()
+        {
+
+            controller.OnLanguageSelected(languagesDropdown.value);
         }
         
     }

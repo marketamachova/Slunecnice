@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: UI elements_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 2afaadddfd098403883a0a822e18a366, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 16956514304
+    m_Localized: Join
+    m_Metadata:
+      m_Items: []
+  - m_Id: 208296468480
+    m_Localized: No devices were found
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1784180367360
+    m_Localized: Available devices
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2135788871680
+    m_Localized: Connected
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2845377028096
+    m_Localized: Please make sure that an Oculus device is connected to the same
+      WiFi network as this device and also that the PhysioTrails application is running
+      on the Oculus device
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3520794189824
+    m_Localized: Calibration
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4069140717568
+    m_Localized: The calibration of the virtual world is in progress. Please wait
+      until the calibration is finished or feel free to skip it now.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5915217485824
+    m_Localized: Skip Calibration
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6153940492288
+    m_Localized: Scene selection
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6334203289600
+    m_Localized: Foreset
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6471038263296
+    m_Localized: Countryside
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6862677204992
+    m_Localized: Winter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7148552577024
+    m_Localized: Experience in progress
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7705266741248
+    m_Localized: A VR experience is in progress now. Feel free to join the experience.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8093114032128
+    m_Localized: Join
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8835644252160
+    m_Localized: Driving speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9354194444288
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9466199138304
+    m_Localized: End Experience
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9667353763840
+    m_Localized: Quit Application
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10079280553984
+    m_Localized: Try Again
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10241910497280
+    m_Localized: Cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10843914756096
+    m_Localized: Something went wrong
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11108332068864
+    m_Localized: Oops! Connection lost.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21498239639552
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 1

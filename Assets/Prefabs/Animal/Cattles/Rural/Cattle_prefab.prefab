@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1494145613951595443
+--- !u!1 &26617851873013194
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1494145613951595440}
-  - component: {fileID: 1494145613951595441}
+  - component: {fileID: 351755118557132067}
+  m_Layer: 0
+  m_Name: Cow_NeckSkin_01_01SHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &351755118557132067
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26617851873013194}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: 0.032120332, y: -2.1522478e-15, z: 0.28741363}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 6362201629149744747}
+  m_Father: {fileID: 2978003102486059136}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &108257646163097318
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7002241554829174010}
+  - component: {fileID: 4524339487488052659}
   m_Layer: 0
   m_Name: Cow_Mesh
   m_TagString: Untagged
@@ -17,27 +48,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1494145613951595440
+--- !u!4 &7002241554829174010
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145613951595443}
+  m_GameObject: {fileID: 108257646163097318}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: -8.470329e-24, z: 0.00000007031196}
   m_LocalScale: {x: 0.37014532, y: 0.37014532, z: 0.37014532}
   m_Children: []
-  m_Father: {fileID: 1494145614655731683}
+  m_Father: {fileID: 932387640007347787}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!137 &1494145613951595441
+--- !u!137 &4524339487488052659
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145613951595443}
+  m_GameObject: {fileID: 108257646163097318}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -76,65 +107,65 @@ SkinnedMeshRenderer:
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: 4300000, guid: cd1722673e65c234eaec442a39fc71cc, type: 3}
   m_Bones:
-  - {fileID: 1494145615214965913}
-  - {fileID: 1494145614484328839}
-  - {fileID: 1494145615737284461}
-  - {fileID: 1494145614766227301}
-  - {fileID: 1494145615332769487}
-  - {fileID: 1494145614140108929}
-  - {fileID: 1494145614659030660}
-  - {fileID: 1494145614894564596}
-  - {fileID: 1494145614115809084}
-  - {fileID: 1494145614510106131}
-  - {fileID: 1494145616044207778}
-  - {fileID: 1494145615272101557}
-  - {fileID: 1494145615224854612}
-  - {fileID: 1494145615736558722}
-  - {fileID: 1494145614355368934}
-  - {fileID: 1494145615376645341}
-  - {fileID: 1494145614563177526}
-  - {fileID: 1494145614727209378}
-  - {fileID: 1494145615001524422}
-  - {fileID: 1494145615414937221}
-  - {fileID: 1494145614267877749}
-  - {fileID: 1494145614172004141}
-  - {fileID: 1494145615536940664}
-  - {fileID: 1494145614192434858}
-  - {fileID: 1494145614585258672}
-  - {fileID: 1494145615765915113}
-  - {fileID: 1494145615740233821}
-  - {fileID: 1494145615894851046}
-  - {fileID: 1494145615549021279}
-  - {fileID: 1494145616042057661}
-  - {fileID: 1494145615241450348}
-  - {fileID: 1494145614598807093}
-  - {fileID: 1494145615980986549}
-  - {fileID: 1494145614709005006}
-  - {fileID: 1494145615179701965}
-  - {fileID: 1494145614903193249}
-  - {fileID: 1494145615093438933}
-  - {fileID: 1494145615952740875}
-  - {fileID: 1494145615497408021}
-  - {fileID: 1494145614763188930}
-  - {fileID: 1494145615834362779}
-  - {fileID: 1494145615856197254}
-  - {fileID: 1494145615665719864}
-  - {fileID: 1494145615825072197}
-  - {fileID: 1494145613986307919}
-  - {fileID: 1494145615403180345}
-  - {fileID: 1494145615754877434}
-  - {fileID: 1494145614801258259}
-  - {fileID: 1494145615399825248}
-  - {fileID: 1494145614964551590}
-  - {fileID: 1494145614669869022}
-  - {fileID: 1494145615022150628}
+  - {fileID: 4894464585817255141}
+  - {fileID: 3959689117993622713}
+  - {fileID: 5753686673375973631}
+  - {fileID: 6657158852856625007}
+  - {fileID: 4070582896261014332}
+  - {fileID: 2344769477614894724}
+  - {fileID: 8088575346013845822}
+  - {fileID: 171706945258861877}
+  - {fileID: 7921337451819599972}
+  - {fileID: 1030786050770622582}
+  - {fileID: 933793068906432985}
+  - {fileID: 8224701345627807952}
+  - {fileID: 307567846721603371}
+  - {fileID: 6784249681525633053}
+  - {fileID: 7374245880391497153}
+  - {fileID: 531454074414028538}
+  - {fileID: 5140794485679623502}
+  - {fileID: 2417587984877765876}
+  - {fileID: 8921232768863878534}
+  - {fileID: 2978003102486059136}
+  - {fileID: 5377363757862756180}
+  - {fileID: 7740872713384241726}
+  - {fileID: 7124325556564979687}
+  - {fileID: 6973055320138151360}
+  - {fileID: 367940739528523825}
+  - {fileID: 6250226122467258085}
+  - {fileID: 3196476163300444490}
+  - {fileID: 6348595984664555705}
+  - {fileID: 4119755307323786043}
+  - {fileID: 5924620967167107910}
+  - {fileID: 351755118557132067}
+  - {fileID: 6362201629149744747}
+  - {fileID: 1849638680220377996}
+  - {fileID: 226329841552560609}
+  - {fileID: 3460065727373332490}
+  - {fileID: 8319100588608288908}
+  - {fileID: 4492066343091138775}
+  - {fileID: 6412162752429800972}
+  - {fileID: 3657752218631818185}
+  - {fileID: 476012462228278742}
+  - {fileID: 1885591833870954854}
+  - {fileID: 692639743741282873}
+  - {fileID: 7849509445595022694}
+  - {fileID: 8013881092326299153}
+  - {fileID: 5183879429206851659}
+  - {fileID: 7475665303677613912}
+  - {fileID: 3145220331028263777}
+  - {fileID: 934833603589326192}
+  - {fileID: 5506164285844766214}
+  - {fileID: 7600602946020020027}
+  - {fileID: 5669854912288204729}
+  - {fileID: 4583178110999563408}
   m_BlendShapeWeights: []
-  m_RootBone: {fileID: 1494145615214965913}
+  m_RootBone: {fileID: 4894464585817255141}
   m_AABB:
     m_Center: {x: -0.013619661, y: 0.82087123, z: 0.25366688}
     m_Extent: {x: 0.426517, y: 0.86565626, z: 1.443435}
   m_DirtyAABB: 0
---- !u!1 &1494145613986307918
+--- !u!1 &361784671289593366
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,60 +173,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1494145613986307919}
+  - component: {fileID: 7124325556564979687}
   m_Layer: 0
-  m_Name: Cow_Tail_01_01SHJnt
+  m_Name: Cow_Head_JawSHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1494145613986307919
+--- !u!4 &7124325556564979687
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145613986307918}
-  m_LocalRotation: {x: -0.28587565, y: -0.6467419, z: 0.28587565, w: 0.6467419}
-  m_LocalPosition: {x: -9.568787e-17, y: 0.23982242, z: -0.20837937}
+  m_GameObject: {fileID: 361784671289593366}
+  m_LocalRotation: {x: -0.1944634, y: -0.1944634, z: 0.67984116, w: 0.67984116}
+  m_LocalPosition: {x: -0.21084303, y: -1.5210487e-15, z: 0.31195053}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1494145615403180345}
-  m_Father: {fileID: 1494145614484328839}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145613997169296
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145613997169297}
-  m_Layer: 0
-  m_Name: Cow_Head_JawEndSHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145613997169297
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145613997169296}
-  m_LocalRotation: {x: 0.7623392, y: 0, z: 0, w: 0.6471777}
-  m_LocalPosition: {x: -1.0089684e-15, y: -0.028786242, z: 0.16079542}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1494145615536940664}
+  - {fileID: 1763327692548438030}
+  m_Father: {fileID: 7740872713384241726}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145614115809087
+--- !u!1 &589147228898311745
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -203,30 +204,32 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1494145614115809084}
+  - component: {fileID: 8088575346013845822}
   m_Layer: 0
-  m_Name: Cow_l_FrontLeg_HipSHJnt
+  m_Name: Cow_Spine_TopSHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1494145614115809084
+--- !u!4 &8088575346013845822
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145614115809087}
-  m_LocalRotation: {x: 0.5177984, y: -0.5177984, z: -0.48154423, w: -0.48154423}
-  m_LocalPosition: {x: -0.07976343, y: 0.04953095, z: 0.13093442}
+  m_GameObject: {fileID: 589147228898311745}
+  m_LocalRotation: {x: 1.4163847e-16, y: -1.110223e-16, z: 4.1919422e-16, w: 1}
+  m_LocalPosition: {x: -0.20599675, y: -7.1337624e-17, z: -0.009137846}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1494145614510106131}
-  m_Father: {fileID: 1494145614894564596}
+  - {fileID: 171706945258861877}
+  - {fileID: 2978003102486059136}
+  - {fileID: 6784249681525633053}
+  m_Father: {fileID: 2344769477614894724}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145614140108928
+--- !u!1 &653756971997633498
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -234,7 +237,100 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1494145614140108929}
+  - component: {fileID: 6348595984664555705}
+  m_Layer: 0
+  m_Name: Cow_r_Ear_01_01SHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6348595984664555705
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653756971997633498}
+  m_LocalRotation: {x: 0.5863417, y: 0.1338966, z: -0.06053633, w: 0.7966245}
+  m_LocalPosition: {x: 0.14495195, y: -0.15578249, z: -0.10051279}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4119755307323786043}
+  m_Father: {fileID: 6973055320138151360}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &767337833403277341
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7475665303677613912}
+  m_Layer: 0
+  m_Name: Cow_Tail_01_02SHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7475665303677613912
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767337833403277341}
+  m_LocalRotation: {x: 2.424777e-16, y: 4.3121786e-16, z: 0.26032302, w: 0.96552163}
+  m_LocalPosition: {x: -0.13546422, y: -0.015659032, z: 8.6760294e-17}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3145220331028263777}
+  m_Father: {fileID: 5183879429206851659}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &801651132640362268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1849638680220377996}
+  m_Layer: 0
+  m_Name: Cow_l_HindLeg_HipSHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1849638680220377996
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801651132640362268}
+  m_LocalRotation: {x: 0.004485857, y: -0.19313887, z: 0.7164393, w: 0.67036706}
+  m_LocalPosition: {x: -0.22626927, y: -0.17868787, z: -0.03434629}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 226329841552560609}
+  m_Father: {fileID: 3959689117993622713}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &920624824509780341
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2344769477614894724}
   m_Layer: 0
   m_Name: Cow_Spine_04SHJnt
   m_TagString: Untagged
@@ -242,22 +338,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1494145614140108929
+--- !u!4 &2344769477614894724
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145614140108928}
+  m_GameObject: {fileID: 920624824509780341}
   m_LocalRotation: {x: -1.9142844e-16, y: 3.330669e-16, z: 6.4123883e-16, w: 1}
   m_LocalPosition: {x: -0.20599675, y: -4.6037475e-17, z: -0.013741785}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1494145614659030660}
-  m_Father: {fileID: 1494145615332769487}
+  - {fileID: 8088575346013845822}
+  m_Father: {fileID: 4070582896261014332}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145614172004140
+--- !u!1 &1039904442032145032
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -265,31 +361,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1494145614172004141}
+  - component: {fileID: 3460065727373332490}
   m_Layer: 0
-  m_Name: Cow_Neck_TopSHJnt
+  m_Name: Cow_l_HindLeg_Knee2SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1494145614172004141
+--- !u!4 &3460065727373332490
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145614172004140}
-  m_LocalRotation: {x: -1.8865472e-16, y: -0.15697606, z: -4.7965e-16, w: 0.9876024}
-  m_LocalPosition: {x: -0.1511945, y: -9.043534e-18, z: 0.027293464}
+  m_GameObject: {fileID: 1039904442032145032}
+  m_LocalRotation: {x: 0.06330476, y: 0.07011652, z: -0.040803075, w: 0.99469155}
+  m_LocalPosition: {x: -0.328453, y: -1.4921397e-15, z: 1.4210854e-16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1494145615536940664}
-  - {fileID: 1494145614192434858}
-  m_Father: {fileID: 1494145614267877749}
+  - {fileID: 8319100588608288908}
+  m_Father: {fileID: 226329841552560609}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145614192434861
+--- !u!1 &1222819887987936823
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -297,31 +392,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1494145614192434858}
+  - component: {fileID: 934833603589326192}
   m_Layer: 0
-  m_Name: Cow_Head_TopSHJnt
+  m_Name: Cow_Tail_01_04SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1494145614192434858
+--- !u!4 &934833603589326192
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145614192434861}
-  m_LocalRotation: {x: -0.121232495, y: -0.121232495, z: 0.69663674, w: 0.69663674}
-  m_LocalPosition: {x: -0.3668255, y: 9.155489e-16, z: -0.015574778}
+  m_GameObject: {fileID: 1222819887987936823}
+  m_LocalRotation: {x: 3.2063215e-16, y: -4.281131e-17, z: -0.010595772, w: 0.99994385}
+  m_LocalPosition: {x: -0.14457011, y: -5.684342e-16, z: 4.0642262e-17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1494145614585258672}
-  - {fileID: 1494145615894851046}
-  m_Father: {fileID: 1494145614172004141}
-  m_RootOrder: 1
+  - {fileID: 5506164285844766214}
+  m_Father: {fileID: 3145220331028263777}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145614267877748
+--- !u!1 &1266711354454475597
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -329,30 +423,29 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1494145614267877749}
+  - component: {fileID: 8013881092326299153}
   m_Layer: 0
-  m_Name: Cow_Neck_02SHJnt
+  m_Name: Cow_r_HindLeg_ToeSHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1494145614267877749
+--- !u!4 &8013881092326299153
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145614267877748}
-  m_LocalRotation: {x: -3.7170058e-16, y: -0.06412234, z: -5.905696e-16, w: 0.9979421}
-  m_LocalPosition: {x: -0.20116445, y: 3.7448722e-16, z: -0.0052814544}
+  m_GameObject: {fileID: 1266711354454475597}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.06175806, y: -7.105427e-17, z: 1.7141305e-17}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1494145614172004141}
-  m_Father: {fileID: 1494145615414937221}
+  m_Children: []
+  m_Father: {fileID: 7849509445595022694}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145614355368473
+--- !u!1 &1306431921923303666
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -360,7 +453,68 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1494145614355368934}
+  - component: {fileID: 1885591833870954854}
+  m_Layer: 0
+  m_Name: Cow_r_HindLeg_Knee2SHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1885591833870954854
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306431921923303666}
+  m_LocalRotation: {x: -0.06330476, y: 0.07011652, z: 0.040803075, w: 0.99469155}
+  m_LocalPosition: {x: -0.328453, y: 1.4210854e-16, z: -4.2632563e-16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 692639743741282873}
+  m_Father: {fileID: 476012462228278742}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1340505070430171672
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6412162752429800972}
+  m_Layer: 0
+  m_Name: Cow_l_HindLeg_ToeSHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6412162752429800972
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340505070430171672}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.06175806, y: 3.5527136e-17, z: 1.7141305e-17}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4492066343091138775}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1352462741178418313
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7374245880391497153}
   m_Layer: 0
   m_Name: Cow_r_FrontLeg_HipSHJnt
   m_TagString: Untagged
@@ -368,22 +522,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1494145614355368934
+--- !u!4 &7374245880391497153
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145614355368473}
+  m_GameObject: {fileID: 1352462741178418313}
   m_LocalRotation: {x: 0.5177984, y: -0.5177984, z: -0.48154423, w: -0.48154423}
   m_LocalPosition: {x: 0.07976343, y: 0.04953095, z: 0.13093442}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1494145615376645341}
-  m_Father: {fileID: 1494145615736558722}
+  - {fileID: 531454074414028538}
+  m_Father: {fileID: 6784249681525633053}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145614367181688
+--- !u!1 &1366019866890456848
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -391,7 +545,69 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1494145614367181689}
+  - component: {fileID: 6657158852856625007}
+  m_Layer: 0
+  m_Name: Cow_Spine_02SHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6657158852856625007
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366019866890456848}
+  m_LocalRotation: {x: -3.9722233e-15, y: -0.000013079867, z: 4.2669001e-16, w: 1}
+  m_LocalPosition: {x: -0.20593493, y: 1.1396637e-17, z: 0.006544724}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4070582896261014332}
+  m_Father: {fileID: 5753686673375973631}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1706602432559621267
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8224701345627807952}
+  m_Layer: 0
+  m_Name: Cow_l_FrontLeg_AnkleSHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8224701345627807952
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706602432559621267}
+  m_LocalRotation: {x: -3.1189242e-18, y: -0.056639757, z: 5.584625e-17, w: 0.9983947}
+  m_LocalPosition: {x: -0.05864724, y: -3.5527136e-17, z: 1.4210854e-16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 307567846721603371}
+  m_Father: {fileID: 933793068906432985}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2106469900614095885
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7915138953766186878}
   m_Layer: 0
   m_Name: Cow_l_FrontLeg_ToeSHJnt
   m_TagString: Untagged
@@ -399,21 +615,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1494145614367181689
+--- !u!4 &7915138953766186878
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145614367181688}
+  m_GameObject: {fileID: 2106469900614095885}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.07439106, y: -3.5527136e-17, z: 1.63064e-17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1494145615224854612}
+  m_Father: {fileID: 307567846721603371}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145614484328838
+--- !u!1 &2108847580332560748
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -421,34 +637,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1494145614484328839}
+  - component: {fileID: 7921337451819599972}
   m_Layer: 0
-  m_Name: Cow_ROOTSHJnt
+  m_Name: Cow_l_FrontLeg_HipSHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1494145614484328839
+--- !u!4 &7921337451819599972
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145614484328838}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 1.0441821, z: -0.66749686}
+  m_GameObject: {fileID: 2108847580332560748}
+  m_LocalRotation: {x: 0.5177984, y: -0.5177984, z: -0.48154423, w: -0.48154423}
+  m_LocalPosition: {x: -0.07976343, y: 0.04953095, z: 0.13093442}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1494145615980986549}
-  - {fileID: 1494145615497408021}
-  - {fileID: 1494145615737284461}
-  - {fileID: 1494145613986307919}
-  - {fileID: 1494145615022150628}
-  m_Father: {fileID: 1494145615214965913}
+  - {fileID: 1030786050770622582}
+  m_Father: {fileID: 171706945258861877}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145614510106130
+--- !u!1 &2137493442181599866
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -456,30 +668,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1494145614510106131}
+  - component: {fileID: 933793068906432985}
   m_Layer: 0
-  m_Name: Cow_l_FrontLeg_Knee1SHJnt
+  m_Name: Cow_l_FrontLeg_Knee2SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1494145614510106131
+--- !u!4 &933793068906432985
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145614510106130}
-  m_LocalRotation: {x: -3.576703e-18, y: -0.07996859, z: -4.7160285e-16, w: 0.9967974}
-  m_LocalPosition: {x: -0.5422821, y: 3.4816593e-15, z: 1.4210854e-16}
+  m_GameObject: {fileID: 2137493442181599866}
+  m_LocalRotation: {x: -7.9468136e-19, y: 0.10027707, z: 5.618807e-17, w: 0.9949596}
+  m_LocalPosition: {x: -0.2246399, y: 1.563194e-15, z: -1.4210854e-16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1494145616044207778}
-  m_Father: {fileID: 1494145614115809084}
+  - {fileID: 8224701345627807952}
+  m_Father: {fileID: 1030786050770622582}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145614563177513
+--- !u!1 &2141518396077001599
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -487,30 +699,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1494145614563177526}
+  - component: {fileID: 3657752218631818185}
   m_Layer: 0
-  m_Name: Cow_r_FrontLeg_Knee2SHJnt
+  m_Name: Cow_r_HindLeg_HipSHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1494145614563177526
+--- !u!4 &3657752218631818185
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145614563177513}
-  m_LocalRotation: {x: -3.0096365e-18, y: 0.10027707, z: 2.2307457e-16, w: 0.9949596}
-  m_LocalPosition: {x: -0.2246399, y: 1.065814e-15, z: -1.4210854e-16}
+  m_GameObject: {fileID: 2141518396077001599}
+  m_LocalRotation: {x: 0.19313887, y: -0.004485857, z: 0.67036706, w: 0.7164393}
+  m_LocalPosition: {x: 0.22626927, y: -0.17868787, z: -0.03434629}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1494145614727209378}
-  m_Father: {fileID: 1494145615376645341}
-  m_RootOrder: 0
+  - {fileID: 476012462228278742}
+  m_Father: {fileID: 3959689117993622713}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145614585258675
+--- !u!1 &2186556133304995190
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -518,7 +730,194 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1494145614585258672}
+  - component: {fileID: 8319100588608288908}
+  m_Layer: 0
+  m_Name: Cow_l_HindLeg_AnkleSHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8319100588608288908
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2186556133304995190}
+  m_LocalRotation: {x: 0.0775066, y: -0.14356142, z: 0.05268018, w: 0.9851942}
+  m_LocalPosition: {x: -0.07626948, y: 0, z: -1.4210854e-16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4492066343091138775}
+  m_Father: {fileID: 3460065727373332490}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2416914843807234681
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8921232768863878534}
+  m_Layer: 0
+  m_Name: Cow_r_FrontLeg_BallSHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8921232768863878534
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2416914843807234681}
+  m_LocalRotation: {x: -9.882843e-17, y: 0.7070909, z: 9.883286e-17, w: 0.7071226}
+  m_LocalPosition: {x: -0.0903333, y: 6.0396133e-16, z: 0.059703372}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8651634312433569176}
+  m_Father: {fileID: 2417587984877765876}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2849789774389149213
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4070582896261014332}
+  m_Layer: 0
+  m_Name: Cow_Spine_03SHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4070582896261014332
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2849789774389149213}
+  m_LocalRotation: {x: 0.9994911, y: -7.665058e-16, z: -0.03189899, w: 2.5838118e-16}
+  m_LocalPosition: {x: -0.20627315, y: 1.6181822e-16, z: 0.0033267613}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2344769477614894724}
+  m_Father: {fileID: 6657158852856625007}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3128631603697922309
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4583178110999563408}
+  m_Layer: 0
+  m_Name: Cow_Udder_01_01SHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4583178110999563408
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3128631603697922309}
+  m_LocalRotation: {x: -0.43859053, y: -0.5546516, z: 0.43859053, w: 0.5546516}
+  m_LocalPosition: {x: -3.5527136e-17, y: -0.4139328, z: 0.071882464}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5649785451035822526}
+  m_Father: {fileID: 3959689117993622713}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3363676608226980715
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6973055320138151360}
+  m_Layer: 0
+  m_Name: Cow_Head_TopSHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6973055320138151360
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3363676608226980715}
+  m_LocalRotation: {x: -0.121232495, y: -0.121232495, z: 0.69663674, w: 0.69663674}
+  m_LocalPosition: {x: -0.3668255, y: 9.155489e-16, z: -0.015574778}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 367940739528523825}
+  - {fileID: 6348595984664555705}
+  m_Father: {fileID: 7740872713384241726}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3571751079647943738
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2417587984877765876}
+  m_Layer: 0
+  m_Name: Cow_r_FrontLeg_AnkleSHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2417587984877765876
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3571751079647943738}
+  m_LocalRotation: {x: -1.2515523e-17, y: -0.056639757, z: 2.22683e-16, w: 0.9983947}
+  m_LocalPosition: {x: -0.05864724, y: 7.105427e-16, z: 1.4210854e-16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8921232768863878534}
+  m_Father: {fileID: 5140794485679623502}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3781582179192176315
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 367940739528523825}
   m_Layer: 0
   m_Name: Cow_l_Ear_01_01SHJnt
   m_TagString: Untagged
@@ -526,22 +925,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1494145614585258672
+--- !u!4 &367940739528523825
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145614585258675}
+  m_GameObject: {fileID: 3781582179192176315}
   m_LocalRotation: {x: 0.5863417, y: -0.1338966, z: 0.06053633, w: 0.7966245}
   m_LocalPosition: {x: -0.14495195, y: -0.15578249, z: -0.10051279}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1494145615765915113}
-  m_Father: {fileID: 1494145614192434858}
+  - {fileID: 6250226122467258085}
+  m_Father: {fileID: 6973055320138151360}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145614598807092
+--- !u!1 &4004436217394255228
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -549,37 +948,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1494145614598807093}
-  m_Layer: 0
-  m_Name: Cow_NeckSkin_01_02SHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145614598807093
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145614598807092}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.14114635, y: -1.563194e-15, z: -1.0045138e-15}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1494145615241450348}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145614641465538
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145614641465539}
+  - component: {fileID: 8651634312433569176}
   m_Layer: 0
   m_Name: Cow_r_FrontLeg_ToeSHJnt
   m_TagString: Untagged
@@ -587,21 +956,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1494145614641465539
+--- !u!4 &8651634312433569176
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145614641465538}
+  m_GameObject: {fileID: 4004436217394255228}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.07439106, y: 3.5527136e-17, z: 5.390653e-17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1494145615001524422}
+  m_Father: {fileID: 8921232768863878534}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145614655731682
+--- !u!1 &4355778319424332298
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -609,8 +978,469 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1494145614655731683}
-  - component: {fileID: 1494145614655731680}
+  - component: {fileID: 5183879429206851659}
+  m_Layer: 0
+  m_Name: Cow_Tail_01_01SHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5183879429206851659
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4355778319424332298}
+  m_LocalRotation: {x: -0.28587565, y: -0.6467419, z: 0.28587565, w: 0.6467419}
+  m_LocalPosition: {x: -9.568787e-17, y: 0.23982242, z: -0.20837937}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7475665303677613912}
+  m_Father: {fileID: 3959689117993622713}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4413923837281812461
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1030786050770622582}
+  m_Layer: 0
+  m_Name: Cow_l_FrontLeg_Knee1SHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1030786050770622582
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4413923837281812461}
+  m_LocalRotation: {x: -3.576703e-18, y: -0.07996859, z: -4.7160285e-16, w: 0.9967974}
+  m_LocalPosition: {x: -0.5422821, y: 3.4816593e-15, z: 1.4210854e-16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 933793068906432985}
+  m_Father: {fileID: 7921337451819599972}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4542796349920156699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 476012462228278742}
+  m_Layer: 0
+  m_Name: Cow_r_HindLeg_Knee1SHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &476012462228278742
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4542796349920156699}
+  m_LocalRotation: {x: -2.7813984e-16, y: 0.22079037, z: 6.0010696e-16, w: 0.9753213}
+  m_LocalPosition: {x: -0.4382466, y: 1.4210854e-16, z: 1.4210854e-16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1885591833870954854}
+  m_Father: {fileID: 3657752218631818185}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4647280026323385290
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 692639743741282873}
+  m_Layer: 0
+  m_Name: Cow_r_HindLeg_AnkleSHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &692639743741282873
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4647280026323385290}
+  m_LocalRotation: {x: -0.0775066, y: -0.14356142, z: -0.05268018, w: 0.9851942}
+  m_LocalPosition: {x: -0.07626948, y: -2.842171e-16, z: 1.4210854e-16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7849509445595022694}
+  m_Father: {fileID: 1885591833870954854}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4677489083775431935
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1763327692548438030}
+  m_Layer: 0
+  m_Name: Cow_Head_JawEndSHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1763327692548438030
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4677489083775431935}
+  m_LocalRotation: {x: 0.7623392, y: 0, z: 0, w: 0.6471777}
+  m_LocalPosition: {x: -1.0089684e-15, y: -0.028786242, z: 0.16079542}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7124325556564979687}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4891396680211503728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7600602946020020027}
+  m_Layer: 0
+  m_Name: Cow_Tail_01_06SHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7600602946020020027
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4891396680211503728}
+  m_LocalRotation: {x: 3.1906892e-16, y: 9.222177e-18, z: -0.061438866, w: 0.99811083}
+  m_LocalPosition: {x: -0.1375298, y: -0.005199773, z: 5.1891644e-17}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5669854912288204729}
+  m_Father: {fileID: 5506164285844766214}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4965638897104159402
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3196476163300444490}
+  m_Layer: 0
+  m_Name: Cow_l_Ear_01_03SHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3196476163300444490
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4965638897104159402}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.108181044, y: 0.0048367134, z: 1.1368684e-15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6250226122467258085}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5052024848950291897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 307567846721603371}
+  m_Layer: 0
+  m_Name: Cow_l_FrontLeg_BallSHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &307567846721603371
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5052024848950291897}
+  m_LocalRotation: {x: 1.9327254e-17, y: 0.7070909, z: -1.932812e-17, w: 0.7071226}
+  m_LocalPosition: {x: -0.0903333, y: 5.684342e-16, z: 0.059703372}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7915138953766186878}
+  m_Father: {fileID: 8224701345627807952}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5537770405278318133
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6784249681525633053}
+  m_Layer: 0
+  m_Name: Cow_r_Clavicle_01_01SHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6784249681525633053
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5537770405278318133}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 0.11171912, z: 8.5265126e-16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7374245880391497153}
+  m_Father: {fileID: 8088575346013845822}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6143829889849303716
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5140794485679623502}
+  m_Layer: 0
+  m_Name: Cow_r_FrontLeg_Knee2SHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5140794485679623502
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6143829889849303716}
+  m_LocalRotation: {x: -3.0096365e-18, y: 0.10027707, z: 2.2307457e-16, w: 0.9949596}
+  m_LocalPosition: {x: -0.2246399, y: 1.065814e-15, z: -1.4210854e-16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2417587984877765876}
+  m_Father: {fileID: 531454074414028538}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6224039807643533547
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6250226122467258085}
+  m_Layer: 0
+  m_Name: Cow_l_Ear_01_02SHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6250226122467258085
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6224039807643533547}
+  m_LocalRotation: {x: 3.3124932e-15, y: 5.76578e-15, z: -0.09760229, w: 0.99522555}
+  m_LocalPosition: {x: -0.07367655, y: -0.012893691, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3196476163300444490}
+  m_Father: {fileID: 367940739528523825}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6298811307991372488
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5753686673375973631}
+  m_Layer: 0
+  m_Name: Cow_Spine_01SHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5753686673375973631
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6298811307991372488}
+  m_LocalRotation: {x: -0.4838028, y: 0.4838028, z: 0.5156887, w: 0.5156887}
+  m_LocalPosition: {x: -8.738802e-21, y: -0.0064517558, z: 0.20599143}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 6657158852856625007}
+  m_Father: {fileID: 3959689117993622713}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6501761609580031761
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5669854912288204729}
+  m_Layer: 0
+  m_Name: Cow_Tail_01_07SHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5669854912288204729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6501761609580031761}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.14457011, y: 8.5265126e-16, z: 6.7512754e-17}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7600602946020020027}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6713160674603199234
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6362201629149744747}
+  m_Layer: 0
+  m_Name: Cow_NeckSkin_01_02SHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6362201629149744747
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6713160674603199234}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.14114635, y: -1.563194e-15, z: -1.0045138e-15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 351755118557132067}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6843987012293722791
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3145220331028263777}
+  m_Layer: 0
+  m_Name: Cow_Tail_01_03SHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3145220331028263777
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6843987012293722791}
+  m_LocalRotation: {x: 3.650586e-16, y: 2.9188552e-16, z: 0.15458472, w: 0.98797953}
+  m_LocalPosition: {x: -0.1456019, y: -0.0040115593, z: 6.5479134e-17}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 934833603589326192}
+  m_Father: {fileID: 7475665303677613912}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6984737717329777991
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 932387640007347787}
+  - component: {fileID: 6887640051334644991}
   m_Layer: 0
   m_Name: Cattle_prefab
   m_TagString: Untagged
@@ -618,30 +1448,30 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1494145614655731683
+--- !u!4 &932387640007347787
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145614655731682}
+  m_GameObject: {fileID: 6984737717329777991}
   m_LocalRotation: {x: -0, y: -0.592252, z: -0, w: 0.8057529}
   m_LocalPosition: {x: 225.91, y: -7.14, z: 65.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1494145615214965913}
-  - {fileID: 1494145613951595440}
+  - {fileID: 4894464585817255141}
+  - {fileID: 7002241554829174010}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -72.634, z: 0}
---- !u!95 &1494145614655731680
+--- !u!95 &6887640051334644991
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145614655731682}
+  m_GameObject: {fileID: 6984737717329777991}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: cd1722673e65c234eaec442a39fc71cc, type: 3}
   m_Controller: {fileID: 9100000, guid: 232c129e037fe4385aed09f867afd713, type: 2}
@@ -653,7 +1483,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1 &1494145614659030663
+--- !u!1 &7092653261728603713
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -661,70 +1491,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1494145614659030660}
-  m_Layer: 0
-  m_Name: Cow_Spine_TopSHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145614659030660
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145614659030663}
-  m_LocalRotation: {x: 1.4163847e-16, y: -1.110223e-16, z: 4.1919422e-16, w: 1}
-  m_LocalPosition: {x: -0.20599675, y: -7.1337624e-17, z: -0.009137846}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1494145614894564596}
-  - {fileID: 1494145615414937221}
-  - {fileID: 1494145615736558722}
-  m_Father: {fileID: 1494145614140108929}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145614669869009
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145614669869022}
-  m_Layer: 0
-  m_Name: Cow_Tail_01_07SHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145614669869022
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145614669869009}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.14457011, y: 8.5265126e-16, z: 6.7512754e-17}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1494145614964551590}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145614680200512
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145614680200513}
+  - component: {fileID: 5649785451035822526}
   m_Layer: 0
   m_Name: Cow_Udder_01_02SHJnt
   m_TagString: Untagged
@@ -732,21 +1499,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1494145614680200513
+--- !u!4 &5649785451035822526
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145614680200512}
+  m_GameObject: {fileID: 7092653261728603713}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.13606633, y: 0, z: -5.725203e-17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1494145615022150628}
+  m_Father: {fileID: 4583178110999563408}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145614709004993
+--- !u!1 &7524837515025267382
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -754,752 +1521,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1494145614709005006}
-  m_Layer: 0
-  m_Name: Cow_l_HindLeg_Knee1SHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145614709005006
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145614709004993}
-  m_LocalRotation: {x: 3.969346e-15, y: 0.22079037, z: 1.5737094e-15, w: 0.9753213}
-  m_LocalPosition: {x: -0.4382466, y: -6.3948843e-16, z: 1.4210854e-16}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1494145615179701965}
-  m_Father: {fileID: 1494145615980986549}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145614727209381
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145614727209378}
-  m_Layer: 0
-  m_Name: Cow_r_FrontLeg_AnkleSHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145614727209378
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145614727209381}
-  m_LocalRotation: {x: -1.2515523e-17, y: -0.056639757, z: 2.22683e-16, w: 0.9983947}
-  m_LocalPosition: {x: -0.05864724, y: 7.105427e-16, z: 1.4210854e-16}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1494145615001524422}
-  m_Father: {fileID: 1494145614563177526}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145614763188933
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145614763188930}
-  m_Layer: 0
-  m_Name: Cow_r_HindLeg_Knee1SHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145614763188930
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145614763188933}
-  m_LocalRotation: {x: -2.7813984e-16, y: 0.22079037, z: 6.0010696e-16, w: 0.9753213}
-  m_LocalPosition: {x: -0.4382466, y: 1.4210854e-16, z: 1.4210854e-16}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1494145615834362779}
-  m_Father: {fileID: 1494145615497408021}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145614766227300
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145614766227301}
-  m_Layer: 0
-  m_Name: Cow_Spine_02SHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145614766227301
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145614766227300}
-  m_LocalRotation: {x: -3.9722233e-15, y: -0.000013079867, z: 4.2669001e-16, w: 1}
-  m_LocalPosition: {x: -0.20593493, y: 1.1396637e-17, z: 0.006544724}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1494145615332769487}
-  m_Father: {fileID: 1494145615737284461}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145614801258258
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145614801258259}
-  m_Layer: 0
-  m_Name: Cow_Tail_01_04SHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145614801258259
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145614801258258}
-  m_LocalRotation: {x: 3.2063215e-16, y: -4.281131e-17, z: -0.010595772, w: 0.99994385}
-  m_LocalPosition: {x: -0.14457011, y: -5.684342e-16, z: 4.0642262e-17}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1494145615399825248}
-  m_Father: {fileID: 1494145615754877434}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145614894564599
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145614894564596}
-  m_Layer: 0
-  m_Name: Cow_l_Clavicle_01_01SHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145614894564596
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145614894564599}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 7.105427e-17, y: -0.11171912, z: -4.2632563e-16}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1494145614115809084}
-  m_Father: {fileID: 1494145614659030660}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145614903193248
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145614903193249}
-  m_Layer: 0
-  m_Name: Cow_l_HindLeg_AnkleSHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145614903193249
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145614903193248}
-  m_LocalRotation: {x: 0.0775066, y: -0.14356142, z: 0.05268018, w: 0.9851942}
-  m_LocalPosition: {x: -0.07626948, y: 0, z: -1.4210854e-16}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1494145615093438933}
-  m_Father: {fileID: 1494145615179701965}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145614964551641
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145614964551590}
-  m_Layer: 0
-  m_Name: Cow_Tail_01_06SHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145614964551590
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145614964551641}
-  m_LocalRotation: {x: 3.1906892e-16, y: 9.222177e-18, z: -0.061438866, w: 0.99811083}
-  m_LocalPosition: {x: -0.1375298, y: -0.005199773, z: 5.1891644e-17}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1494145614669869022}
-  m_Father: {fileID: 1494145615399825248}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145615001524473
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145615001524422}
-  m_Layer: 0
-  m_Name: Cow_r_FrontLeg_BallSHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145615001524422
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145615001524473}
-  m_LocalRotation: {x: -9.882843e-17, y: 0.7070909, z: 9.883286e-17, w: 0.7071226}
-  m_LocalPosition: {x: -0.0903333, y: 6.0396133e-16, z: 0.059703372}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1494145614641465539}
-  m_Father: {fileID: 1494145614727209378}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145615022150631
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145615022150628}
-  m_Layer: 0
-  m_Name: Cow_Udder_01_01SHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145615022150628
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145615022150631}
-  m_LocalRotation: {x: -0.43859053, y: -0.5546516, z: 0.43859053, w: 0.5546516}
-  m_LocalPosition: {x: -3.5527136e-17, y: -0.4139328, z: 0.071882464}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1494145614680200513}
-  m_Father: {fileID: 1494145614484328839}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145615093438932
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145615093438933}
-  m_Layer: 0
-  m_Name: Cow_l_HindLeg_BallSHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145615093438933
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145615093438932}
-  m_LocalRotation: {x: 7.850463e-17, y: 0.7071068, z: -7.850463e-17, w: 0.7071068}
-  m_LocalPosition: {x: -0.04836911, y: -7.105427e-17, z: 0.037957076}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1494145615952740875}
-  m_Father: {fileID: 1494145614903193249}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145615179701964
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145615179701965}
-  m_Layer: 0
-  m_Name: Cow_l_HindLeg_Knee2SHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145615179701965
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145615179701964}
-  m_LocalRotation: {x: 0.06330476, y: 0.07011652, z: -0.040803075, w: 0.99469155}
-  m_LocalPosition: {x: -0.328453, y: -1.4921397e-15, z: 1.4210854e-16}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1494145614903193249}
-  m_Father: {fileID: 1494145614709005006}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145615214965912
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145615214965913}
-  m_Layer: 0
-  m_Name: Cow_MAINSHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145615214965913
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145615214965912}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1494145614484328839}
-  m_Father: {fileID: 1494145614655731683}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145615224854615
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145615224854612}
-  m_Layer: 0
-  m_Name: Cow_l_FrontLeg_BallSHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145615224854612
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145615224854615}
-  m_LocalRotation: {x: 1.9327254e-17, y: 0.7070909, z: -1.932812e-17, w: 0.7071226}
-  m_LocalPosition: {x: -0.0903333, y: 5.684342e-16, z: 0.059703372}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1494145614367181689}
-  m_Father: {fileID: 1494145615272101557}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145615241450351
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145615241450348}
-  m_Layer: 0
-  m_Name: Cow_NeckSkin_01_01SHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145615241450348
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145615241450351}
-  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0.032120332, y: -2.1522478e-15, z: 0.28741363}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1494145614598807093}
-  m_Father: {fileID: 1494145615414937221}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145615272101556
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145615272101557}
-  m_Layer: 0
-  m_Name: Cow_l_FrontLeg_AnkleSHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145615272101557
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145615272101556}
-  m_LocalRotation: {x: -3.1189242e-18, y: -0.056639757, z: 5.584625e-17, w: 0.9983947}
-  m_LocalPosition: {x: -0.05864724, y: -3.5527136e-17, z: 1.4210854e-16}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1494145615224854612}
-  m_Father: {fileID: 1494145616044207778}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145615332769486
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145615332769487}
-  m_Layer: 0
-  m_Name: Cow_Spine_03SHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145615332769487
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145615332769486}
-  m_LocalRotation: {x: 0.9994911, y: -7.665058e-16, z: -0.03189899, w: 2.5838118e-16}
-  m_LocalPosition: {x: -0.20627315, y: 1.6181822e-16, z: 0.0033267613}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1494145614140108929}
-  m_Father: {fileID: 1494145614766227301}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145615376645340
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145615376645341}
-  m_Layer: 0
-  m_Name: Cow_r_FrontLeg_Knee1SHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145615376645341
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145615376645340}
-  m_LocalRotation: {x: 2.8823256e-19, y: -0.07996859, z: 2.8711588e-17, w: 0.9967974}
-  m_LocalPosition: {x: -0.5422821, y: 3.090861e-15, z: 1.4210854e-16}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1494145614563177526}
-  m_Father: {fileID: 1494145614355368934}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145615399825251
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145615399825248}
-  m_Layer: 0
-  m_Name: Cow_Tail_01_05SHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145615399825248
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145615399825251}
-  m_LocalRotation: {x: 4.709858e-16, y: 2.9261711e-16, z: -0.08565576, w: 0.9963248}
-  m_LocalPosition: {x: -0.14457011, y: 1.1368684e-15, z: 4.260429e-17}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1494145614964551590}
-  m_Father: {fileID: 1494145614801258259}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145615403180344
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145615403180345}
-  m_Layer: 0
-  m_Name: Cow_Tail_01_02SHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145615403180345
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145615403180344}
-  m_LocalRotation: {x: 2.424777e-16, y: 4.3121786e-16, z: 0.26032302, w: 0.96552163}
-  m_LocalPosition: {x: -0.13546422, y: -0.015659032, z: 8.6760294e-17}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1494145615754877434}
-  m_Father: {fileID: 1494145613986307919}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145615414937220
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145615414937221}
-  m_Layer: 0
-  m_Name: Cow_Neck_01SHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145615414937221
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145615414937220}
-  m_LocalRotation: {x: -1.0981922e-16, y: -0.11726478, z: 4.901038e-16, w: 0.9931007}
-  m_LocalPosition: {x: -0.25141072, y: -3.6612216e-16, z: 0.030429307}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1494145614267877749}
-  - {fileID: 1494145615241450348}
-  m_Father: {fileID: 1494145614659030660}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145615497408020
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145615497408021}
-  m_Layer: 0
-  m_Name: Cow_r_HindLeg_HipSHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145615497408021
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145615497408020}
-  m_LocalRotation: {x: 0.19313887, y: -0.004485857, z: 0.67036706, w: 0.7164393}
-  m_LocalPosition: {x: 0.22626927, y: -0.17868787, z: -0.03434629}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1494145614763188930}
-  m_Father: {fileID: 1494145614484328839}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145615536940667
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145615536940664}
-  m_Layer: 0
-  m_Name: Cow_Head_JawSHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145615536940664
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145615536940667}
-  m_LocalRotation: {x: -0.1944634, y: -0.1944634, z: 0.67984116, w: 0.67984116}
-  m_LocalPosition: {x: -0.21084303, y: -1.5210487e-15, z: 0.31195053}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1494145613997169297}
-  m_Father: {fileID: 1494145614172004141}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145615549021278
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145615549021279}
-  m_Layer: 0
-  m_Name: Cow_r_Ear_01_02SHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145615549021279
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145615549021278}
-  m_LocalRotation: {x: -1.1116144e-15, y: -3.452614e-15, z: 0.09760229, w: 0.99522555}
-  m_LocalPosition: {x: 0.07367655, y: -0.012893691, z: 1.4210854e-15}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1494145616042057661}
-  m_Father: {fileID: 1494145615894851046}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145615665719867
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145615665719864}
+  - component: {fileID: 7849509445595022694}
   m_Layer: 0
   m_Name: Cow_r_HindLeg_BallSHJnt
   m_TagString: Untagged
@@ -1507,22 +1529,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1494145615665719864
+--- !u!4 &7849509445595022694
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145615665719867}
+  m_GameObject: {fileID: 7524837515025267382}
   m_LocalRotation: {x: 5.397193e-17, y: 0.7071068, z: -5.397193e-17, w: 0.7071068}
   m_LocalPosition: {x: -0.04836911, y: 3.5527136e-17, z: 0.037957076}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1494145615825072197}
-  m_Father: {fileID: 1494145615856197254}
+  - {fileID: 8013881092326299153}
+  m_Father: {fileID: 692639743741282873}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145615736558725
+--- !u!1 &7591961843274690482
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1530,91 +1552,65 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1494145615736558722}
+  - component: {fileID: 3959689117993622713}
   m_Layer: 0
-  m_Name: Cow_r_Clavicle_01_01SHJnt
+  m_Name: Cow_ROOTSHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1494145615736558722
+--- !u!4 &3959689117993622713
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145615736558725}
+  m_GameObject: {fileID: 7591961843274690482}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 1.0441821, z: -0.66749686}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1849638680220377996}
+  - {fileID: 3657752218631818185}
+  - {fileID: 5753686673375973631}
+  - {fileID: 5183879429206851659}
+  - {fileID: 4583178110999563408}
+  m_Father: {fileID: 4894464585817255141}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7961473401245298648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 171706945258861877}
+  m_Layer: 0
+  m_Name: Cow_l_Clavicle_01_01SHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &171706945258861877
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7961473401245298648}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0.11171912, z: 8.5265126e-16}
+  m_LocalPosition: {x: 7.105427e-17, y: -0.11171912, z: -4.2632563e-16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1494145614355368934}
-  m_Father: {fileID: 1494145614659030660}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145615737284460
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145615737284461}
-  m_Layer: 0
-  m_Name: Cow_Spine_01SHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145615737284461
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145615737284460}
-  m_LocalRotation: {x: -0.4838028, y: 0.4838028, z: 0.5156887, w: 0.5156887}
-  m_LocalPosition: {x: -8.738802e-21, y: -0.0064517558, z: 0.20599143}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1494145614766227301}
-  m_Father: {fileID: 1494145614484328839}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145615740233820
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145615740233821}
-  m_Layer: 0
-  m_Name: Cow_l_Ear_01_03SHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145615740233821
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145615740233820}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.108181044, y: 0.0048367134, z: 1.1368684e-15}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1494145615765915113}
+  - {fileID: 7921337451819599972}
+  m_Father: {fileID: 8088575346013845822}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145615754877437
+--- !u!1 &8071001353369166009
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1622,30 +1618,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1494145615754877434}
+  - component: {fileID: 5506164285844766214}
   m_Layer: 0
-  m_Name: Cow_Tail_01_03SHJnt
+  m_Name: Cow_Tail_01_05SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1494145615754877434
+--- !u!4 &5506164285844766214
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145615754877437}
-  m_LocalRotation: {x: 3.650586e-16, y: 2.9188552e-16, z: 0.15458472, w: 0.98797953}
-  m_LocalPosition: {x: -0.1456019, y: -0.0040115593, z: 6.5479134e-17}
+  m_GameObject: {fileID: 8071001353369166009}
+  m_LocalRotation: {x: 4.709858e-16, y: 2.9261711e-16, z: -0.08565576, w: 0.9963248}
+  m_LocalPosition: {x: -0.14457011, y: 1.1368684e-15, z: 4.260429e-17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1494145614801258259}
-  m_Father: {fileID: 1494145615403180345}
+  - {fileID: 7600602946020020027}
+  m_Father: {fileID: 934833603589326192}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145615765915112
+--- !u!1 &8434564432273098393
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1653,30 +1649,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1494145615765915113}
+  - component: {fileID: 4119755307323786043}
   m_Layer: 0
-  m_Name: Cow_l_Ear_01_02SHJnt
+  m_Name: Cow_r_Ear_01_02SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1494145615765915113
+--- !u!4 &4119755307323786043
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145615765915112}
-  m_LocalRotation: {x: 3.3124932e-15, y: 5.76578e-15, z: -0.09760229, w: 0.99522555}
-  m_LocalPosition: {x: -0.07367655, y: -0.012893691, z: 0}
+  m_GameObject: {fileID: 8434564432273098393}
+  m_LocalRotation: {x: -1.1116144e-15, y: -3.452614e-15, z: 0.09760229, w: 0.99522555}
+  m_LocalPosition: {x: 0.07367655, y: -0.012893691, z: 1.4210854e-15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1494145615740233821}
-  m_Father: {fileID: 1494145614585258672}
+  - {fileID: 5924620967167107910}
+  m_Father: {fileID: 6348595984664555705}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145615825072196
+--- !u!1 &8446385017299966864
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1684,60 +1680,31 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1494145615825072197}
+  - component: {fileID: 7740872713384241726}
   m_Layer: 0
-  m_Name: Cow_r_HindLeg_ToeSHJnt
+  m_Name: Cow_Neck_TopSHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1494145615825072197
+--- !u!4 &7740872713384241726
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145615825072196}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.06175806, y: -7.105427e-17, z: 1.7141305e-17}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1494145615665719864}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145615834362778
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145615834362779}
-  m_Layer: 0
-  m_Name: Cow_r_HindLeg_Knee2SHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145615834362779
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145615834362778}
-  m_LocalRotation: {x: -0.06330476, y: 0.07011652, z: 0.040803075, w: 0.99469155}
-  m_LocalPosition: {x: -0.328453, y: 1.4210854e-16, z: -4.2632563e-16}
+  m_GameObject: {fileID: 8446385017299966864}
+  m_LocalRotation: {x: -1.8865472e-16, y: -0.15697606, z: -4.7965e-16, w: 0.9876024}
+  m_LocalPosition: {x: -0.1511945, y: -9.043534e-18, z: 0.027293464}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1494145615856197254}
-  m_Father: {fileID: 1494145614763188930}
+  - {fileID: 7124325556564979687}
+  - {fileID: 6973055320138151360}
+  m_Father: {fileID: 5377363757862756180}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145615856197305
+--- !u!1 &8472134433779175832
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1745,30 +1712,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1494145615856197254}
+  - component: {fileID: 4492066343091138775}
   m_Layer: 0
-  m_Name: Cow_r_HindLeg_AnkleSHJnt
+  m_Name: Cow_l_HindLeg_BallSHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1494145615856197254
+--- !u!4 &4492066343091138775
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145615856197305}
-  m_LocalRotation: {x: -0.0775066, y: -0.14356142, z: -0.05268018, w: 0.9851942}
-  m_LocalPosition: {x: -0.07626948, y: -2.842171e-16, z: 1.4210854e-16}
+  m_GameObject: {fileID: 8472134433779175832}
+  m_LocalRotation: {x: 7.850463e-17, y: 0.7071068, z: -7.850463e-17, w: 0.7071068}
+  m_LocalPosition: {x: -0.04836911, y: -7.105427e-17, z: 0.037957076}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1494145615665719864}
-  m_Father: {fileID: 1494145615834362779}
+  - {fileID: 6412162752429800972}
+  m_Father: {fileID: 8319100588608288908}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145615894850585
+--- !u!1 &8580892987999928806
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1776,30 +1743,31 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1494145615894851046}
+  - component: {fileID: 2978003102486059136}
   m_Layer: 0
-  m_Name: Cow_r_Ear_01_01SHJnt
+  m_Name: Cow_Neck_01SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1494145615894851046
+--- !u!4 &2978003102486059136
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145615894850585}
-  m_LocalRotation: {x: 0.5863417, y: 0.1338966, z: -0.06053633, w: 0.7966245}
-  m_LocalPosition: {x: 0.14495195, y: -0.15578249, z: -0.10051279}
+  m_GameObject: {fileID: 8580892987999928806}
+  m_LocalRotation: {x: -1.0981922e-16, y: -0.11726478, z: 4.901038e-16, w: 0.9931007}
+  m_LocalPosition: {x: -0.25141072, y: -3.6612216e-16, z: 0.030429307}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1494145615549021279}
-  m_Father: {fileID: 1494145614192434858}
+  - {fileID: 5377363757862756180}
+  - {fileID: 351755118557132067}
+  m_Father: {fileID: 8088575346013845822}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145615952740874
+--- !u!1 &8807747243154857655
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1807,60 +1775,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1494145615952740875}
+  - component: {fileID: 226329841552560609}
   m_Layer: 0
-  m_Name: Cow_l_HindLeg_ToeSHJnt
+  m_Name: Cow_l_HindLeg_Knee1SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1494145615952740875
+--- !u!4 &226329841552560609
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145615952740874}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.06175806, y: 3.5527136e-17, z: 1.7141305e-17}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1494145615093438933}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145615980986548
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145615980986549}
-  m_Layer: 0
-  m_Name: Cow_l_HindLeg_HipSHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145615980986549
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145615980986548}
-  m_LocalRotation: {x: 0.004485857, y: -0.19313887, z: 0.7164393, w: 0.67036706}
-  m_LocalPosition: {x: -0.22626927, y: -0.17868787, z: -0.03434629}
+  m_GameObject: {fileID: 8807747243154857655}
+  m_LocalRotation: {x: 3.969346e-15, y: 0.22079037, z: 1.5737094e-15, w: 0.9753213}
+  m_LocalPosition: {x: -0.4382466, y: -6.3948843e-16, z: 1.4210854e-16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1494145614709005006}
-  m_Father: {fileID: 1494145614484328839}
+  - {fileID: 3460065727373332490}
+  m_Father: {fileID: 1849638680220377996}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145616042057660
+--- !u!1 &8925342948304171507
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1868,7 +1806,100 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1494145616042057661}
+  - component: {fileID: 5377363757862756180}
+  m_Layer: 0
+  m_Name: Cow_Neck_02SHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5377363757862756180
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8925342948304171507}
+  m_LocalRotation: {x: -3.7170058e-16, y: -0.06412234, z: -5.905696e-16, w: 0.9979421}
+  m_LocalPosition: {x: -0.20116445, y: 3.7448722e-16, z: -0.0052814544}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7740872713384241726}
+  m_Father: {fileID: 2978003102486059136}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9125309246207430520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 531454074414028538}
+  m_Layer: 0
+  m_Name: Cow_r_FrontLeg_Knee1SHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &531454074414028538
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9125309246207430520}
+  m_LocalRotation: {x: 2.8823256e-19, y: -0.07996859, z: 2.8711588e-17, w: 0.9967974}
+  m_LocalPosition: {x: -0.5422821, y: 3.090861e-15, z: 1.4210854e-16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5140794485679623502}
+  m_Father: {fileID: 7374245880391497153}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9140509856422785848
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4894464585817255141}
+  m_Layer: 0
+  m_Name: Cow_MAINSHJnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4894464585817255141
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9140509856422785848}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3959689117993622713}
+  m_Father: {fileID: 932387640007347787}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9203651881509031295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5924620967167107910}
   m_Layer: 0
   m_Name: Cow_r_Ear_01_03SHJnt
   m_TagString: Untagged
@@ -1876,48 +1907,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1494145616042057661
+--- !u!4 &5924620967167107910
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145616042057660}
+  m_GameObject: {fileID: 9203651881509031295}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.108181044, y: 0.0048367134, z: 5.684342e-16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1494145615549021279}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494145616044207781
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494145616044207778}
-  m_Layer: 0
-  m_Name: Cow_l_FrontLeg_Knee2SHJnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494145616044207778
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494145616044207781}
-  m_LocalRotation: {x: -7.9468136e-19, y: 0.10027707, z: 5.618807e-17, w: 0.9949596}
-  m_LocalPosition: {x: -0.2246399, y: 1.563194e-15, z: -1.4210854e-16}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1494145615272101557}
-  m_Father: {fileID: 1494145614510106131}
+  m_Father: {fileID: 4119755307323786043}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

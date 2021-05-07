@@ -1,0 +1,123 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: UI elements_cs
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: cs
+  m_SharedData: {fileID: 11400000, guid: 2afaadddfd098403883a0a822e18a366, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 16956514304
+    m_Localized: "P\u0159ipojit se"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 208296468480
+    m_Localized: "\u017D\xE1dn\xE1 za\u0159\xEDzen\xED nalezena"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1784180367360
+    m_Localized: "Dostupn\xE1 za\u0159\xEDzen\xED"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2135788871680
+    m_Localized: "P\u0159ipojeno"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2845377028096
+    m_Localized: "Ujist\u011Bte se, \u017Ee je za\u0159\xEDzen\xED Oculus v dosahu
+      a z\xE1rove\u0148 \u017Ee je va\u0161e za\u0159\xEDzen\xED p\u0159ipojeno na
+      stejnou WiFi s\xED\u0165 jako za\u0159\xEDzen\xED Oculus."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3520794189824
+    m_Localized: Kalibrace
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4069140717568
+    m_Localized: "Pr\xE1v\u011B prob\xEDh\xE1 kalibrace VR sv\u011Bta s re\xE1ln\xFDm.
+      Po\u010Dkejte pros\xEDm, ne\u017E bude proces dokon\u010Den, nebo kalibraci
+      p\u0159esko\u010Dte."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5915217485824
+    m_Localized: "P\u0159esko\u010Dit kalibraci"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6153940492288
+    m_Localized: "V\xFDb\u011Br sc\xE9ny"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6334203289600
+    m_Localized: Les
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6471038263296
+    m_Localized: Venkov
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6862677204992
+    m_Localized: Zima
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7148552577024
+    m_Localized: "Proj\xED\u017E\u010Fka prob\xEDh\xE1"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7705266741248
+    m_Localized: "Pr\xE1v\u011B prob\xEDh\xE1 VR proj\xED\u017E\u010Fka. Vy\u010Dkejte,
+      ne\u017E bude dokon\u010Dena, nebo se p\u0159ipojte."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8093114032128
+    m_Localized: "P\u0159ipojit se"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8835644252160
+    m_Localized: "Rychlost proj\xED\u017E\u010Fky"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9354194444288
+    m_Localized: "Nastaven\xED"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9466199138304
+    m_Localized: "Ukon\u010Dit proj\xED\u017E\u010Fku"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9667353763840
+    m_Localized: "Ukon\u010Dit aplikaci"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10079280553984
+    m_Localized: Zkusit znovu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10241910497280
+    m_Localized: "Zav\u0159\xEDt"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10843914756096
+    m_Localized: Nastala chyba
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11108332068864
+    m_Localized: "Jejda! P\u0159ipojen\xED k za\u0159\xEDzen\xED Oculus selhalo."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21498239639552
+    m_Localized: Jazyk aplikace
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 1

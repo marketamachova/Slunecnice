@@ -7,6 +7,7 @@ using Mirror.Discovery;
 using Network;
 using Scenes;
 using UI;
+using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
 
 namespace Player
@@ -105,6 +106,12 @@ namespace Player
         {
             
         }
+
+        public void OnLanguageSelected(int index)
+        {
+            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[index];
+        }
+        
 
 
     }
