@@ -12,8 +12,8 @@ namespace UI
 {
     public class BaseUIController : MonoBehaviour
     {
-        [Header("UI Elements")] [SerializeField]
-        private GameObject loadingSceneIndicator;
+        [Header("UI Elements")] 
+        [SerializeField] private GameObject loadingSceneIndicator;
         [SerializeField] private TMP_Dropdown languagesDropdown;
 
         [SerializeField] protected List<GameObject> panels;
@@ -35,13 +35,13 @@ namespace UI
 
         public virtual void DisplayError()
         {
-            EnableTrue("ErrorPanel");
-            EnableTrue("ErrorBackdrop");
-            EnableFalse("VideoControls");
-            EnableFalse("SceneSelection");
-            EnableFalse("Calibration");
-            EnableFalse("SceneJoin");
-            EnableFalse("Loader");
+            EnableTrue(UIConstants.ErrorPanel);
+            EnableTrue(UIConstants.ErrorBackdrop);
+            EnableFalse(UIConstants.VideoControls);
+            EnableFalse(UIConstants.SceneSelection);
+            EnableFalse(UIConstants.Calibration);
+            EnableFalse(UIConstants.SceneJoin);
+            EnableFalse(UIConstants.Loader);
         }
 
         public void EnablePanelExclusive(string panelName)

@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using Cart;
 using Mirror;
-using Scenes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using NetworkPlayer = Network.NetworkPlayer;
 
 namespace Player
 {
     public enum World
     {
         MainScene,
-        ForestScene,
         WinterScene,
         RuralScene
     }
@@ -36,7 +32,7 @@ namespace Player
         private IEnumerator Start()
         {
             yield return new WaitForSecondsRealtime(1);
-            NetworkManager.singleton.StartHost(); //todo to myNetowrk manager STATIC
+            NetworkManager.singleton.StartHost();
             networkDiscovery.AdvertiseServer();
         }
 
@@ -47,20 +43,14 @@ namespace Player
             {
                 if (Input.GetKey(KeyCode.R))
                 {
-                    Debug.Log("Pressed R");
-
                     OnSceneSelected(World.RuralScene.ToString());
                 }
                 if (Input.GetKey(KeyCode.W))
                 {
-                    Debug.Log("Pressed W");
-
                     OnSceneSelected(World.WinterScene.ToString());
                 }
                 if (Input.GetKey(KeyCode.M))
                 {
-                    Debug.Log("Pressed M");
-
                     OnSceneSelected(World.MainScene.ToString());
                 }
             }

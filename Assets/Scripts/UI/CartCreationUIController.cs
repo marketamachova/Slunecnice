@@ -4,19 +4,19 @@
     {
         public void DisplayCalibrationStep1()
         {
-            EnablePanelExclusive("Step1");
-            EnableFalse("DoneButton");
+            EnablePanelExclusive(UIConstants.Step1);
+            EnableFalse(UIConstants.DoneButton);
         }
 
         public void DisplayCalibrationStep2()
         {
-            EnablePanelExclusive("Step2");
+            EnablePanelExclusive(UIConstants.Step2);
         }
 
         public void DisplayCalibrationStep3()
         {
-            EnablePanelExclusive("Step3");
-            EnableTrue("DoneButton");
+            EnablePanelExclusive(UIConstants.Step3);
+            EnableTrue(UIConstants.DoneButton);
         }
     }
 }

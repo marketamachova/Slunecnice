@@ -12,6 +12,7 @@ namespace Player
     {
         [SerializeField] private UIControllerMobile uiControllerMobile;
         [SerializeField] private ConnectScreenController connectController;
+        
         private bool _playing = false;
         private SceneLoader _sceneLoader;
         private NetworkPlayer _vrPlayer;
@@ -34,15 +35,11 @@ namespace Player
             base.OnSceneLoaded();
             Debug.Log("ON SCENE LOADED");
 
-            Debug.Log("LocalNetworkPlayer.chosenWorld " + LocalNetworkPlayer.chosenWorld);
             var scene = SceneManager.GetSceneByName(LocalNetworkPlayer.chosenWorld + "Mobile");
             SceneManager.SetActiveScene(scene);
 
-            Debug.Log("RemoteNetworkPlayer.mobile" + RemoteNetworkPlayer);
             if (RemoteNetworkPlayer.worldLoaded)
             {
-                MoveNetworkPlayerToStartingPoint();
-
                 Debug.Log("RemoteNetworkPlayer.worldLoaded");
 
                 uiControllerMobile.EnablePanelExclusive("WatchScreenPortrait");
@@ -50,17 +47,16 @@ namespace Player
 
                 _playing = RemoteNetworkPlayer.playerMoving;
 
-                if (NetworkPlayers.Length < 2)
-                {
-                    AssignPlayers();
-                }
+                // if (NetworkPlayers.Length < 2)
+                // {
+                //     AssignPlayers();
+                // }
 
                 foreach (var networkPlayer in NetworkPlayers)
                 {
                     networkPlayer.CmdTriggerTimeSync(true);
                 }
-
-
+                
                 LocalNetworkPlayer.CmdSetPlayerMoving(_playing);
                 uiControllerMobile.SetPlayButtonSelected(_playing);
                 EnableCamera(PlayMode.PlayerCamera, true);
@@ -72,19 +68,14 @@ namespace Player
             }
         }
 
-        private void MoveNetworkPlayerToStartingPoint()
-        {
-        }
-
-
         public override void OnDisconnect()
         {
             base.OnDisconnect();
-            uiControllerMobile.EnablePanelExclusive("ConnectScreen");
+            uiControllerMobile.EnablePanelExclusive(UIConstants.ConnectScreen);
             connectController.OnDisconnect();
             sceneLoader.UnloadScene();
 
-            Debug.Log("ON DISCONNECT Controller");
+            Debug.Log("MobileController.OnDisconnect");
         }
 
         public void OnPlayPressed()
@@ -106,18 +97,21 @@ namespace Player
             uiControllerMobile.OnPlayPressed(_playing);
         }
 
-        public void EndDrive()
-        {
-            Debug.Log("Mobile Controller end drive");
-            LocalNetworkPlayer.CmdSetPlayerMoving(false); //indicate END somehow
-        }
+        // public void EndDrive()
+        // {
+        //     Debug.Log("Mobile Controller end drive");
+        //     LocalNetworkPlayer.CmdSetPlayerMoving(false);
+        //     
+        // }
+        
+        
 
-        public void SkipCalibration()
+        public override void SkipCalibration()
         {
-            if (NetworkPlayers.Length < 2)
-            {
-                AssignPlayers();
-            }
+            // if (NetworkPlayers.Length < 2)
+            // {
+            //     AssignPlayers();
+            // }
 
             foreach (var networkPlayer in NetworkPlayers)
             {
@@ -143,9 +137,9 @@ namespace Player
             {
                 LocalNetworkPlayer.CmdSetPlayerMoving(true);
             }
-
-
+            
             Debug.Log("ASSIGN PLAYER " + networkPlayer);
+            
             if (_vrPlayer.calibrationComplete) //calibration complete in VR
             {
                 Debug.Log("calibration complete");
@@ -178,10 +172,10 @@ namespace Player
             }
             else
             {
-                uiController.EnableTrue("SceneSelection");
+                uiController.EnableTrue(UIConstants.SceneSelection);
             }
 
-            uiController.EnableFalse("Calibration");
+            uiController.EnableFalse(UIConstants.Calibration);
         }
 
         public override void OnGoToLobby()
@@ -194,8 +188,8 @@ namespace Player
         private void DisplaySceneSelected(string sceneName)
         {
             Debug.Log("display scene selected");
-            uiController.EnableFalse("SceneSelection");
-            uiController.EnableTrue("SceneJoin");
+            uiController.EnableFalse(UIConstants.SceneSelection);
+            uiController.EnableTrue(UIConstants.SceneJoin);
         }
 
         public void OnLoadedSceneJoin()
@@ -206,8 +200,10 @@ namespace Player
         public void SetSpeed(float value)
         {
             Debug.Log("setting speed to " + value);
-            AssignPlayers();
-            foreach (var networkPlayer in NetworkPlayers) //tady asi neni VR player
+            
+            // AssignPlayers();
+            
+            foreach (var networkPlayer in NetworkPlayers)
             {
                 networkPlayer.CmdSetSpeed((int) value);
             }
@@ -218,13 +214,13 @@ namespace Player
             switch (playMode)
             {
                 case PlayMode.PlayerCamera:
-                    EnableCamerasExclusive(new []{portrait ? "RTCamera" : "RTCameraLandscape", ""});
+                    EnableCamerasExclusive(new []{portrait ? UIConstants.RTCamera : UIConstants.RTCameraLandscape, ""});
                     break;
                 case PlayMode.TopCamera:
-                    EnableCamerasExclusive(new []{portrait ? "RTTopCamera" : "RTTopCameraLandscape", ""});
+                    EnableCamerasExclusive(new []{portrait ? UIConstants.RTTopCamera : UIConstants.RTTopCameraLandscape, ""});
                     break;
                 case PlayMode.Multiview:
-                    EnableCamerasExclusive(new []{"RTCamera", "RTTopCamera"});
+                    EnableCamerasExclusive(new []{UIConstants.RTCamera, UIConstants.RTTopCamera});
                     break;
             }
         }
@@ -235,18 +231,16 @@ namespace Player
             {
                 o.GetComponent<Camera>().enabled = o.name.Equals(activeCameras[0]) || o.name.Equals(activeCameras[1]);
             }
-            
         }
 
         private void AssignCameras()
         {
-            Debug.Log("assign cameras");
-            _cameras = GameObject.FindGameObjectsWithTag("RTCamera");
+            _cameras = GameObject.FindGameObjectsWithTag(UIConstants.RTCamera);
         }
 
         private void SetLanguage()
         {
-            int dropdownValueIndex = Application.systemLanguage == SystemLanguage.Czech ? 0 : 1;
+            var dropdownValueIndex = Application.systemLanguage == SystemLanguage.Czech ? 0 : 1;
             uiController.SetLanguageDropdownValue(dropdownValueIndex);
         }
     }

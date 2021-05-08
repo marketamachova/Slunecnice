@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using Cart;
-using Mirror;
 using Network;
 using PathCreation;
 using Scenes;
-using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using NetworkPlayer = Network.NetworkPlayer;
 
 namespace Player
@@ -66,13 +61,10 @@ namespace Player
 
             _networkManager.OnMobileClientDisconnectAction += TriggerPlayerMoving;
             _networkManager.OnClientDisconnectAction += TriggerPlayerMoving;
-            // _fader = GetComponent<Fader>(
         }
 
         public IEnumerator Start()
         {
-            // yield return StartCoroutine(_fader.FadeCoroutine());
-
             if (_networkManager.numPlayers == 1)
             {
                 yield return new WaitForSecondsRealtime(4);

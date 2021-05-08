@@ -8,19 +8,6 @@ public class TerrainConfig : MonoBehaviour
 
     void Start()
     {
-        //Terrain terrain = (Terrain) GameObject.FindObjectOfType(typeof(Terrain));
-        //terrain.treeDistance = distance;
-
-        //var terrainScripts = GameObject.FindSceneObjectsOfType(typeof(Terrain));
-
-        //foreach (var terrain in terrainScripts)
-        //{
-        //    (terrain as Terrain).treeDistance = 2000;
-        //}
-
         Terrain.activeTerrain.treeDistance = distance;
-
     }
-
-
 }

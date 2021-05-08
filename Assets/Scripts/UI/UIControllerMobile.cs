@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using Player;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Utils;
 
 namespace UI
 {
@@ -104,7 +104,6 @@ namespace UI
         }
 
 
-        //general controller
         public void OnSceneChosen(string chosenScene)
         {
             mobileController.OnSceneSelected(chosenScene);
@@ -161,6 +160,7 @@ namespace UI
         public void OnGoToLobby()
         {
             Debug.Log("on go to lobby");
+            
             StartCoroutine(ActivateButtons(sceneButtons, 0, false));
             StartCoroutine(ActivateButtons(sceneButtons, GameConstants.ReturnToLobbyWaitingTime, true));
             EnablePanelExclusive(UIConstants.ConnectScreen);

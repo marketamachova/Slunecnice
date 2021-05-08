@@ -23,6 +23,11 @@ namespace Player
         protected NetworkPlayer LocalNetworkPlayer;
         protected NetworkPlayer RemoteNetworkPlayer;
 
+        public void Awake()
+        {
+            networkManager.OnServerAddPlayerAction += AssignPlayers;
+        }
+
         public virtual void OnDisconnect()
         {
             if (SceneManager.sceneCount > 1)

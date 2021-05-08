@@ -1,55 +1,57 @@
 ﻿using TMPro;
 using UnityEngine;
 
-public class Timer : MonoBehaviour
+namespace Utils
 {
-    private bool _playing = false;
-    [SerializeField] private TextMeshProUGUI timerText;
-    private float _totalTime = 0f;
-
-
-    void Update()
+    public class Timer : MonoBehaviour
     {
-        if (_playing)
+        private bool _playing = false;
+        [SerializeField] private TextMeshProUGUI timerText;
+        private float _totalTime = 0f;
+
+
+        void Update()
         {
-            _totalTime += Time.deltaTime;
+            if (_playing)
+            {
+                _totalTime += Time.deltaTime;
+                UpdateTextTimer();
+            }
+        }
+
+        private void UpdateTextTimer()
+        {
+            float minutes = Mathf.FloorToInt((_totalTime + 1) / 60);
+            float seconds = Mathf.FloorToInt((_totalTime + 1) % 60);
+
+
+            if (seconds < 10)
+            {
+                timerText.text = $"{minutes}:0{seconds}";
+            }
+            else
+            {
+                timerText.text = $"{minutes}:{seconds}";
+            }
+        }
+
+        public void ResetTimer()
+        {
+            _totalTime = 0f;
             UpdateTextTimer();
+            SetTimerPlaying(false);
         }
-    }
 
-    private void UpdateTextTimer()
-    {
-        float minutes = Mathf.FloorToInt((_totalTime + 1) / 60);
-        float seconds = Mathf.FloorToInt((_totalTime + 1) % 60);
-
-
-        if (seconds < 10)
+        public void SetTimerPlaying(bool playing)
         {
-            timerText.text = $"{minutes}:0{seconds}";
+            _playing = playing;
         }
-        else
+
+        public void SetTime(float time)
         {
-            timerText.text = $"{minutes}:{seconds}";
+            this._totalTime = time;
+            UpdateTextTimer();
+            SetTimerPlaying(true);
         }
-    }
-
-    public void ResetTimer()
-    {
-        _totalTime = 0f;
-        UpdateTextTimer();
-        SetTimerPlaying(false);
-    }
-
-    public void SetTimerPlaying(bool playing)
-    {
-        Debug.Log("SET TIMER PLAYING IN TIMER PLAYING " + playing);
-        _playing = playing;
-    }
-
-    public void SetTime(float time)
-    {
-        this._totalTime = time;
-        UpdateTextTimer();
-        SetTimerPlaying(true);
     }
 }

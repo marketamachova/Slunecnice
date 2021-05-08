@@ -8,14 +8,11 @@ namespace Player
 {
     public class PlayerMovement : MonoBehaviour
     {
-        [FormerlySerializedAs("Speed")] [SerializeField]
-        public float speed = 2f;
-
+        [SerializeField] public float speed = 2f;
         [SerializeField] private EndOfPathInstruction endOfPathInstruction;
         [SerializeField] private GameObject player;
         [SerializeField] private Vector3 offset = new Vector3(0, 5, 0);
         [SerializeField] private bool rotateCamera = true;
-        [SerializeField] public bool reverse;
 
         private Animator _animator;
         private PathCreator _pathCreator;
@@ -32,8 +29,6 @@ namespace Player
             {
                 player = GameObject.FindWithTag("NetworkCamera");
             }
-
-            reverse = SceneManager.GetActiveScene().name.Equals("WinterScene");
         }
 
         void Start()
@@ -42,10 +37,6 @@ namespace Player
             _pathCreator = GameObject.FindWithTag("PathCreator").GetComponent<PathCreator>();
 
             var startingPos = _pathCreator.path.GetPoint(0) + offset;
-            if (reverse)
-            {
-                startingPos = _pathCreator.path.GetPoint(_pathCreator.path.NumPoints -1) + offset;
-            }
 
             player.transform.position = startingPos;
             _animator = player.GetComponentInChildren<Animator>();
@@ -61,15 +52,7 @@ namespace Player
             if (_shiftCamera) cameraOffset += 0.1f;
 
             _time += Time.deltaTime;
-
-            if (reverse)
-            {
-                _distance -= speed * Time.deltaTime;
-            }
-            else
-            {
-                _distance += speed * Time.deltaTime;
-            }
+            _distance += speed * Time.deltaTime;
 
             player.transform.position =
                 _pathCreator.path.GetPointAtDistance(_distance + cameraOffset, endOfPathInstruction) + offset;
@@ -82,21 +65,10 @@ namespace Player
             if (_distance >= _pathCreator.path.length)
             {
                 Debug.Log("calling controller.End");
-                Debug.Log("controller" + _controller);
                 _controller.End();
             }
         }
-
-        public void ShiftCamera()
-        {
-            _shiftCamera = true;
-        }
-
-        public void UnShiftCamera()
-        {
-            _shiftCamera = false;
-        }
-
+        
         public void SetPathCreator(PathCreator pathCreator)
         {
             Debug.Log("setting path creators");

@@ -39,7 +39,6 @@ public class Fader : MonoBehaviour
             }
             else
             {
-
                 _alpha += 0.03f;
             }
 

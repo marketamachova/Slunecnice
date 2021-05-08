@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using Mirror;
 using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,27 +13,25 @@ namespace Scenes
         private AsyncOperation _sceneLoadingOperation;
         private GameObject _camera;
         private GameObject _networkCamera;
-        private Fader _fader;
         private string _currentSceneName;
 
-        public event Action SceneLoadingBegin;
         public event Action SceneLoadingEnd;
-        public event Action UnloadSceneBegin;
 
         void Start()
         {
             _camera = GameObject.FindWithTag("MainCamera");
-            _fader = GetComponent<Fader>();
         }
 
         public void LoadScene(string scene, bool additiveSceneMode)
         {
             _currentSceneName = scene;
+            
             Debug.Log("_currentSceneName" + _currentSceneName);
             Debug.Log("scene loader.LoadScene");
+            
             loaderUI.DisplayLoader(true); //potreba?
             _sceneLoadingOperation = SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
-            SceneLoadingBegin?.Invoke();
+            
             DetachCameraFromNetworkPlayer();
 
             StartCoroutine(LoadSceneAsync());
@@ -83,7 +80,6 @@ namespace Scenes
 
         public void UnloadScene()
         {
-            UnloadSceneBegin?.Invoke();
             SceneManager.UnloadSceneAsync(_currentSceneName);
         }
     }

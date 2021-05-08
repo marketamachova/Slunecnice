@@ -12,10 +12,7 @@ public class RayTransformSetter : MonoBehaviour
     
     private void Start()
     {
-        VRDebugger.Instance.Log("setting ovr input module ray transform");
         SetRayTransform();
-        VRDebugger.Instance.Log("rayTransform pos " + ovrInputModule.rayTransform.position);
-        VRDebugger.Instance.Log("rayTransform rot " + ovrInputModule.rayTransform.rotation);
     }
 
     void Update()
@@ -26,8 +23,6 @@ public class RayTransformSetter : MonoBehaviour
     void SetRayTransform()
     {
         Transform t = hand.PointerPose;
-        // t.position += new Vector3(0, 1.6f, -0.5f);
-        
         ovrInputModule.rayTransform = t;
     }
 }

@@ -1,32 +1,31 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Oculus.Platform;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
-public class VRDebugger : MonoBehaviour
+namespace Utils
 {
-    public static VRDebugger Instance;
-    [SerializeField] private TextMeshProUGUI text;
-    private int _numLines = 0;
-
-    private void Awake()
+    public class VRDebugger : MonoBehaviour
     {
-        Instance = this;
-    }
+        public static VRDebugger Instance;
+        [SerializeField] private TextMeshProUGUI text;
+        private int _numLines = 0;
 
-    public void Log(string message)
-    {
-        if (_numLines > 15)
+        private void Awake()
         {
-            _numLines = 0;
-            text.text = message;
+            Instance = this;
         }
-        else
+
+        public void Log(string message)
         {
-            text.text += "\n" + message;
-            _numLines++;
+            if (_numLines > 15)
+            {
+                _numLines = 0;
+                text.text = message;
+            }
+            else
+            {
+                text.text += "\n" + message;
+                _numLines++;
+            }
         }
     }
 }

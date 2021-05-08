@@ -27,5 +27,15 @@ namespace UI
         public const string PlayerCameraRTLandscape = "PlayerCameraRTLandscape";
         public const string TopCameraRTLandscape = "TopCameraRTLandscape";
         public const string ConnectScreen = "ConnectScreen";
+        public const string RTCamera = "RTCamera";
+        public const string RTTopCamera = "RTTopCamera";
+        public const string RTCameraLandscape = "RTCameraLandscape";
+        public const string RTTopCameraLandscape = "RTTopCameraLandscape";
+        public const string Loader = "Loader";
+        public const string Step1 = "Step1";
+        public const string Step2 = "Step2";
+        public const string Step3 = "Step3";
+        public const string DoneButton = "DoneButton";
+        
     }
 }
