@@ -9,14 +9,14 @@ namespace UI
     public class ConnectScreenController : MonoBehaviour
     {
 
-        [SerializeField] private TextMeshProUGUI connectableDeviceText;
+        [SerializeField] private TextMeshProUGUI deviceName;
+        [SerializeField] private GameObject deviceNotFound;
         [SerializeField] private GameObject connectedText;
         [SerializeField] private GameObject connectButton;
         [SerializeField] private Selectable availabilityStatus;
         [SerializeField] private NetworkDiscovery myNetworkDiscovery;
         [SerializeField] private MyNetworkManager networkManager;
         [SerializeField] private GameObject hintBar;
-        [SerializeField] private string defaultText = "Žádná zařízení nalezena.";
     
         private ServerResponse _serverResponse;
 
@@ -31,7 +31,9 @@ namespace UI
         {
             Debug.Log("connectable device found");
             _serverResponse = serverResponse;
-            connectableDeviceText.text = serverResponse.EndPoint.Address.ToString();
+            deviceName.text = serverResponse.EndPoint.Address.ToString();
+            deviceName.gameObject.SetActive(true);
+            deviceNotFound.SetActive(false);
             availabilityStatus.SetSelected(true);
             hintBar.SetActive(false);
             ActivateConnectButton();
@@ -49,7 +51,8 @@ namespace UI
             connectButton.SetActive(true);
             connectButton.GetComponent<Button>().interactable = false;
             availabilityStatus.SetSelected(false);
-            connectableDeviceText.text = defaultText;
+            deviceName.gameObject.SetActive(false);
+            deviceNotFound.SetActive(true);
             hintBar.SetActive(true);
             myNetworkDiscovery.StartDiscovery();
         }
