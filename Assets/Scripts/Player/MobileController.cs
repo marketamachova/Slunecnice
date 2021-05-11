@@ -35,8 +35,11 @@ namespace Player
             base.OnSceneLoaded();
             Debug.Log("ON SCENE LOADED");
 
-            var scene = SceneManager.GetSceneByName(LocalNetworkPlayer.chosenWorld + "Mobile");
+            // var scene = SceneManager.GetSceneByName(LocalNetworkPlayer.chosenWorld + "Mobile");
+            var scene = SceneManager.GetSceneByName("EWinterMobile");
             SceneManager.SetActiveScene(scene);
+
+            // GameObject.FindObjectOfType<Canvas>().gameObject.SetActive(false);
 
             if (RemoteNetworkPlayer.worldLoaded)
             {

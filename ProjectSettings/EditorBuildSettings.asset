@@ -38,15 +38,24 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/RuralScene.unity
     guid: 91610d0c0cbf34675b245a4f788183a1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainSceneMobile.unity
     guid: d5a541bd17b784be3a715cd88187dbea
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/WinterSceneMobile.unity
     guid: a3f6c6e2ee9f1492293eb2b9683d653e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/RuralSceneMobile.unity
     guid: 4838f4fbc4373469f8506b56959db5ab
+  - enabled: 0
+    path: Assets/Scenes/EmptyScene.unity
+    guid: 995db048adf834d0da0036e4a74b6bff
+  - enabled: 0
+    path: Assets/Scenes/EmptySceneMobile.unity
+    guid: e62c86f8b990645ce827505556ab5a74
+  - enabled: 1
+    path: Assets/Scenes/EWinterMobile.unity
+    guid: 6e5ac03d3b760433baf24b6cb7c13844
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 4a687ddd122a04b8d8030d30d784faca,
       type: 2}
