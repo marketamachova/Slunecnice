@@ -9,7 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: MountainsRocks01
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  m_ShaderKeywords: _METALLICSPECGLOSSMAP _NORMALMAP _OCCLUSIONMAP
+  m_ShaderKeywords: _ENVIRONMENTREFLECTIONS_OFF _METALLICSPECGLOSSMAP _NORMALMAP
+    _OCCLUSIONMAP _SPECULARHIGHLIGHTS_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -90,7 +91,7 @@ Material:
     - _Displacement: 0.088
     - _DstBlend: 0
     - _EdgeLength: 10.1
-    - _EnvironmentReflections: 1
+    - _EnvironmentReflections: 0
     - _GI_AO: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -105,7 +106,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecAO: 0
     - _SpecBurn: 0
-    - _SpecularHighlights: 1
+    - _SpecularHighlights: 0
     - _SrcBlend: 1
     - _Surface: 0
     - _Tess: 1.3

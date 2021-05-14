@@ -105,8 +105,8 @@ namespace Network
             {
                 if ((mobile || SceneManager.GetActiveScene().name == "AppOffline"))
                 {
-                    // sceneToLoad = sceneToLoad + "Mobile";
-                    sceneToLoad = "EWinterMobile";
+                    sceneToLoad = sceneToLoad + "Mobile";
+                    // sceneToLoad = "EmptySceneMobile";
 
                 }
 

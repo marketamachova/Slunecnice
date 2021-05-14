@@ -91,6 +91,7 @@ namespace Player
             foreach (var networkPlayer in NetworkPlayers)
             {
                 Debug.Log("setting cmd hanlde selected world called");
+                // Debug.Log(sceneName);
                 networkPlayer.CmdHandleSelectedWorld(sceneName);
             }//message about scene loading to other players
         }
