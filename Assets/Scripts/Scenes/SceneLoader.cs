@@ -79,7 +79,7 @@ namespace Scenes
 
             yield return new WaitForSecondsRealtime(1);
             SceneLoadingEnd?.Invoke();
-            // loaderUI.DisplayLoader(false);
+            loaderUI.DisplayLoader(false);
 
             if (cameraFader != null)
             {
