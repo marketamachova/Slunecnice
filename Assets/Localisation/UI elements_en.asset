@@ -36,8 +36,7 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 2845377028096
     m_Localized: Please make sure that an Oculus device is connected to the same
-      WiFi network as this device and also that the PhysioTrails application is running
-      on the Oculus device
+      WiFi network as this device.
     m_Metadata:
       m_Items: []
   - m_Id: 3520794189824
@@ -106,7 +105,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10843914756096
-    m_Localized: Something went wrong
+    m_Localized: An error occurred
     m_Metadata:
       m_Items: []
   - m_Id: 11108332068864

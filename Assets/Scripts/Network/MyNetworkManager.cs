@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Mirror;
-using Player;
 using UnityEngine;
 
 namespace Network

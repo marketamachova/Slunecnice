@@ -47,6 +47,7 @@ namespace Player
 
                 uiControllerMobile.EnablePanelExclusive("WatchScreenPortrait");
                 uiControllerMobile.EnableTrue("VideoControls");
+                uiControllerMobile.OnSceneLoaded();
 
                 _playing = RemoteNetworkPlayer.playerMoving;
 

@@ -30,7 +30,9 @@ namespace Scenes
                 if (!player.mobile)
                 {
                     Debug.Log("On scene loaded VR");
-
+                    
+                    Debug.Log(player);
+                    
                     player.CmdSetWorldLoaded(true);
                 }
             }

@@ -27,7 +27,7 @@ namespace Network
 
         [SyncVar(hook = "TriggerTimeSync")] public bool triggerTimeSync;
 
-        [SyncVar(hook = "GoToLobby")] public bool goToLobby;
+        [SyncVar(hook = "GoToLobby")] public bool goToLobby = true;
 
         [SyncVar(hook = "OnWorldLoaded")] public bool worldLoaded;
 
@@ -157,7 +157,7 @@ namespace Network
         {
             Debug.Log("set player moving in Network pLayer, moving: " + moving);
 
-            if (!mobile && isLocalPlayer)
+            if (!mobile && isLocalPlayer && !goToLobby)
             {
                 AssignGameController(); //TODO nejak jinak mozna smazat
 

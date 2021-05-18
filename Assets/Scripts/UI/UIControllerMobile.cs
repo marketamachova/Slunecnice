@@ -107,6 +107,11 @@ namespace UI
         public void OnSceneChosen(string chosenScene)
         {
             mobileController.OnSceneSelected(chosenScene);
+            // endButton.interactable = true;
+        }
+
+        public void OnSceneLoaded()
+        {
             endButton.interactable = true;
         }
 

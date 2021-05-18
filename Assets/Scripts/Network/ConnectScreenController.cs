@@ -46,7 +46,7 @@ namespace UI
 
         public void OnDisconnect()
         {
-            Debug.Log("ON DISCONNECT CONNECT screeen controller");   
+            Debug.Log("ON DISCONNECT CONNECT screen controller");   
             connectedText.SetActive(false);
             connectButton.SetActive(true);
             connectButton.GetComponent<Button>().interactable = false;
@@ -60,13 +60,17 @@ namespace UI
         private void Connect()
         {
             connectButton.GetComponent<Button>().interactable = false;
-            if (_serverResponse.Equals(null))
+
+            try
             {
-                Debug.Log("SERVER response null");
-                return;
+                networkManager.StartClient(_serverResponse.uri);
+                myNetworkDiscovery.StopDiscovery();
             }
-            networkManager.StartClient(_serverResponse.uri);
-            myNetworkDiscovery.StopDiscovery();
+            catch
+            {
+                Debug.Log("could not connect to server");
+                OnDisconnect();
+            }
         }
 
         private void IndicateConnectedStatus()
