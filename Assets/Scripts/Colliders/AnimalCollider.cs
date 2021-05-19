@@ -1,5 +1,6 @@
 ﻿
 using Animals;
+using Player;
 using UnityEngine;
 
 namespace Colliders
@@ -12,8 +13,7 @@ namespace Colliders
         public void OnCollisionEnter(Collision collision)
         {
             _controller = animal.GetComponentInChildren<AnimalController>();
-            Debug.Log(_controller);
-            if (collision.gameObject.CompareTag("NetworkCamera") && collision.gameObject.name != "Terrain")
+            if (collision.gameObject.CompareTag(GameConstants.NetworkCamera) && collision.gameObject.name != GameConstants.Terrain)
             {
                 if (_controller.GetMoving())
                 {

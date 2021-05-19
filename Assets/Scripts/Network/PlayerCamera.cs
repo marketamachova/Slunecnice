@@ -1,44 +1,38 @@
 ﻿using Mirror;
 using Player;
-using Scenes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Network
 {
+    /**
+     * handles syncing of VR player's viewpoint with render-texture cameras
+     * 1. synchronises the OVRCameraRig position with cameras positions
+     * 2. synchronises the CenterEyeAnchor rotation with rtCamera and rtCameraWides rotations
+     */
     public class PlayerCamera : NetworkBehaviour
     {
-        [SerializeField] private SceneController sceneController;
         [SerializeField] private GameObject rtCamera;
         [SerializeField] private GameObject rtWideCamera;
         [SerializeField] private GameObject rtWideTopCamera;
         [SerializeField] private GameObject rtTopCamera;
-        // [SerializeField] private GameObject playerGazeDummy;
 
         private bool _vrInstance;
-
         private GameObject _cameraRig;
         private GameObject _centerEyeAnchor;
-        private Vector3 _position; // position of player gaze
-
-        private OVRManager _ovrManager;
-        private GameController _gameController;
+        private VRController _vrController;
 
 
         private void Awake()
         {
-            _vrInstance = SceneManager.GetActiveScene().name == "VROffline";
+            _vrInstance = SceneManager.GetActiveScene().name == GameConstants.VROffline;
 
             if (_vrInstance)
             {
                 SceneManager.sceneLoaded += AssignChild;
                 SceneManager.sceneLoaded += UpdateCameraRig;
 
-                _cameraRig = GameObject.FindWithTag("MainCamera");
-                _ovrManager = _cameraRig.GetComponent<OVRManager>();
-                _ovrManager = _cameraRig.GetComponent<OVRManager>();
-
-                _centerEyeAnchor = GameObject.FindWithTag("CenterEyeAnchor");
+                _centerEyeAnchor = GameObject.FindWithTag(GameConstants.CenterEyeAnchor);
             }
         }
 
@@ -51,10 +45,7 @@ namespace Network
             }
         }
 
-
-        /**
-     * Update networked RTCamera transforms
-     */
+        
         private void SyncUserPositionAndRotation()
         {
             var playerViewportPosition = _centerEyeAnchor.transform.position;
@@ -76,15 +67,13 @@ namespace Network
         {
             if (_vrInstance)
             {
-                _cameraRig = GameObject.FindWithTag("MainCamera");
-                _ovrManager = _cameraRig.GetComponent<OVRManager>();
+                _cameraRig = GameObject.FindWithTag(GameConstants.MainCamera);
             }
         }
 
         private void AssignChild(Scene arg0, LoadSceneMode loadSceneMode)
         {
-            _cameraRig = GameObject.FindWithTag("MainCamera");
-            Debug.Log("assigning child MAIN CAMERA ");
+            _cameraRig = GameObject.FindWithTag(GameConstants.MainCamera);
             _cameraRig.transform.parent = this.transform;
         }
     }

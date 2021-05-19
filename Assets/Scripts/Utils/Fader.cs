@@ -13,11 +13,6 @@ public class Fader : MonoBehaviour
     private Renderer _fadeRenderer;
     private float _alpha = 0f;
 
-    private void Awake()
-    {
-
-    }
-
     public IEnumerator FadeCoroutine(bool fadeIn)
     {
         if (!fadeIn)
@@ -52,7 +47,6 @@ public class Fader : MonoBehaviour
         }
         
         canvas.SetActive(false);
-
     }
 
     public void FadeOut()

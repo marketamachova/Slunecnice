@@ -1,5 +1,8 @@
 namespace UI
 {
+    /**
+     * Base class for implementing view strategies / behaviour observing views displayed in the control application
+     */
     public abstract class DisplayStrategy
     {
         protected readonly UIControllerMobile UIController;

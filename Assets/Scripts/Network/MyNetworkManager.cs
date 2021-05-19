@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Mirror;
+using Player;
 using UnityEngine;
 
 namespace Network
@@ -16,12 +17,16 @@ namespace Network
         public event Action OnMobileClientDisconnectAction;
 
 
+        /**
+         * callback called automatically after server added player
+         * 1. instantiates player object
+         * 2. instantiate object carrying player and cameras
+         * 3. invokes established connection events
+         */
         public override void OnServerAddPlayer(NetworkConnection conn)
         {
             InstantiatePlayer(conn);
-
-            Debug.Log($"server added player. there are {numPlayers} connected.");
-
+            
             if (numPlayers <= 1)
             {
                 InstantiateCamera();
@@ -30,12 +35,15 @@ namespace Network
             {
                 OnMobileClientConnectAction?.Invoke();
             }
-
-            Debug.Log("conn.netid" + conn.identity.netId);
-
+            
             OnServerAddPlayerAction?.Invoke();
         }
 
+        /**
+         * instantiates player with given NetworkConnection
+         * adds player to Players list
+         * calls UpdateSceneConnected on the instantiated player to update UI
+         */
         private void InstantiatePlayer(NetworkConnection conn)
         {
             GameObject player = Instantiate(playerPrefab);
@@ -44,20 +52,19 @@ namespace Network
             NetworkServer.AddPlayerForConnection(conn, player);
             DontDestroyOnLoad(player);
             Players.Add(player);
-            Debug.Log("added a player, players length " + Players.Count);
 
             networkPlayer.UpdateSceneConnected();
         }
 
+        /**
+         * instantiate gameObject carrying all cameras
+         */
         private void InstantiateCamera()
         {
-            Debug.Log("adding a camera");
-
-            PlayerCamera = Instantiate(spawnPrefabs.Find(prefab => prefab.name == "NetworkPlayerAttachCamera"));
+            PlayerCamera = Instantiate(spawnPrefabs.Find(prefab => prefab.name == GameConstants.NetworkPlayerAttachCamera));
             NetworkServer.Spawn(PlayerCamera);
 
-            // for VR it is OVRCameraRig, for mobile it is Camera
-            var mainCamera = GameObject.FindWithTag("MainCamera");
+            var mainCamera = GameObject.FindWithTag(GameConstants.MainCamera);
             mainCamera.transform.parent = PlayerCamera.transform;
             
             DontDestroyOnLoad(PlayerCamera);
@@ -65,10 +72,8 @@ namespace Network
 
         public override void OnServerDisconnect(NetworkConnection conn)
         {
-            //TODO
             base.OnServerDisconnect(conn);
 
-            Debug.Log(numPlayers);
             if (numPlayers >= 1)
             {
                 OnMobileClientDisconnectAction?.Invoke();
@@ -83,8 +88,6 @@ namespace Network
         public override void OnClientDisconnect(NetworkConnection conn)
         {
             OnClientDisconnectAction?.Invoke();
-
-            Debug.Log("client disconnected");
             base.OnClientDisconnect(conn);
         }
 

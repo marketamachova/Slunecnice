@@ -17,13 +17,9 @@ namespace UI
         [SerializeField] private TMP_Dropdown languagesDropdown;
 
         [SerializeField] protected List<GameObject> panels;
-
-        [FormerlySerializedAs("activables")] [SerializeField]
-        protected List<Selectable> activableSprites;
-
-        [FormerlySerializedAs("enalables")] [SerializeField]
-        protected List<GameObject> enalableObjects;
-
+        [SerializeField] protected List<Selectable> activableSprites;
+        [SerializeField] protected List<GameObject> enalableObjects;
+        
         [SerializeField] protected MyNetworkManager networkManager;
         [SerializeField] protected BaseController controller;
 
@@ -83,7 +79,6 @@ namespace UI
             ActivateSprite(activableName, false);
         }
 
-        //todo mozna presunout do Controller
         public void OnQuit()
         {
             Application.Quit();

@@ -1,4 +1,5 @@
-﻿using Mirror.Discovery;
+﻿using System.Collections;
+using Mirror.Discovery;
 using Network;
 using TMPro;
 using UnityEngine;
@@ -17,6 +18,9 @@ namespace UI
         [SerializeField] private NetworkDiscovery myNetworkDiscovery;
         [SerializeField] private MyNetworkManager networkManager;
         [SerializeField] private GameObject hintBar;
+
+        private Button _connectButtonComponent;
+
     
         private ServerResponse _serverResponse;
 
@@ -25,18 +29,17 @@ namespace UI
             myNetworkDiscovery.OnServerFound.AddListener(DisplayDiscoveredServers);
             networkManager.OnClientConnectAction += IndicateConnectedStatus;
             networkManager.OnMobileClientDisconnectAction += OnDisconnect;
+            
+            _connectButtonComponent = connectButton.GetComponent<Button>();
         }
 
+        
         private void DisplayDiscoveredServers(ServerResponse serverResponse)
         {
-            Debug.Log("connectable device found");
             _serverResponse = serverResponse;
             deviceName.text = serverResponse.EndPoint.Address.ToString();
-            deviceName.gameObject.SetActive(true);
-            deviceNotFound.SetActive(false);
-            availabilityStatus.SetSelected(true);
-            hintBar.SetActive(false);
-            ActivateConnectButton();
+            
+            StartCoroutine(UpdateConnectUI(true));
         }
 
         void Start()
@@ -46,17 +49,20 @@ namespace UI
 
         public void OnDisconnect()
         {
-            Debug.Log("ON DISCONNECT CONNECT screen controller");   
+            UpdateConnectUI(false);
+            
             connectedText.SetActive(false);
             connectButton.SetActive(true);
-            connectButton.GetComponent<Button>().interactable = false;
-            availabilityStatus.SetSelected(false);
-            deviceName.gameObject.SetActive(false);
-            deviceNotFound.SetActive(true);
-            hintBar.SetActive(true);
+
             myNetworkDiscovery.StartDiscovery();
         }
-
+        
+        /**
+         * called on press Join button
+         * - sets the Join button to disabled
+         * - tries to connect to the found server
+         * - handles disconnection if the connection could not be established
+         */
         private void Connect()
         {
             connectButton.GetComponent<Button>().interactable = false;
@@ -73,17 +79,35 @@ namespace UI
             }
         }
 
+     
         private void IndicateConnectedStatus()
         {
             connectedText.SetActive(true);
             connectButton.SetActive(false);
         }
         
-        private void ActivateConnectButton()
+        private void ActivateConnectButton(bool activate)
         {
-            var button = connectButton.GetComponent<Button>();
-            button.onClick.AddListener(Connect);
-            button.interactable = true;
+            if (activate)
+            {
+                _connectButtonComponent.onClick.AddListener(Connect);
+            }
+            else
+            {
+                _connectButtonComponent.onClick.RemoveAllListeners();
+            }
+            _connectButtonComponent.interactable = activate;
+        }
+
+        private IEnumerator UpdateConnectUI(bool serverAvailable)
+        {
+            availabilityStatus.SetSelected(serverAvailable);
+            deviceName.gameObject.SetActive(serverAvailable);
+            deviceNotFound.SetActive(!serverAvailable);
+            hintBar.SetActive(!serverAvailable);
+            
+            yield return new WaitForSecondsRealtime(1);
+            ActivateConnectButton(serverAvailable);
         }
     }
 }

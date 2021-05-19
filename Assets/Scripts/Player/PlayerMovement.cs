@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using PathCreation;
+﻿using PathCreation;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 namespace Player
 {
@@ -16,7 +13,7 @@ namespace Player
 
         private Animator _animator;
         private PathCreator _pathCreator;
-        private GameController _controller;
+        private VRController _controller;
         private float _distance;
         private bool _shiftCamera = false;
         private float _time;
@@ -33,7 +30,7 @@ namespace Player
 
         void Start()
         {
-            _controller = FindObjectOfType<GameController>();
+            _controller = FindObjectOfType<VRController>();
             _pathCreator = GameObject.FindWithTag("PathCreator").GetComponent<PathCreator>();
 
             var startingPos = _pathCreator.path.GetPoint(0) + offset;
@@ -64,14 +61,12 @@ namespace Player
 
             if (_distance >= _pathCreator.path.length)
             {
-                Debug.Log("calling controller.End");
                 _controller.End();
             }
         }
         
         public void SetPathCreator(PathCreator pathCreator)
         {
-            Debug.Log("setting path creators");
             _pathCreator = pathCreator;
         }
 

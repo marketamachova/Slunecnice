@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Player;
 using UnityEngine;
 
 namespace Colliders
@@ -11,10 +12,10 @@ namespace Colliders
 
         public void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.CompareTag("NetworkCamera") && !collision.gameObject.CompareTag("Terrain") && gameObject.name != "Terrain")
+            if (collision.gameObject.CompareTag(GameConstants.NetworkCamera) && !collision.gameObject.CompareTag(GameConstants.Terrain) && gameObject.name != GameConstants.Terrain)
             {
-                objectsToDestroy.ForEach(Destroy);
                 objectsToSetActive.ForEach(o => o.SetActive(true));
+                objectsToDestroy.ForEach(Destroy);
             }
         }
     }

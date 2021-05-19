@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Player;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Utils;
 
@@ -22,19 +23,14 @@ namespace UI
         [SerializeField] private bool controlsVisible;
         [SerializeField] private PlayMode currentPlayMode;
 
-        [Header("Mobile UI Elements")] [SerializeField]
-        private List<GameObject> cameraViews;
-
+        [Header("Mobile UI Elements")] 
+        [SerializeField] private List<GameObject> cameraViews;
         [SerializeField] private GameObject controls;
         [SerializeField] private GameObject controlButtons;
-        [SerializeField] private GameObject topBar;
         [SerializeField] private Timer timer;
         [SerializeField] private ProgressBar progressBar;
         [SerializeField] private Button[] sceneButtons;
-
-        [Header("Special Elements")] [SerializeField]
-        private Selectable playButton;
-
+        [SerializeField] private Selectable playButton;
         [SerializeField] private Selectable maximizeButton;
         [SerializeField] private MobileController mobileController;
         [SerializeField] private Slider speedSlider;
@@ -61,7 +57,6 @@ namespace UI
 
         public void OnChangeScreenOrientation()
         {
-            Debug.Log("ONchange Screen orientation");
             Screen.orientation = portraitOriented ? ScreenOrientation.LandscapeLeft : ScreenOrientation.Portrait;
             portraitOriented = !portraitOriented;
             maximizeButton.SetSelected(!portraitOriented);
@@ -71,13 +66,8 @@ namespace UI
             }
 
             timer.gameObject.SetActive(portraitOriented);
-            // progressBar.gameObject.SetActive(portraitOriented);
-            // topBar.SetActive(portraitOriented);
 
-            controlButtons.transform.localScale = portraitOriented
-                ? new Vector3(1.034554f, 0.1034285f, 1.034554f)
-                : new Vector3(1.559694f, 0.1559289f, 1.559694f);
-            // timer.transform.localScale = portraitOriented ? new Vector3(1.034554f, 1.034554f, 1.034554f) : new Vector3(1.559694f, 1.605603f, 1.559694f);
+            controlButtons.transform.localScale = portraitOriented ? UIConstants.ControlsLocalScalePortrait : UIConstants.ControlsLocalScaleLandscape;
         }
 
         public void ToggleControlsVisible()
@@ -86,18 +76,8 @@ namespace UI
             controls.SetActive(controlsVisible);
         }
 
-        private IEnumerator HideControls()
-        {
-            while (controlsVisible)
-            {
-                yield return new WaitForSecondsRealtime(5);
-                controls.SetActive(false);
-            }
-        }
-
         public void OnPlayPressed(bool playing)
         {
-            Debug.Log("ON PLAY PRESSED MOBLE CONTROLEL playing " + playing);
             playButton.SetSelected(playing);
             timer.SetTimerPlaying(playing);
             progressBar.SetProgressBarPlaying(playing);
@@ -107,7 +87,6 @@ namespace UI
         public void OnSceneChosen(string chosenScene)
         {
             mobileController.OnSceneSelected(chosenScene);
-            // endButton.interactable = true;
         }
 
         public void OnSceneLoaded()
@@ -135,6 +114,7 @@ namespace UI
 
         public void SetPlayButtonSelected(bool playing) //TODO
         {
+            // playButton.SetSelected(playing);
             var playButtonImage = playButton.gameObject.GetComponent<Image>();
             if (playing)
             {
@@ -164,17 +144,16 @@ namespace UI
 
         public void OnGoToLobby()
         {
-            Debug.Log("on go to lobby");
-            
             StartCoroutine(ActivateButtons(sceneButtons, 0, false));
             StartCoroutine(ActivateButtons(sceneButtons, GameConstants.ReturnToLobbyWaitingTime, true));
+            
             EnablePanelExclusive(UIConstants.ConnectScreen);
             EnableCameraView(UIConstants.PlayerCameraRT);
             EnableTrue(UIConstants.SceneSelection);
             EnableFalse(UIConstants.VideoControls);
             EnableFalse(UIConstants.SceneJoin);
+            
             timer.ResetTimer();
-
             currentPlayMode = PlayMode.None;
             portraitOriented = false;
             OnChangeScreenOrientation();

@@ -50,7 +50,6 @@ namespace Animals
         {
             if (_audioSource == null)
             {
-                Debug.Log("Audio source null " + name);
                 return;
             }
 

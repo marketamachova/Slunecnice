@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Player;
 using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -20,23 +21,16 @@ namespace Scenes
 
         void Start()
         {
-            _camera = GameObject.FindWithTag("MainCamera");
+            _camera = GameObject.FindWithTag(GameConstants.MainCamera);
         }
 
         public void LoadScene(string scene, bool additiveSceneMode)
         {
-            // _currentSceneName = scene;
             _currentSceneName = SceneManager.GetActiveScene().name;
             _loadedSceneName = scene;
 
-            Debug.Log("_currentSceneName" + _currentSceneName);
-            Debug.Log("scene loader.LoadScene");
+            loaderUI.DisplayLoader(true);
 
-            loaderUI.DisplayLoader(true); //potreba?
-
-            var mobile = _currentSceneName == "AppOffline";
-
-            // SceneManager.LoadScene(scene, LoadSceneMode.Additive);
             _sceneLoadingOperation = SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
 
             DetachCameraFromNetworkPlayer();
@@ -46,7 +40,7 @@ namespace Scenes
 
         private void DetachCameraFromNetworkPlayer()
         {
-            //detach camera from networkCamera
+            //detach camera from NetworkCamera
             if (_camera)
             {
                 _camera.transform.parent = null;
@@ -54,7 +48,6 @@ namespace Scenes
 
             // move camera out of DontDestroyOnLoad
             SceneManager.MoveGameObjectToScene(_camera, SceneManager.GetActiveScene());
-            // DontDestroyOnLoad(_camera);
         }
 
         private IEnumerator LoadSceneAsync()
@@ -76,7 +69,6 @@ namespace Scenes
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(_loadedSceneName));
             _currentSceneName = _loadedSceneName;
 
-
             yield return new WaitForSecondsRealtime(1);
             SceneLoadingEnd?.Invoke();
             loaderUI.DisplayLoader(false);
@@ -92,7 +84,6 @@ namespace Scenes
 
         public void UnloadScene()
         {
-            // SceneManager.UnloadScene(_currentSceneName);
             SceneManager.UnloadSceneAsync(_currentSceneName);
         }
     }

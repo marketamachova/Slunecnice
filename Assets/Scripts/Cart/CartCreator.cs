@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Numerics;
+using Player;
 using TMPro;
 using UI;
 using UnityEngine;
@@ -52,44 +53,14 @@ namespace Cart
             _rightHandSkeleton = rightHand.GetComponent<OVRSkeleton>();
         }
 
+        /**
+         * Waits first for detecting the pinch gesture on right hand => instantiate cart at the indicated point,
+         * then for the left => rotates the cart to be in accordance with the left indicated point
+         * saves the indicated points in the _currenPointsPositionList
+         * 
+         */
         private void Update()
         {
-            //TODO remove
-            if (_interactable && debug)
-            {
-                var rightArrowPressed = Input.GetKeyDown(KeyCode.RightArrow);
-                var leftArrowPressed = Input.GetKeyDown(KeyCode.LeftArrow);
-
-                if (rightArrowPressed || leftArrowPressed)
-                {
-                    _interactable = false;
-
-                    if (rightArrowPressed && !_rightSideCreated)
-                    {
-                        _currentPointPositionList.Add(new Vector3(0.485f, 1.3903f, 0.163f));
-                        _rightSideCreated = true;
-                        _lastPointPosition = _currentPointPositionList[_currentPointPositionList.Count - 1];
-                        CreateCart(_lastPointPosition);
-                    }
-
-                    if (leftArrowPressed && !_leftSideCreated && _rightSideCreated)
-                    {
-                        _currentPointPositionList.Add(new Vector3(-0.2958f, 1.3903f, 0.4578f));
-                        _leftSideCreated = true;
-                        RotateCart(_lastPointPosition, _currentPointPositionList[_currentPointPositionList.Count - 1]);
-                    }
-
-
-                    _interactable = true;
-                }
-
-                if (Input.GetKeyDown(KeyCode.X))
-                {
-                    EndCalibration();
-                }
-            }
-
-
             if (_interactable && !EventSystem.current.currentSelectedGameObject)
             {
                 _isLeftIndexFingerPinching = _leftHand.GetFingerIsPinching(OVRHand.HandFinger.Index);
@@ -121,6 +92,10 @@ namespace Cart
             }
         }
 
+        /**
+         * instantiate cart at the given position
+         * displays UI step 2
+         */
         private void CreateCart(Vector3 pointPosition)
         {
             _cart = Instantiate(cartPrefab, pointPosition, cartPrefab.transform.rotation);
@@ -128,6 +103,14 @@ namespace Cart
             uiController.DisplayCalibrationStep2();
         }
 
+        /**
+         * rotates the cart in a following way:
+         * 1. compute the distance between the indicated points in 2D space (plain from the x-axis and z-axis)
+         * (y position is fixed with the first indicated point)
+         * 2. computes the angle by which the newly created cart has to be rotated around the y-axis
+         * 3. rotates cart by the angle about the y-axis
+         * displays UI step 3
+         */
         private void RotateCart(Vector3 pos1, Vector3 pos2)
         {
             Vector3 pointsDifferenceVector = new Vector3(pos2.x - pos1.x, 0, pos2.z - pos1.z);
@@ -137,6 +120,7 @@ namespace Cart
             uiController.DisplayCalibrationStep3();
         }
 
+    
         public void Reset()
         {
             Destroy(_cart);
@@ -164,39 +148,32 @@ namespace Cart
             EndCalibration();
         }
 
+        /**
+         * 1. disables detecting of pinch gestures
+         * 2. rotates cart and the player in order to face the UI
+         * 3. sets cart the children of player
+         * 4. invokes calibration complete event
+         */
         public void EndCalibration()
         {
             _interactable = false;
             ColorCart();
 
-            var networkCamera = GameObject.FindWithTag("NetworkCamera");
+            var networkCamera = GameObject.FindWithTag(GameConstants.NetworkCamera);
             
-            // var cartRotation = _cart.transform.parent.eulerAngles - _cart.transform.eulerAngles;
             var cartRotation = _cart.transform.eulerAngles;
-            Debug.Log(cartRotation);
             _cart.transform.Rotate(-cartRotation);
 
             
-            // networkCamera.transform.Rotate(cartRotation);
             var children = networkCamera.GetComponentsInChildren<Transform>();
             foreach (var child in children)
             {
-                Debug.Log(child);
-                // var rotation = child.transform.rotation;
-                // rotation = Quaternion.Euler(rotation.x, cartRotation.y, rotation.z);
                 child.transform.Rotate(-cartRotation);
             }
             networkCamera.transform.Rotate(cartRotation);
             _cart.transform.parent = networkCamera.transform;
 
             OnCartCreatorCalibrationComplete?.Invoke();
-        }
-
-        private void RotatePlayer(GameObject networkCamera)
-        {
-            networkCamera.transform.Rotate(Vector3.up, _cart.transform.rotation.y);
-
-
         }
     }
 }

@@ -8,5 +8,8 @@
     public const string AppOffline = "AppOffline";
     public const string VROffline = "VROffline";
     public const string Cart = "Cart";
+    public const string CenterEyeAnchor = "CenterEyeAnchor";
+    public const string NetworkPlayerAttachCamera = "NetworkPlayerAttachCamera";
+    public const string Terrain = "Terrain";
   }
 }

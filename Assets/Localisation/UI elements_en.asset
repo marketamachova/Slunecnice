@@ -69,7 +69,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7148552577024
-    m_Localized: Experience in progress
+    m_Localized: VR Experience in Progress
     m_Metadata:
       m_Items: []
   - m_Id: 7705266741248
@@ -105,7 +105,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10843914756096
-    m_Localized: An error occurred
+    m_Localized: An Error Occurred
     m_Metadata:
       m_Items: []
   - m_Id: 11108332068864

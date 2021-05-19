@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 namespace UI
 {
+    /**
+     * Manages displaying of Loader UI element
+     */
     public class LoaderUI : MonoBehaviour
     {
         [SerializeField] private GameObject loader;

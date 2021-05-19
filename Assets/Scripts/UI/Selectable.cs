@@ -5,6 +5,9 @@ using UnityEngine.UI;
 namespace UI
 {
 
+    /**
+     * Changes (toggles) sprite of a UI element
+     */
     public class Selectable : MonoBehaviour
     {
         [SerializeField] private string spriteName;

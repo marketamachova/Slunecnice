@@ -1,8 +1,6 @@
-using System.Collections.Generic;
-using System.Linq;
+
 using UnityEngine;
 using NetworkPlayer = Network.NetworkPlayer;
-using Mirror;
 using Mirror.Discovery;
 using Network;
 using Scenes;
@@ -37,18 +35,17 @@ namespace Player
             uiController.DisplayError();
         }
 
-        public virtual void AssignPlayers()
+        /**
+         * assigns LocalNetworkPlayer and RemoteNetworkPlayer variables from all player objects in the scene 
+         */
+        public void AssignPlayers()
         {
-            Debug.Log("assign players in BASE Controller called");
-            NetworkPlayers = GameObject.FindObjectsOfType<NetworkPlayer>();
+            NetworkPlayers = FindObjectsOfType<NetworkPlayer>();
             foreach (var networkPlayer in NetworkPlayers)
             {
                 if (networkPlayer.isLocalPlayer)
                 {
-                    Debug.Log("found network player LOCAL");
-                    
                     LocalNetworkPlayer = networkPlayer;
-                    LocalNetworkPlayer.OnCalibrationComplete += OnCalibrationComplete;
                 }
                 else
                 {
@@ -57,15 +54,14 @@ namespace Player
             }
         }
 
-        public virtual void OnCalibrationComplete()
-        {
-        }
+        protected virtual void OnCalibrationComplete() { }
 
-        public virtual void SkipCalibration()
-        {
-        }
+        public virtual void SkipCalibration() { }
 
-        public virtual void SetCalibrationComplete()
+        /**
+         * synchronises calibration complete syncVar with all NetworkPlayers in the scene
+         */
+        protected virtual void SetCalibrationComplete()
         {
             if (NetworkPlayers.Length < 2)
             {
@@ -74,32 +70,33 @@ namespace Player
             
             foreach (var networkPlayer in NetworkPlayers)
             {
-                Debug.Log("setting cmdsetcalibrationcomplete");
                 networkPlayer.CmdSetCalibrationComplete(true);
             }
         }
 
+        /**
+         * handles selecting a scene (if no world scene is loaded/loading)
+         * and triggers network synchronisation with Command CmdHandleSelectedWorld on all NetworkPlayers in the scene
+         */
         public virtual void OnSceneSelected(string sceneName)
         {
-            Debug.Log("OnSceneSelected .......");
             if (SceneManager.sceneCount > 1)
             {
-                Debug.Log("sceneCount > 1");
+                Debug.Log("scene count > 1");
                 return;
             }
 
             foreach (var networkPlayer in NetworkPlayers)
             {
-                Debug.Log("setting cmd hanlde selected world called");
-                // Debug.Log(sceneName);
                 networkPlayer.CmdHandleSelectedWorld(sceneName);
-            }//message about scene loading to other players
+            }
         }
 
-        public virtual void OnGoToLobby()
-        {
-        }
+        public virtual void OnGoToLobby() { }
 
+        /**
+         * synchronises triggerGoToLobby  syncVar with all NetworkPlayers in the scene
+         */
         public virtual void TriggerGoToLobby()
         {
             foreach (var networkPlayer in NetworkPlayers)
@@ -108,11 +105,11 @@ namespace Player
             }
         }
 
-        public virtual void OnSceneLoaded()
-        {
-            
-        }
+        protected virtual void OnSceneLoaded() { }
 
+        /**
+         * handles selected language with given index of the language
+         */
         public void OnLanguageSelected(int index)
         {
             LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[index];

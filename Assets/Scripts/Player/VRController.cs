@@ -9,7 +9,10 @@ using NetworkPlayer = Network.NetworkPlayer;
 
 namespace Player
 {
-    public class GameController : MonoBehaviour
+    /**
+     * Controller managing events in VR travelling experience
+     */
+    public class VRController : MonoBehaviour
     {
         public List<GameObject> player = new List<GameObject>();
         private SceneController _sceneController;
@@ -37,8 +40,8 @@ namespace Player
             _currentScene = SceneManager.GetActiveScene().name;
 
             _customSpeed = _networkPlayer.speed;
-            _cart = GameObject.FindWithTag("Cart");
-            _player = GameObject.FindWithTag("NetworkCamera");
+            _cart = GameObject.FindWithTag(GameConstants.Cart);
+            _player = GameObject.FindWithTag(GameConstants.NetworkCamera);
             _sceneController = GameObject.FindObjectOfType<SceneController>();
             _sceneLoader = GameObject.FindObjectOfType<SceneLoader>();
             _pathCreator = FindObjectOfType<PathCreator>();
@@ -75,8 +78,6 @@ namespace Player
 
         public void StartMovement()
         {
-            Debug.Log("game controller starting movement");
-
             foreach (var script in _playerMovementScripts)
             {
                 Enable(script);
@@ -112,9 +113,7 @@ namespace Player
             {
                 StopCart();
             }
-
-            Debug.Log("calling CmdGoToLobby");
-
+            
             var networkPlayers = FindObjectsOfType<NetworkPlayer>();
             foreach (var networkPlayer in networkPlayers)
             {
@@ -148,19 +147,23 @@ namespace Player
 
         public void GoToLobby()
         {
-            Debug.Log("game controller go to lobby");
             StartCoroutine(GoToLobbyCoroutine());
         }
 
 
+        /**
+         * coroutine of VR player returning to lobby
+         * 1. Waits for defined waiting time
+         * 2. Sets Lobby as active scene
+         * 3. Moves player at accurate position in Lobby
+         * 4. calls async scene unloading
+         */
         private IEnumerator GoToLobbyCoroutine()
         {
             yield return new WaitForSecondsRealtime(GameConstants.ReturnToLobbyWaitingTime);
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName("VROffline"));
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(GameConstants.VROffline));
 
             _sceneController.MovePlayersAtStartingPositionLobby();
-
-            Debug.Log("Unloading scene");
             
             _sceneLoader.UnloadScene();
         }
@@ -168,7 +171,7 @@ namespace Player
         public void SetMovementSpeed(int speed)
         {
 
-            if (_playerMovementScripts.Length > 0)
+            if (_playerMovementScripts.Length > 0) //TODO
             {
                 foreach (var playerMovement in _playerMovementScripts)
                 {
@@ -178,11 +181,13 @@ namespace Player
             }
             else
             {
-                Debug.Log("custom speed set");
                 _customSpeed = speed;
             }
         }
 
+        /**
+         * return time (float) spent in an ongoing VR experience
+         */
         public float GetTimePlaying()
         {
             if (_playerMovementScripts.Length > 0)
@@ -192,10 +197,9 @@ namespace Player
 
             return 0f;
         }
-
+        
         private void TriggerPlayerMoving()
         {
-            Debug.Log("trigger player move");
             _networkPlayer.CmdSetPlayerMoving(true);
         }
     }

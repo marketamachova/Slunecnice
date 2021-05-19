@@ -2,7 +2,6 @@
 using Scenes;
 using UI;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using NetworkPlayer = Network.NetworkPlayer;
 using PlayMode = UI.PlayMode;
 
@@ -30,37 +29,29 @@ namespace Player
             AssignPlayers();
         }
 
-        public override void OnSceneLoaded()
+        /**
+         * mobile client should wait for the moment a world is loaded in the VR application
+         * - called on mobile application scene load finish
+         * - if VR app has scene already loaded, mobile proceeds to display relevant UI
+         * - if not, an event is subscribed
+         */
+        protected override void OnSceneLoaded()
         {
             base.OnSceneLoaded();
-            Debug.Log("ON SCENE LOADED");
-
-            // var scene = SceneManager.GetSceneByName(LocalNetworkPlayer.chosenWorld + "Mobile");
-            // var scene = SceneManager.GetSceneByName("EWinterMobile");
-            // SceneManager.SetActiveScene(scene);
-
-            // GameObject.FindObjectOfType<Canvas>().gameObject.SetActive(false);
 
             if (RemoteNetworkPlayer.worldLoaded)
             {
-                Debug.Log("RemoteNetworkPlayer.worldLoaded");
-
-                uiControllerMobile.EnablePanelExclusive("WatchScreenPortrait");
-                uiControllerMobile.EnableTrue("VideoControls");
+                uiControllerMobile.EnablePanelExclusive(UIConstants.WatchScreenPortrait);
+                uiControllerMobile.EnableTrue(UIConstants.VideoControls);
                 uiControllerMobile.OnSceneLoaded();
 
                 _playing = RemoteNetworkPlayer.playerMoving;
-
-                // if (NetworkPlayers.Length < 2)
-                // {
-                //     AssignPlayers();
-                // }
 
                 foreach (var networkPlayer in NetworkPlayers)
                 {
                     networkPlayer.CmdTriggerTimeSync(true);
                 }
-                
+
                 LocalNetworkPlayer.CmdSetPlayerMoving(_playing);
                 uiControllerMobile.SetPlayButtonSelected(_playing);
                 EnableCamera(PlayMode.PlayerCamera, true);
@@ -78,14 +69,13 @@ namespace Player
             uiControllerMobile.EnablePanelExclusive(UIConstants.ConnectScreen);
             connectController.OnDisconnect();
             sceneLoader.UnloadScene();
-
-            Debug.Log("MobileController.OnDisconnect");
         }
 
+        /**
+         * handles pressing the Play button
+         */
         public void OnPlayPressed()
         {
-            Debug.Log("playing " + LocalNetworkPlayer.playerMoving);
-
             _playing = !LocalNetworkPlayer.playerMoving;
 
             if (NetworkPlayers.Length < 2)
@@ -100,76 +90,64 @@ namespace Player
 
             uiControllerMobile.OnPlayPressed(_playing);
         }
-
-        // public void EndDrive()
-        // {
-        //     Debug.Log("Mobile Controller end drive");
-        //     LocalNetworkPlayer.CmdSetPlayerMoving(false);
-        //     
-        // }
-        
         
 
         public override void SkipCalibration()
         {
-            // if (NetworkPlayers.Length < 2)
-            // {
-            //     AssignPlayers();
-            // }
-
             foreach (var networkPlayer in NetworkPlayers)
             {
                 networkPlayer.CmdSkipCalibration(true);
             }
         }
 
+        /**
+         * called when mobile app connects the VR app
+         * handles the situations, when:
+         * - VR application is in calibration process
+         * - VR application is in scene selection process
+         * - VR application has scene selected
+         */
         public void AssignPlayer(NetworkPlayer networkPlayer)
         {
             LocalNetworkPlayer = networkPlayer;
             _vrPlayer = networkPlayer;
-            foreach (var player in FindObjectsOfType<NetworkPlayer>().Where(p => !p.isLocalPlayer))
+            foreach (var player in FindObjectsOfType<NetworkPlayer>().Where(p => !p.isLocalPlayer && !p.mobile))
             {
                 _vrPlayer = player;
             }
 
-            if (_vrPlayer.calibrationComplete)
-            {
-                LocalNetworkPlayer.CmdSetCalibrationComplete(true);
-            }
-
+            Debug.Log("_vrPlayer.mobile " + _vrPlayer.mobile);
+            // if (_vrPlayer.calibrationComplete)
+            // {
+            //     LocalNetworkPlayer.CmdSetCalibrationComplete(true);
+            // }
             if (_vrPlayer.playerMoving)
             {
                 LocalNetworkPlayer.CmdSetPlayerMoving(true);
             }
             
-            Debug.Log("ASSIGN PLAYER " + networkPlayer);
-            
-            if (_vrPlayer.calibrationComplete) //calibration complete in VR
+            if (!string.IsNullOrEmpty(_vrPlayer.chosenWorld)) //scene selected in VR
             {
-                Debug.Log("calibration complete");
+                DisplaySceneSelected(_vrPlayer.chosenWorld);
+            }
+            else if (_vrPlayer.calibrationComplete) //calibration complete in VR
+            {
+                LocalNetworkPlayer.CmdSetCalibrationComplete(true);
                 OnCalibrationComplete();
             }
             else //calibration in process
             {
-                Debug.Log("calibration in processs.......");
-                uiControllerMobile.EnableTrue("Calibration"); // display "Calibration in process message"
+                uiControllerMobile.EnableTrue(UIConstants.Calibration); // display "Calibration in process message"
                 LocalNetworkPlayer.OnCalibrationComplete +=
                     OnCalibrationComplete; //observe calibration complete process 
-            }
-
-            if (!string.IsNullOrEmpty(_vrPlayer.chosenWorld)) //scene selected in VR
-            {
-                Debug.Log("chosen world " + _vrPlayer.chosenWorld);
-                DisplaySceneSelected(_vrPlayer.chosenWorld);
             }
 
             AssignCameras();
         }
 
-        public override void OnCalibrationComplete()
+        protected override void OnCalibrationComplete()
         {
             base.OnCalibrationComplete();
-            Debug.Log("HIDE CALIBRATION MOBILE CONTROLLER");
             if (!string.IsNullOrEmpty(_vrPlayer.chosenWorld))
             {
                 DisplaySceneSelected(_vrPlayer.chosenWorld);
@@ -191,7 +169,6 @@ namespace Player
 
         private void DisplaySceneSelected(string sceneName)
         {
-            Debug.Log("display scene selected");
             uiController.EnableFalse(UIConstants.SceneSelection);
             uiController.EnableTrue(UIConstants.SceneJoin);
         }
@@ -203,10 +180,6 @@ namespace Player
 
         public void SetSpeed(float value)
         {
-            Debug.Log("setting speed to " + value);
-            
-            // AssignPlayers();
-            
             foreach (var networkPlayer in NetworkPlayers)
             {
                 networkPlayer.CmdSetSpeed((int) value);

@@ -10,7 +10,7 @@ namespace Network
 {
     public class NetworkPlayer : NetworkBehaviour
     {
-        [SyncVar(hook = "SetMobile")] public bool mobile = false;
+        [SyncVar] public bool mobile = false;
 
         [SyncVar(hook = "ChangeScene")] public string chosenWorld;
 
@@ -33,7 +33,7 @@ namespace Network
 
 
         private BaseUIController _uiController;
-        private GameController _gameController;
+        private VRController _vrController;
         private BaseController _controller;
         private SceneLoader _sceneLoader;
         private NetworkPlayer[] _networkPlayers;
@@ -45,7 +45,7 @@ namespace Network
         {
             _controller = FindObjectOfType<BaseController>();
             _sceneLoader = FindObjectOfType<SceneLoader>();
-            _gameController = FindObjectOfType<GameController>();
+            _vrController = FindObjectOfType<VRController>();
             _uiController = FindObjectOfType<BaseUIController>();
             _networkPlayers = FindObjectsOfType<NetworkPlayer>();
         }
@@ -80,15 +80,23 @@ namespace Network
         {
             _controller.AssignPlayers();
 
-            if (SceneManager.GetActiveScene().name == "AppOffline" && isLocalPlayer)
+            if (SceneManager.GetActiveScene().name == GameConstants.AppOffline && isLocalPlayer)
             {
                 CmdSetMobile(true);
-                ((MobileController) _controller).AssignPlayer(this); // mozna presunout do onstrtlocalplayer
+                ((MobileController) _controller).AssignPlayer(this);
             }
         }
 
         /**
          * CALLBACKS
+         *
+         * methods below all called whenever a specific SyncVar is changed 
+         */
+        
+        /**
+         * triggers loading a scene (additively)
+         * if VR: loads the the chosen scene
+         * if mobile: loads a mobile version of the chosen scene 
          */
         public void ChangeScene(string oldScene, string newScene)
         {
@@ -100,31 +108,29 @@ namespace Network
             goToLobby = false;
             DontDestroyOnLoad(this);
             string sceneToLoad = newScene;
-            Debug.Log("Change sceen in network player, mobile: " + mobile);
             if (isLocalPlayer)
             {
-                if ((mobile || SceneManager.GetActiveScene().name == "AppOffline"))
+                if (mobile || SceneManager.GetActiveScene().name == GameConstants.AppOffline)
                 {
                     sceneToLoad = sceneToLoad + "Mobile";
-                    // sceneToLoad = "EmptySceneMobile";
-
                 }
 
                 _sceneLoader.LoadScene(sceneToLoad, true);
             }
         }
 
-        private void SetMobile(bool oldValue, bool mobile)
-        {
-            Debug.Log("mobile noe: " + mobile);
-        }
-
+        /**
+         * if goToLobby true: set SyncVars to default values and synchronise them across players
+         * call appropriate methods at mobile and VR players' controllers 
+         */
         public void GoToLobby(bool oldValue, bool exit)
         {
             if (exit)
             {
                 playerMoving = false;
                 chosenWorld = String.Empty;
+                triggerTimeSync = false;
+                timePlaying = 0f;
 
                 if (_networkPlayers.Length < 2)
                 {
@@ -139,15 +145,19 @@ namespace Network
                     networkPlayer.CmdTriggerTimeSync(false);
                 }
 
-                if (mobile && isLocalPlayer)
+                if (isLocalPlayer)
                 {
-                    _controller.OnGoToLobby();
-                }
-                else if (!mobile && isLocalPlayer)
-                {
-                    Debug.Log("network player go to lobby");
-                    _gameController = FindObjectOfType<GameController>();
-                    _gameController.GoToLobby();
+                    if (!mobile)
+                    {
+                        if (!_vrController)
+                        {
+                            AssignGameController();
+                        }
+
+                        _vrController.GoToLobby();
+                        _controller.OnGoToLobby();
+                    }
+
                     _controller.OnGoToLobby();
                 }
             }
@@ -155,81 +165,74 @@ namespace Network
 
         public void SetPlayerMoving(bool oldValue, bool moving)
         {
-            Debug.Log("set player moving in Network pLayer, moving: " + moving);
-
             if (!mobile && isLocalPlayer && !goToLobby)
             {
-                AssignGameController(); //TODO nejak jinak mozna smazat
+                if (!_vrController)
+                {
+                    AssignGameController();
+                }
 
                 if (moving)
                 {
-                    Debug.Log(_gameController);
-
-                    _gameController.StartMovement();
+                    _vrController.StartMovement();
                 }
                 else
                 {
-                    _gameController.PauseMovement();
+                    _vrController.PauseMovement();
                 }
             }
         }
 
         public void SetSpeed(int oldValue, int movingSpeed)
         {
-            if (isLocalPlayer)
+            if (isLocalPlayer && !mobile)
             {
-                if (!mobile)
+                if (!_vrController)
                 {
-                    _gameController.SetMovementSpeed(movingSpeed);
+                    AssignGameController();
                 }
+                _vrController.SetMovementSpeed(movingSpeed);
             }
         }
 
         public void SkipCalibration(bool oldValue, bool skip)
         {
-            Debug.Log("set player skip calibration CALLBACK in Network pLayer, skip: " + skip);
             if (!mobile)
             {
                 _controller.SkipCalibration();
-                // ((VRLobbyController) _controller).GetCartCreator().SkipCalibration();
             }
         }
 
-        //called automatically, after calibrationComplete changes
         private void SetCalibrationComplete(bool oldValue, bool complete)
         {
-            Debug.Log("Set calibration complete callback nETWORK PLAYER");
-            OnCalibrationComplete?.Invoke(); //ma si to prevzit mobile controller (MobileController)
+            OnCalibrationComplete?.Invoke();
         }
 
+        /**
+         * syncs the time spent in an ongoing VR experience in case the mobile player joins during an ongoing VR experience
+         */
         private void SetTimePlaying(float oldValue, float playTime)
         {
-            Debug.Log("set time playing in network player");
-
-            if (mobile && isLocalPlayer)
+            Debug.Log(SceneManager.GetSceneAt(0).name);
+            if (SceneManager.GetSceneAt(0).name.Equals(GameConstants.AppOffline))
             {
-                Debug.Log("((UIControllerMobile) _uiController).UpdateTimer(playerMoving, playTime);" + playerMoving);
                 ((UIControllerMobile) _uiController).UpdateTimer(playerMoving, playTime);
             }
         }
 
+        /**
+         * trigger synchronisation of the time spent in an ongoing VR experience
+         */
         private void TriggerTimeSync(bool oldValue, bool timeSyncTrigger)
         {
             if (timeSyncTrigger && !mobile && isLocalPlayer)
             {
-                Debug.Log("VR local player cmd time sync");
-
-                if (!_gameController)
+                if (!_vrController)
                 {
                     AssignGameController();
                 }
 
-                if (!_gameController)
-                {
-                    return;
-                }
-
-                var currentTimePlaying = _gameController.GetTimePlaying();
+                var currentTimePlaying = _vrController.GetTimePlaying();
 
                 if (_networkPlayers.Length < 2)
                 {
@@ -238,47 +241,48 @@ namespace Network
 
                 foreach (var networkPlayer in _networkPlayers)
                 {
-                    networkPlayer.CmdSyncTimePlaying(currentTimePlaying);
+                    RpcSetTimePlaying(currentTimePlaying);
+                    networkPlayer.timePlaying = currentTimePlaying;
+                    networkPlayer.triggerTimeSync = false;
                 }
             }
         }
 
+        /**
+         * invokes event when world is loaded at the VR client
+         */
         private void OnWorldLoaded(bool oldValue, bool loaded)
         {
-            if (loaded)
+            if (loaded && !mobile)
             {
-                Debug.Log("WORLD LOADED");
-                if (!mobile)
-                {
-                    Debug.Log("On world loaded VR playrt invoking onsceneloaded");
-                    OnSceneLoadedAction?.Invoke();
-                }
+                OnSceneLoadedAction?.Invoke();
             }
         }
 
 
         /**
          * COMMANDS
+         *
+         * methods below change the values of SyncVars 
+         * - called from clients but executed on the server
+         * - requiresAuthority set to false to be able to sync SyncVars across all players  
          */
-
-        //mozna ze to coje ted v networkManager se da dat i sem jako serverova strana
-        [Command(requiresAuthority = false)] //require authority
+        [Command(requiresAuthority = false)]
         public void CmdHandleSelectedWorld(string sceneName)
         {
-            Debug.Log(chosenWorld);
-
             if (String.IsNullOrEmpty(chosenWorld))
             {
                 chosenWorld = sceneName; //changing syncvar as cmd results in server synchronising all clients
             }
         }
 
-        //volano Controllerem
-        [Command(requiresAuthority = false)] //require authority
+        [Command(requiresAuthority = false)]
         public void CmdSetPlayerMoving(bool moving)
         {
-            Debug.Log("cmd set player moving");
-            playerMoving = moving;
+            if (!goToLobby)
+            {
+                playerMoving = moving;
+            }
         }
 
         [Command(requiresAuthority = false)]
@@ -287,7 +291,7 @@ namespace Network
             skipCalibration = true;
         }
 
-        [Command(requiresAuthority = false)] //require authority
+        [Command(requiresAuthority = false)]
         public void CmdGoToLobby()
         {
             goToLobby = true;
@@ -315,18 +319,13 @@ namespace Network
         [Command(requiresAuthority = false)]
         public void CmdSyncTimePlaying(float timePlayingValue)
         {
-            Debug.Log("CmdSyncTimePlaying " + timePlayingValue);
             timePlaying = timePlayingValue;
         }
 
         [Command(requiresAuthority = false)]
         public void CmdTriggerTimeSync(bool trigger)
         {
-            Debug.Log("CmdTriggerTimeSync " + trigger);
-            if (trigger)
-            {
-                triggerTimeSync = true;
-            }
+            triggerTimeSync = trigger;
         }
 
         [Command]
@@ -335,19 +334,16 @@ namespace Network
             worldLoaded = loaded;
         }
 
-        public GameController GetGameController()
+        [TargetRpc]
+        public void RpcSetTimePlaying(float time)
         {
-            if (_gameController == null)
-            {
-                AssignGameController();
-            }
-
-            return _gameController;
+            timePlaying = time;
         }
+
 
         private void AssignGameController()
         {
-            _gameController = FindObjectOfType<GameController>();
+            _vrController = FindObjectOfType<VRController>();
         }
 
         private void AssignNetworkPlayers()

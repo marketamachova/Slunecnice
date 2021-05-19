@@ -29,10 +29,6 @@ namespace Scenes
             {
                 if (!player.mobile)
                 {
-                    Debug.Log("On scene loaded VR");
-                    
-                    Debug.Log(player);
-                    
                     player.CmdSetWorldLoaded(true);
                 }
             }
@@ -40,8 +36,6 @@ namespace Scenes
 
         public void MovePlayersAtStartingPosition()
         {
-            Debug.Log("MOVE player at starting position");
-
             DontDestroyOnLoad(_player);
             _player.transform.position = startingPoint.position;
             _player.transform.rotation = startingPoint.rotation;
@@ -50,15 +44,12 @@ namespace Scenes
             {
                 _mainCamera.transform.parent = _player.transform;
                 _mainCamera.transform.position = _player.transform.position;
-                // _mainCamera.transform.localPosition = new Vector3(0, 1.5f, -0.273f);
                 _mainCamera.transform.localPosition = new Vector3(0, 1.5f, 0);
             }
         }
         
         public void MovePlayersAtStartingPositionLobby()
         {
-            Debug.Log("move player to lobby");
-            
             if (!_player)
             {
                 _player = GameObject.FindWithTag(GameConstants.NetworkCamera);

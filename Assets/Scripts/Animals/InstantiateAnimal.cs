@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Colliders;
+using Player;
 using UnityEngine;
 
 namespace Animals
@@ -12,7 +13,7 @@ namespace Animals
 
         public void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.CompareTag("NetworkCamera") && collision.gameObject.name != "Terrain")
+            if (collision.gameObject.CompareTag(GameConstants.NetworkCamera) && collision.gameObject.name != GameConstants.Terrain)
             {
                 for (int i = 0; i < prefabs.Length; i++)
                 {
