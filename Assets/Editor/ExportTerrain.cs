@@ -1,9 +1,15 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEditor;
 using System;
 using System.Collections;
 using System.IO;
 using System.Text;
+
+/*
+* the following piece of code is taken from the Unity community at http://wiki.unity3d.com/index.php?title=TerrainObjExporter
+* - serves for converting a terrain.asset file into an OBJ file
+* - was used for optimisation reasons for the WinterTerrainMobile asset file
+*/ 
  
 enum SaveFormat { Triangles, Quads }
 enum SaveResolution { Full=0, Half, Quarter, Eighth, Sixteenth }
