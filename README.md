@@ -2,10 +2,12 @@
 
 PhysioTrails is an application for virtual reality serving as an auxiliary tool for balance training. The   system consists of two applications, a VR application mediating a travelling experience for Oculus Quest and an Android mobile application for controlling the VR experience.
 
+
 **Relevant** **Branches**
 
 - *vr-app*: Unity project set for building the VR application
 - *mobile-app*: Unity project set for building the mobile application
+
 
 **Content**
 
@@ -26,9 +28,11 @@ PhysioTrails is an application for virtual reality serving as an auxiliary tool 
 
 - Oculus Quest 1 or 2
 
+
 **SW Requirements**
 
 - SideQuest (or other application for side-loading APK files to Quest devices)
+
 
 **Installation**
 
@@ -39,6 +43,7 @@ PhysioTrails is an application for virtual reality serving as an auxiliary tool 
 5. Navigate to Applications/Unknown Sources in the Quest device
 6. Open the PhysioTrails application
 
+
 ### Mobile Application
 
 **HW Requirements**
@@ -46,9 +51,11 @@ PhysioTrails is an application for virtual reality serving as an auxiliary tool 
 - Android mobile device with Android OS 6 or above
 - Wi-Fi connection and Oculus Quest 1 or 2 with PhysioTrails application running
 
+
 **SW Requirements**
 
 - Android File Transfer (or other application for side-loading APK files to Android mobile devices)
+
 
 **Installation**
 
