@@ -8,19 +8,19 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AppOffline.unity
     guid: f5b5a5ad3a8e148e2be96f3d2051601f
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/VROffline.unity
     guid: 05528319f187c4a60becc40e9b5ad945
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: 0d9d9ed3c972a41a59d5b5fc1dffb065
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/WinterScene.unity
     guid: b6c74f5c413584aeab69a53129bdbd30
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/RuralScene.unity
     guid: 91610d0c0cbf34675b245a4f788183a1
   - enabled: 0
@@ -53,13 +53,13 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/WinterSceneMobile.unity
     guid: 6e5ac03d3b760433baf24b6cb7c13844
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainSceneMobile.unity
     guid: e62c86f8b990645ce827505556ab5a74
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/RuralSceneMobile.unity
     guid: 47d1c0fec427641fc9d3e988baea1214
   m_configObjects:
