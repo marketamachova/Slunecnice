@@ -11,8 +11,8 @@ PhysioTrails is an application for virtual reality serving as an auxiliary tool 
 
 **Content**
 
-- *Slunecnice:* source project of the thesis in Unity 3D
-- Builds:
+- source project of the thesis in Unity 3D
+- ApplicationExports folder:
 
     — PhysioTrails-vr.apk - installation package of the VR application
 
@@ -38,7 +38,7 @@ PhysioTrails is an application for virtual reality serving as an auxiliary tool 
 
 1. Clone this repo
 2. Connect the Quest device to your computer and make sure it is switched on
-3. Open SideQuest and drag and drop the *PhysioTrails-vr.apk* from the *Builds* folder into the SideQuest window
+3. Open SideQuest and drag and drop the *PhysioTrails-vr.apk* from the *ApplicationExports* folder into the SideQuest window
 4. Enable hand tracking in the Quest device
 5. Navigate to Applications/Unknown Sources in the Quest device
 6. Open the PhysioTrails application
@@ -61,7 +61,7 @@ PhysioTrails is an application for virtual reality serving as an auxiliary tool 
 
 1. Clone this repo
 2. Connect the Android device to your computer and make sure it is switched on
-3. Open Android File Transfer and drag and drop the *PhysioTrails-mobile.apk* from the *Builds* folder into the Android File Transfer window
+3. Open Android File Transfer and drag and drop the *PhysioTrails-mobile.apk* from the *ApplicationExports* folder into the Android File Transfer window
 4. Navigate to Settings/Storage/Explore in the Android device
 5. Open the PhysioTrails application package and choose Install
 6. Open the PhysioTrails application
