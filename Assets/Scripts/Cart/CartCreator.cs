@@ -12,6 +12,9 @@ using Vector3 = UnityEngine.Vector3;
 
 namespace Cart
 {
+    /**
+    * manages the calibration process - creates and rotates cart at points indicated by user
+    */
     public class CartCreator : MonoBehaviour
     {
         [Header("Hands")] [SerializeField] private GameObject leftHand;
@@ -120,7 +123,7 @@ namespace Cart
             uiController.DisplayCalibrationStep3();
         }
 
-    
+
         public void Reset()
         {
             Destroy(_cart);
@@ -160,16 +163,17 @@ namespace Cart
             ColorCart();
 
             var networkCamera = GameObject.FindWithTag(GameConstants.NetworkCamera);
-            
+
             var cartRotation = _cart.transform.eulerAngles;
             _cart.transform.Rotate(-cartRotation);
 
-            
+
             var children = networkCamera.GetComponentsInChildren<Transform>();
             foreach (var child in children)
             {
                 child.transform.Rotate(-cartRotation);
             }
+
             networkCamera.transform.Rotate(cartRotation);
             _cart.transform.parent = networkCamera.transform;
 
