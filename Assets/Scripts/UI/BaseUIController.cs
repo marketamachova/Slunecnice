@@ -54,7 +54,7 @@ namespace UI
             Enable(enalableName, false);
         }
 
-        public void ToggleEnable(string enalableName)
+        public virtual void ToggleEnable(string enalableName)
         {
             foreach (var enalable in enalableObjects.Where(enalable => enalable.name == enalableName))
             {
