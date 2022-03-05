@@ -23,10 +23,6 @@ MonoBehaviour:
     m_Key: Device name empty
     m_Metadata:
       m_Items: []
-  - m_Id: 616947507200
-    m_Key: New Entry
-    m_Metadata:
-      m_Items: []
   - m_Id: 1784180367360
     m_Key: available devices
     m_Metadata:
@@ -36,7 +32,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2601646022656
-    m_Key: d
+    m_Key: searching for devices
     m_Metadata:
       m_Items: []
   - m_Id: 2845377028096
@@ -121,6 +117,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 21498239639552
     m_Key: language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 109591525978595328
+    m_Key: ending experience
     m_Metadata:
       m_Items: []
   m_Metadata:

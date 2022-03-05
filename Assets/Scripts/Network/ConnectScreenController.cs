@@ -19,12 +19,9 @@ namespace UI
         [SerializeField] private GameObject hintBar;
 
         private Button _connectButtonComponent;
-        private Animator _connectScreenAnimator;
 
-
+        private LoadingStateHandler _loadingStateHandler;
         private ServerResponse _serverResponse;
-        private static readonly int DeviceLost = Animator.StringToHash("DeviceLost");
-        private static readonly int DeviceFound = Animator.StringToHash("DeviceFound");
 
         void Awake()
         {
@@ -33,7 +30,7 @@ namespace UI
             networkManager.OnMobileClientDisconnectAction += OnDisconnect;
 
             _connectButtonComponent = connectButton.GetComponent<Button>();
-            _connectScreenAnimator = GetComponent<Animator>();
+            _loadingStateHandler = GetComponent<LoadingStateHandler>();
         }
 
 
@@ -52,11 +49,10 @@ namespace UI
 
         public void OnDisconnect()
         {
-            UpdateConnectUI(false);
+            StartCoroutine(UpdateConnectUI(false));
 
             connectedText.SetActive(false);
             connectButton.SetActive(true);
-            _connectScreenAnimator.SetTrigger(DeviceLost);
 
             myNetworkDiscovery.StartDiscovery();
         }
@@ -106,13 +102,13 @@ namespace UI
 
         private IEnumerator UpdateConnectUI(bool serverAvailable)
         {
-            _connectScreenAnimator.SetTrigger(serverAvailable ? DeviceFound : DeviceLost);
             yield return new WaitForSecondsRealtime(1);
 
             availabilityStatus.SetSelected(serverAvailable);
             deviceName.gameObject.SetActive(serverAvailable);
             deviceNotFound.SetActive(!serverAvailable);
             hintBar.SetActive(!serverAvailable);
+            _loadingStateHandler.AppState = serverAvailable ? AppState.None : AppState.SearchingForDevices;
 
             yield return new WaitForSecondsRealtime(1);
             ActivateConnectButton(serverAvailable);

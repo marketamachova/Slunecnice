@@ -23,7 +23,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 208296468480
-    m_Localized: "Ukon\u010Duji proj\xED\u017E\u010Fku..."
+    m_Localized: "\u017D\xE1dn\xE1 za\u0159\xEDzen\xED nalezena"
     m_Metadata:
       m_Items: []
   - m_Id: 1784180367360
@@ -115,6 +115,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 21498239639552
     m_Localized: Jazyk aplikace
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2601646022656
+    m_Localized: "Hled\xE1m dostupn\xE1 za\u0159\xEDzen\xED..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 109591525978595328
+    m_Localized: "Ukon\u010Duji proj\xED\u017E\u010Fku..."
     m_Metadata:
       m_Items: []
   references:

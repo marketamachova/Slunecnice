@@ -28,6 +28,7 @@ namespace UI
             loadingSceneIndicator.SetActive(active);
         }
 
+        [ContextMenu("TriggerError")]
         public virtual void DisplayError()
         {
             EnableTrue(UIConstants.ErrorPanel);

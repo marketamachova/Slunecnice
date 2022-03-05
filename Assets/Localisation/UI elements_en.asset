@@ -23,7 +23,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 208296468480
-    m_Localized: Ending the VR experience...
+    m_Localized: No available devices
     m_Metadata:
       m_Items: []
   - m_Id: 1784180367360
@@ -114,6 +114,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 21498239639552
     m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2601646022656
+    m_Localized: Searching for available devices...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 109591525978595328
+    m_Localized: Ending the VR experience...
     m_Metadata:
       m_Items: []
   references:

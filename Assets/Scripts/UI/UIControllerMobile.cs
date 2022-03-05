@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Player;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Utils;
 
@@ -46,15 +46,11 @@ namespace UI
 
         private void Awake()
         {
+            SceneManager.sceneLoaded += OnSceneLoaded;
             networkManager.OnClientDisconnectAction += DisplayError;
             _playerCameraDisplayStrategy = new PlayerCameraDisplayStrategy(this);
             _topCameraDisplayStrategy = new TopCameraDisplayStrategy(this);
             _multiviewDisplayStrategy = new MultiviewDisplayStrategy(this);
-        }
-
-        private void Start()
-        {
-            StartCoroutine(SlideSplashScreen());
         }
 
         public void EnableCameraView(string cameraViewName)
@@ -96,6 +92,11 @@ namespace UI
         public void OnSceneChosen(string chosenScene)
         {
             mobileController.OnSceneSelected(chosenScene);
+        }
+        
+        private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+        {
+            StartCoroutine(SlideSplashScreen());
         }
 
         public void OnSceneLoaded()
@@ -175,10 +176,10 @@ namespace UI
 
         private IEnumerator SlideSplashScreen()
         {
-            yield return new WaitForSecondsRealtime(2.5f);
+            yield return new WaitForSecondsRealtime(3f);
             splashScreen.GetComponent<Animator>().SetTrigger(SlideDown);
-            // yield return new WaitForSecondsRealtime(2);
-            // splashScreenAnimator.gameObject.SetActive(false);
+            yield return new WaitForSecondsRealtime(2f);
+            splashScreen.SetActive(false);
         }
 
         private PlayMode ParsePlayMode(string playMode)
