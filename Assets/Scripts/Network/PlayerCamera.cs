@@ -33,6 +33,7 @@ namespace Network
                 SceneManager.sceneLoaded += UpdateCameraRig;
 
                 _centerEyeAnchor = GameObject.FindWithTag(GameConstants.CenterEyeAnchor);
+                _cameraRig = GameObject.FindWithTag(GameConstants.MainCamera);
             }
         }
 
@@ -63,6 +64,10 @@ namespace Network
         }
 
 
+        /**
+         * needs to have Scene and LoadSceneMode arguments
+         * in order to be subscribed to SceneManager event
+         */
         private void UpdateCameraRig(Scene arg0, LoadSceneMode loadSceneMode)
         {
             if (_vrInstance)
@@ -71,6 +76,10 @@ namespace Network
             }
         }
 
+        /**
+         * needs to have Scene and LoadSceneMode arguments
+         * in order to be subscribed to SceneManager event
+         */
         private void AssignChild(Scene arg0, LoadSceneMode loadSceneMode)
         {
             _cameraRig = GameObject.FindWithTag(GameConstants.MainCamera);

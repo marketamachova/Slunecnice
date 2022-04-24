@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Player;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Utils;
 
@@ -36,14 +36,17 @@ namespace UI
         [SerializeField] private Slider speedSlider;
         [SerializeField] private TextMeshProUGUI sliderText;
         [SerializeField] private Button endButton;
+        [SerializeField] private GameObject splashScreen;
 
         private string _panelOnTopOfStack;
         private PlayerCameraDisplayStrategy _playerCameraDisplayStrategy;
         private TopCameraDisplayStrategy _topCameraDisplayStrategy;
         private MultiviewDisplayStrategy _multiviewDisplayStrategy;
+        private static readonly int SlideDown = Animator.StringToHash("SlideDown");
 
         private void Awake()
         {
+            SceneManager.sceneLoaded += OnSceneLoaded;
             networkManager.OnClientDisconnectAction += DisplayError;
             _playerCameraDisplayStrategy = new PlayerCameraDisplayStrategy(this);
             _topCameraDisplayStrategy = new TopCameraDisplayStrategy(this);
@@ -67,7 +70,9 @@ namespace UI
 
             timer.gameObject.SetActive(portraitOriented);
 
-            controlButtons.transform.localScale = portraitOriented ? UIConstants.ControlsLocalScalePortrait : UIConstants.ControlsLocalScaleLandscape;
+            controlButtons.transform.localScale = portraitOriented
+                ? UIConstants.ControlsLocalScalePortrait
+                : UIConstants.ControlsLocalScaleLandscape;
         }
 
         public void ToggleControlsVisible()
@@ -88,6 +93,11 @@ namespace UI
         {
             mobileController.OnSceneSelected(chosenScene);
         }
+        
+        private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+        {
+            StartCoroutine(SlideSplashScreen());
+        }
 
         public void OnSceneLoaded()
         {
@@ -99,6 +109,7 @@ namespace UI
             _panelOnTopOfStack = panelName;
             Enable(panelName, true);
             Enable(UIConstants.BackButton, true);
+
             if (!portraitOriented)
             {
                 OnChangeScreenOrientation();
@@ -146,13 +157,13 @@ namespace UI
         {
             StartCoroutine(ActivateButtons(sceneButtons, 0, false));
             StartCoroutine(ActivateButtons(sceneButtons, GameConstants.ReturnToLobbyWaitingTime, true));
-            
+
             EnablePanelExclusive(UIConstants.ConnectScreen);
             EnableCameraView(UIConstants.PlayerCameraRT);
             EnableTrue(UIConstants.SceneSelection);
             EnableFalse(UIConstants.VideoControls);
             EnableFalse(UIConstants.SceneJoin);
-            
+
             timer.ResetTimer();
             currentPlayMode = PlayMode.None;
             portraitOriented = false;
@@ -161,6 +172,14 @@ namespace UI
             SetPlayButtonSelected(false);
             progressBar.ResetProgressBar();
             endButton.interactable = false;
+        }
+
+        private IEnumerator SlideSplashScreen()
+        {
+            yield return new WaitForSecondsRealtime(3f);
+            splashScreen.GetComponent<Animator>().SetTrigger(SlideDown);
+            yield return new WaitForSecondsRealtime(2f);
+            splashScreen.SetActive(false);
         }
 
         private PlayMode ParsePlayMode(string playMode)

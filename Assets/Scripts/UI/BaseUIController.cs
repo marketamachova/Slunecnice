@@ -5,7 +5,6 @@ using Network;
 using Player;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI
@@ -29,6 +28,7 @@ namespace UI
             loadingSceneIndicator.SetActive(active);
         }
 
+        [ContextMenu("TriggerError")]
         public virtual void DisplayError()
         {
             EnableTrue(UIConstants.ErrorPanel);
@@ -55,7 +55,7 @@ namespace UI
             Enable(enalableName, false);
         }
 
-        public void ToggleEnable(string enalableName)
+        public virtual void ToggleEnable(string enalableName)
         {
             foreach (var enalable in enalableObjects.Where(enalable => enalable.name == enalableName))
             {

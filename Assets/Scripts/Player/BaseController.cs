@@ -46,6 +46,7 @@ namespace Player
                 if (networkPlayer.isLocalPlayer)
                 {
                     LocalNetworkPlayer = networkPlayer;
+                    LocalNetworkPlayer.OnCalibrationComplete += OnCalibrationComplete;
                 }
                 else
                 {

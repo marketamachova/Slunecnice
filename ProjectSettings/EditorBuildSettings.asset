@@ -8,19 +8,19 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AppOffline.unity
     guid: f5b5a5ad3a8e148e2be96f3d2051601f
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/VROffline.unity
     guid: 05528319f187c4a60becc40e9b5ad945
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: 0d9d9ed3c972a41a59d5b5fc1dffb065
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/WinterScene.unity
     guid: b6c74f5c413584aeab69a53129bdbd30
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/RuralScene.unity
     guid: 91610d0c0cbf34675b245a4f788183a1
   - enabled: 0
@@ -30,36 +30,36 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/MainOld.unity
-    guid: d5a541bd17b784be3a715cd88187dbea
-  - enabled: 0
-    path: Assets/Scenes/WinterOld.unity
-    guid: a3f6c6e2ee9f1492293eb2b9683d653e
-  - enabled: 0
-    path: Assets/Scenes/RuralOld.unity
-    guid: 4838f4fbc4373469f8506b56959db5ab
-  - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/EmptyScene.unity
-    guid: 995db048adf834d0da0036e4a74b6bff
-  - enabled: 0
-    path: Assets/Scenes/Empty.unity
-    guid: d5792424549d54679ba0391f28d7a077
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
     path: Assets/Scenes/WinterSceneMobile.unity
     guid: 6e5ac03d3b760433baf24b6cb7c13844
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainSceneMobile.unity
     guid: e62c86f8b990645ce827505556ab5a74
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/RuralSceneMobile.unity
     guid: 47d1c0fec427641fc9d3e988baea1214
   m_configObjects:

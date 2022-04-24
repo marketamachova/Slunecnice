@@ -32,7 +32,9 @@ namespace UI
         public const string Step2 = "Step2";
         public const string Step3 = "Step3";
         public const string DoneButton = "DoneButton";
-        
+        public const string AvailabilityIndicatorVR = "AvailabilityIndicatorVR";
+        public const string AvailabilityIndicatorMobile = "AvailabilityIndicatorMobile";
+
         public static Vector3 ControlsLocalScalePortrait = new Vector3(1.034554f, 0.1034285f, 1.034554f);
         public static Vector3 ControlsLocalScaleLandscape = new Vector3(1.559694f, 0.1559289f, 1.559694f);
     }

@@ -9,7 +9,6 @@ namespace UI
 {
     public class ConnectScreenController : MonoBehaviour
     {
-
         [SerializeField] private TextMeshProUGUI deviceName;
         [SerializeField] private GameObject deviceNotFound;
         [SerializeField] private GameObject connectedText;
@@ -21,7 +20,7 @@ namespace UI
 
         private Button _connectButtonComponent;
 
-    
+        private LoadingStateHandler _loadingStateHandler;
         private ServerResponse _serverResponse;
 
         void Awake()
@@ -29,16 +28,17 @@ namespace UI
             myNetworkDiscovery.OnServerFound.AddListener(DisplayDiscoveredServers);
             networkManager.OnClientConnectAction += IndicateConnectedStatus;
             networkManager.OnMobileClientDisconnectAction += OnDisconnect;
-            
+
             _connectButtonComponent = connectButton.GetComponent<Button>();
+            _loadingStateHandler = GetComponent<LoadingStateHandler>();
         }
 
-        
+
         private void DisplayDiscoveredServers(ServerResponse serverResponse)
         {
             _serverResponse = serverResponse;
             deviceName.text = serverResponse.EndPoint.Address.ToString();
-            
+
             StartCoroutine(UpdateConnectUI(true));
         }
 
@@ -49,14 +49,14 @@ namespace UI
 
         public void OnDisconnect()
         {
-            UpdateConnectUI(false);
-            
+            StartCoroutine(UpdateConnectUI(false));
+
             connectedText.SetActive(false);
             connectButton.SetActive(true);
 
             myNetworkDiscovery.StartDiscovery();
         }
-        
+
         /**
          * called on press Join button
          * - sets the Join button to disabled
@@ -79,13 +79,13 @@ namespace UI
             }
         }
 
-     
+
         private void IndicateConnectedStatus()
         {
             connectedText.SetActive(true);
             connectButton.SetActive(false);
         }
-        
+
         private void ActivateConnectButton(bool activate)
         {
             if (activate)
@@ -96,18 +96,27 @@ namespace UI
             {
                 _connectButtonComponent.onClick.RemoveAllListeners();
             }
+
             _connectButtonComponent.interactable = activate;
         }
 
         private IEnumerator UpdateConnectUI(bool serverAvailable)
         {
+            yield return new WaitForSecondsRealtime(1);
+
             availabilityStatus.SetSelected(serverAvailable);
             deviceName.gameObject.SetActive(serverAvailable);
             deviceNotFound.SetActive(!serverAvailable);
             hintBar.SetActive(!serverAvailable);
-            
+            _loadingStateHandler.AppState = serverAvailable ? AppState.None : AppState.SearchingForDevices;
+
             yield return new WaitForSecondsRealtime(1);
             ActivateConnectButton(serverAvailable);
         }
+
+        // private IEnumerator Wait()
+        // {
+        //     yield return new WaitForSecondsRealtime(4);
+        // }
     }
 }
